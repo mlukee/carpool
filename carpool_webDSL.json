@@ -1,0 +1,260 @@
+{
+  "name": "Carpool App",
+  "title": "JoinMyRide",
+  "description": "Ride sharing and transport cost sharing app",
+  "port": 5000,
+  "menu_items": [
+    { "label": "Home", "component": "Home" },
+    { "label": "Find a Ride", "component": "Find a Ride" },
+    { "label": "Offer a Ride", "component": "Offer a Ride" },
+    { "label": "My Rides", "component": "My Rides" },
+    { "label": "Profile", "component": "Profile" },
+    {
+      "condition": "isLoggedIn === true",
+      "label": "Logout",
+      "component": "Logout"
+    },
+    {
+      "condition": "isLoggedIn === false",
+      "label": "Login",
+      "component": "Login"
+    }
+  ],
+  "components": [
+    { "name": "Home", "url": "/" },
+    { "name": "Find a Ride", "url": "/find-ride" },
+    { "name": "Offer a Ride", "url": "/offer-ride" },
+    { "name": "My Rides", "url": "/my-rides" },
+    { "name": "Ride Details", "url": "/ride-details" },
+    { "name": "Profile", "url": "/profile" },
+    { "name": "Login", "url": "/login" },
+    { "name": "Logout", "url": "/logout" },
+    { "name": "Feedback", "url": "/feedback" }
+  ],
+  "api": {
+    "base": "http://localhost:5000/api",
+    "endpoints": [
+      {
+        "name": "availableRides",
+        "url": "/available-rides"
+      },
+      {
+        "name": "offerRide",
+        "url": "/offer-ride"
+      },
+      {
+        "name": "userRides",
+        "url": "/user-rides"
+      },
+      {
+        "name": "rideDetails",
+        "url": "/ride-details/:rideId"
+      },
+      {
+        "name": "submitFeedback",
+        "url": "/feedback/:rideId"
+      }
+    ]
+  },
+  "render": {
+    "Feedback": {
+      "title": "Rate Your Ride",
+      "fields": [
+        {
+          "label": "Rating",
+          "name": "rating",
+          "type": "number",
+          "min": 1,
+          "max": 5
+        },
+        {
+          "label": "Comments",
+          "name": "comments",
+          "type": "text"
+        }
+      ]
+    },
+    "Find a Ride": {
+      "table": {
+        "headers": ["Origin", "Destination", "Date", "Seats"],
+        "rows": [
+          {
+            "field": "origin",
+            "source": "availableRides"
+          },
+          {
+            "field": "destination",
+            "source": "availableRides"
+          },
+          {
+            "field": "date",
+            "source": "availableRides"
+          },
+          {
+            "field": "seats",
+            "source": "availableRides"
+          }
+        ]
+      },
+      "title": "Available Rides"
+    },
+    "Home": {
+      "title": "Welcome to Carpool Ride Sharing Dashboard",
+      "description": "Here you can find rides, offer rides, and manage your rides."
+    },
+    "Login": {
+      "title": "Login",
+      "fields": [
+        {
+          "label": "Email",
+          "name": "email",
+          "type": "email"
+        },
+        {
+          "label": "Password",
+          "name": "password",
+          "type": "password"
+        }
+      ],
+      "submit": [
+        {
+          "label": "Login",
+          "url": "/login",
+          "method": "POST"
+        }
+      ]
+    },
+    "Logout": {
+      "title": "Logout Confirmation",
+      "description": "Are you sure you want to logout?",
+      "submit": [
+        {
+          "label": "Logout",
+          "url": "/logout",
+          "method": "POST"
+        }
+      ]
+    },
+    "My Rides": {
+      "table": {
+        "headers": [
+          "Origin",
+          "Destination",
+          "Date",
+          "Driver Name",
+          "Driver Phone"
+        ],
+        "rows": [
+          {
+            "field": "origin",
+            "source": "myRides"
+          },
+          {
+            "field": "destination",
+            "source": "myRides"
+          },
+          {
+            "field": "date",
+            "source": "myRides"
+          },
+          {
+            "field": "driverName",
+            "source": "myRides"
+          },
+          {
+            "field": "driverPhone",
+            "source": "myRides"
+          }
+        ]
+      },
+      "title": "Your Upcoming Rides"
+    },
+    "Offer a Ride": {
+      "title": "Offer a New Ride",
+      "fields": [
+        {
+          "label": "Origin",
+          "name": "origin",
+          "type": "text"
+        },
+        {
+          "label": "Destination",
+          "name": "destination",
+          "type": "text"
+        },
+        {
+          "label": "Date",
+          "name": "date",
+          "type": "date"
+        },
+        {
+          "label": "Seats",
+          "name": "seats",
+          "type": "number"
+        }
+      ],
+      "submit": [
+        {
+          "label": "Offer Ride",
+          "url": "/offer-ride",
+          "method": "POST"
+        }
+      ]
+    },
+    "Profile": {
+      "title": "User Profile",
+      "fields": [
+        {
+          "label": "Name",
+          "name": "name",
+          "source": "profile"
+        },
+        {
+          "label": "Email",
+          "name": "email",
+          "source": "profile"
+        },
+        {
+          "label": "Phone",
+          "name": "phone",
+          "source": "profile"
+        }
+      ]
+    },
+    "Ride Details": {
+      "title": "Details of the Ride",
+      "fields": [
+        {
+          "label": "Origin",
+          "name": "origin",
+          "source": "rideDetails"
+        },
+        {
+          "label": "Destination",
+          "name": "destination",
+          "source": "rideDetails"
+        },
+        {
+          "label": "Date",
+          "name": "date",
+          "source": "rideDetails"
+        },
+        {
+          "label": "Seats",
+          "name": "seats",
+          "source": "rideDetails"
+        },
+        {
+          "label": "Driver Name",
+          "name": "driverName",
+          "source": "rideDetails"
+        },
+        {
+          "label": "Driver Phone",
+          "name": "driverPhone",
+          "source": "rideDetails"
+        }
+      ]
+    }
+  }
+}
