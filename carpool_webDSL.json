@@ -32,27 +32,27 @@
     { "name": "Feedback", "url": "/feedback" }
   ],
   "api": {
-    "base": "http://localhost:5000/api",
+    "base": "http://localhost:5000",
     "endpoints": [
       {
-        "name": "availableRides",
-        "url": "/available-rides"
+        "name": "findRide",
+        "url": "/find-ride"
       },
       {
         "name": "offerRide",
         "url": "/offer-ride"
       },
       {
-        "name": "userRides",
-        "url": "/user-rides"
+        "name": "myRides",
+        "url": "/my-rides"
       },
       {
         "name": "rideDetails",
-        "url": "/ride-details/:rideId"
+        "url": "/ride-details"
       },
       {
         "name": "submitFeedback",
-        "url": "/feedback/:rideId"
+        "url": "/feedback"
       }
     ]
   },
@@ -75,6 +75,7 @@
       ]
     },
     "Find a Ride": {
+      "title": "Available Rides",
       "table": {
         "headers": ["Origin", "Destination", "Date", "Seats"],
         "rows": [
@@ -95,8 +96,7 @@
             "source": "availableRides"
           }
         ]
-      },
-      "title": "Available Rides"
+      }
     },
     "Home": {
       "title": "Welcome to Carpool Ride Sharing Dashboard",
@@ -136,6 +136,7 @@
       ]
     },
     "My Rides": {
+      "title": "Your Upcoming Rides",
       "table": {
         "headers": [
           "Origin",
@@ -166,8 +167,7 @@
             "source": "myRides"
           }
         ]
-      },
-      "title": "Your Upcoming Rides"
+      }
     },
     "Offer a Ride": {
       "title": "Offer a New Ride",
@@ -190,7 +190,8 @@
         {
           "label": "Seats",
           "name": "seats",
-          "type": "number"
+          "type": "number",
+          "min": 1
         }
       ],
       "submit": [
@@ -219,7 +220,33 @@
           "name": "phone",
           "source": "profile"
         }
-      ]
+      ],
+      "table": {
+        "headers": [
+          "Car Model",
+          "Car Year",
+          "License Plate",
+          "Car Image"
+        ],
+        "rows": [
+          {
+            "field": "carModel",
+            "source": "myCars"
+          },
+          {
+            "field": "carYear",
+            "source": "myCars"
+          },
+          {
+            "field": "licensePlate",
+            "source": "myCars"
+          },
+          {
+            "field": "carImage?",
+            "source": "myCars"
+          }
+        ]
+      }
     },
     "Ride Details": {
       "title": "Details of the Ride",
