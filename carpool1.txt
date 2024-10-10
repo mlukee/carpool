@@ -1,0 +1,203 @@
+name: Carpool App
+title: JoinMyRide
+description: Ride sharing and transport cost sharing app
+port: 5000
+theme:
+  style: useSystem
+
+menu_position: left
+menu_items:
+  {
+    label: Home,
+    component: Home
+  }
+  {
+    label: Find a Ride,
+    component: FindARide
+  }
+  {
+    label: Offer a Ride,
+    component: OfferARide
+  }
+  {
+    label: Profile,
+    component: Profile
+  }
+  {
+    label: My Rides,
+    component: MyRides
+  }
+
+components:
+  {
+    name: Home,
+    url: /
+  }
+  {
+    name: FindARide,
+    url: /find-ride
+  }
+  {
+    name: OfferARide,
+    url: /offer-ride
+  }
+  {
+    name: MyRides,
+    url: /my-rides
+  }
+  {
+    name: RideDetails,
+    url: /ride-details
+  }
+  {
+    name: Profile,
+    url: /profile
+  }
+  {
+    name: Login,
+    url: /login
+  }
+  {
+    name: Logout,
+    url: /logout
+  }
+  {
+    name: Feedback,
+    url: /feedback
+  }
+
+api:
+  base: http://localhost:5000
+  endpoints:
+    {
+      name: findRide,
+      url: /find-ride,
+      method: GET
+    }
+    {
+      name: offerRide,
+      url: /offer-ride,
+      method: POST
+    }
+    {
+      name: myRides,
+      url: /my-rides,
+      method: GET
+    }
+    {
+      name: rideDetails,
+      url: /ride-details,
+      method: GET
+    }
+    {
+      name: submitFeedback,
+      url: /feedback,
+      method: POST
+    }
+    {
+      name: profile,
+      url: /profile,
+      method: GET
+    }
+    {
+      name: addCar,
+      url: /profile/add-car,
+      method: POST
+    }
+    {
+      name: editCar,
+      url: /profile/edit-car,
+      method: POST
+    }
+    {
+      name: deleteCar,
+      url: /profile/delete-car,
+      method: POST
+    }
+    {
+      name: logout,
+      url: /logout,
+      method: POST
+    }
+    {
+      name: login,
+      url: /login,
+      method: POST
+    }
+
+render:
+  Home:
+    ## Welcome to Carpool Ride Sharing Dashboard
+    Find rides, offer rides, and manage your trips here.
+    {img: /assets/images/home-welcome.png}
+
+    ### Ljubljana -> Maribor
+    [Today | /find-ride/:rideId]
+    [Tomorrow | /find-ride/:rideId] 
+    [Saturday | /find-ride/:rideId]
+
+    ### Koper -> Ljubljana
+    [Today | /find-ride/:rideId]
+    [Tomorrow | /find-ride/:rideId]
+    [Saturday | /find-ride/:rideId]
+
+  FindARide:
+    ## Available Rides
+    ### Friday, 11.10.2024 **Maribor -> Ljubljana**
+    **10:20** | Igor |  6€ | [Details | /ride-details/:rideId]
+    **12:00** | Marko |  7€ | [Details | /ride-details/:rideId]  
+    **14:00** | Ana |  5€ | [Details | /ride-details/:rideId]
+
+  OfferARide:
+    ## Offer a New Ride
+    From: [Input Text]
+    To: [Input Text]  
+    Date: [Input Date]  
+    Seats: [Input Number, min: 1]  
+    Price per Seat: [Input Number, min: 0]  
+    Comments: [Input Textarea]  
+    Car Model: [Input Text]  
+    [[Offer Ride | /offer-ride]]  
+    _Ride offered successfully!_
+
+  MyRides:
+    ## Your Upcoming Rides
+
+    |### Maribor -> Ljubljana                                        |
+    |----------------------------------------------------------------|
+    |**10:20** | Igor |    [Details | /ride-details/:rideId]         |
+    |----------------------------------------------------------------|
+    |**12:00** | Marko |    [Details | /ride-details/:rideId]        |
+    |----------------------------------------------------------------|
+    |**14:00** | Ana |      [Details | /ride-details/:rideId]        |
+    |----------------------------------------------------------------|
+    |**[[Cancel Ride | /ride-cancel/:rideId]]**                      |
+    |----------------------------------------------------------------|
+  RideDetails:
+    ## Details of the Ride
+    **Origin:** Maribor  
+    **Destination:** Ljubljana  
+    **Date:** 2024-10-11  
+    **Seats:** 4  
+    **Driver Name:** Igor  
+    **Driver Phone:** +38612345678
+    **Price per Seat:** 6€  
+    **[[Join Ride]]**
+
+  Profile:
+    ## User Profile
+    **Name:** Matic Lukežič  
+    **Email:** matic@example.com  
+    **Phone:** +38612345678  
+    ### My Cars
+    | **Car Model** | **Car Year** | **License Plate** | **Actions** |
+    |---------------|--------------|-------------------|-------------|
+    | Car 1         | 2024         | MB123AB           | [Edit | /profile/edit-car/:carId] [Delete | /profile/delete-car/:carId] |
+    **[[Add car | /profile/add-car]]**
+
+  Feedback:
+    ## Rate Your Ride
+    **Rating:** [Input Number Field, 1-5]  
+    **Comments:** [Textarea Field]  
+    **[[Submit Feedback]]**  
+    _Thank you for your feedback!_
