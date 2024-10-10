@@ -1,0 +1,37 @@
+Aplikacija omogoča uporabniku, da se pridruži tistim, 
+ki imajo prosta mesta v avtomobilu in so namenjeni v isto smer. 
+Omogoča rezervacijo sedežev ter delitev stroškov vožnje, 
+uporabniki lahko ocenijo in podajo povratno informacijo o 
+vozniku/vožnji.
+Dodajo svoje vozilo(model, leto, sliko,...)
+
+
+
+Kako bo izgledal diagram...
+Crna pika - obvezno
+Bela pika - neobvezen element
+                        carPoolApp
+                          /    \
+                         /      \
+name  title    description componentS(vlki S pomeni ponovitve) api 
+
+
+Diff between programs:
+
+ - carpool1
+
+- carpool2
+theme = dark
+menu_position = top
+menu_items nima MyRides in ima zamenjan vrstni red
+render Find a Ride -> Date je v prvem stolpcu namesto v 3.
+render My Rides -> Date je v prvem stolpcu namesto v 3.
+
+- carpool3
+theme = light
+menu_position = right
+menu_items = Home, Profile, ...
+render My Rides -> Driver info najprej potem vse ostalo
+render Offer a Ride -> Date je v prvem stolpcu 
+render Ride Details -> Driver info, Date, potem vse ostalo
+
