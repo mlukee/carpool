@@ -1,18 +1,18 @@
 name: Carpool App
-title: JoinMyRide
-description: Ride sharing and transport cost sharing app
+title: RideShareConnect
+description: Ride-sharing app to help you connect with drivers and fellow passengers.
 port: 5000
-theme: useSystem 
-menu_position: left
+theme: blue 
+menu_position: right
 menu_items:
-  label: Home,
-  component: Home
+  label: Offer a Ride,
+  component: OfferARide
 
   label: Find a Ride,
   component: FindARide
 
-  label: Offer a Ride,
-  component: OfferARide
+  label: Home,
+  component: Home
 
   label: Profile,
   component: Profile
@@ -67,7 +67,7 @@ components:
   authentication: yes
 
 api:
-  base: http://localhost:5000
+  base: http://localhost:4000
   endpoints:
     name: findRide,
     url: /find-ride,
@@ -119,15 +119,15 @@ api:
 
 render:
   Header:
-    {img: /assets/images/logo.png, alt=Logo, style=align:left;} 
+    {img: /assets/images/logo.png, alt=Logo, style=align:right;}
 
   Footer:
-    Carpool © 2024
+    RideShareConnect © 2024
 
   Home:
-    ## Welcome to Carpool Ride Sharing Dashboard
-    Find rides, offer rides, and manage your trips here.
-    {img: /assets/images/home.png, alt="banner Image"}
+    ## Welcome to RideShareConnect
+    Your go-to place for affordable travel. Find and offer rides easily!
+    {img: /assets/images/home.png, alt="RideShare banner"}
 
     //Card//
       Title: {{ride.origin}} -> {{ride.destination}}
@@ -136,16 +136,8 @@ render:
         [Tomorrow | /ride-details/{{rideId}}]  | {{ride.tomorrow.count}}
         [Saturday | /ride-details/{{rideId}}]  | {{ride.saturday.count}}
 
-    //Card//
-      Title: {{ride.origin}} -> {{ride.destination}}
-      Content:
-        style=space:even
-        [Today    | /find-ride/{{rideId}}]  | {{ride.today.count}}
-        [Tomorrow | /find-ride/{{rideId}}]  | {{ride.tomorrow.count}}
-        [Saturday | /find-ride/{{rideId}}]  | {{ride.saturday.count}}
-
   FindARide:
-    rides.len == 0 ? No rides for this date and its relation.
+    rides.len == 0 ? No available rides at the moment.
     
     ## Available Rides
 
@@ -160,59 +152,58 @@ render:
   OfferARide:
     ## Offer a New Ride
     //Form//
-    From: [Input Text]
-    To: [Input Text]  
-    Date: [Input Date]  
-    Seats: [Input Number, min: 1]  
-    Price per Seat: [Input Number, min: 0]  
-    Comments: [Input Textarea]  
-    Car Model: [Input Text]  
-    [[Offer Ride | /offer-ride]]
+    Start Location: [Input Text]  
+    End Location: [Input Text]  
+    Date of Departure: [Input Date]  
+    Available Seats: [Input Number, min: 1]  
+    Cost per Seat: [Input Number, min: 0]  
+    Additional Info: [Input Textarea]  
+    Vehicle Model: [Input Text]  
+    [[Submit Ride Offer | /offer-ride]]  
 
   MyRides:
     ## Your Upcoming Rides
 
     //Card//
-      Title: {{rode.origin}} -> {{ride.destination}}                                      
+      Title: {{ride.origin}} -> {{ride.destination}}                                      
       Content:
         style=space: even
-        {{ride.departure}} | {{ride.driverName}}  |      [Details | /ride-details/{{rideId}}, style=text: right] [[Cancel Ride | /ride-cancel/{{rideId}}, icon=CancelIcon]]        
-        {{ride.departure}} | {{ride.driverName}}  |      [Details | /ride-details/{{rideId}}, style=text: right] [[Cancel Ride | /ride-cancel/{{rideId}}, icon=CancelIcon]]        
-        {{ride.departure}} | {{ride.driverName}}  |      [Details | /ride-details/{{rideId}}, style=text: right] [[Cancel Ride | /ride-cancel/{{rideId}}, icon=CancelIcon]]        
-                         
+        {{ride.departure}} | {{ride.driverName}}  |      [Details | /ride-details/{{rideId}}, style=text: right] [[Cancel Ride | /ride-cancel/{{rideId}}, icon=CancelIcon]]         
+        {{ride.departure}} | {{ride.driverName}}  |      [Details | /ride-details/{{rideId}}, style=text: right] [[Cancel Ride | /ride-cancel/{{rideId}}, icon=CancelIcon]]         
+        {{ride.departure}} | {{ride.driverName}}  |      [Details | /ride-details/{{rideId}}, style=text: right] [[Cancel Ride | /ride-cancel/{{rideId}}, icon=CancelIcon]]                         
 
   RideDetails:
-    ## Details of the Ride
-    **Origin:** {{ride.origin}}  
-    **Destination:** {{ride.destination}}  
+    ## Ride Information
+    **From:** {{ride.origin}}  
+    **To:** {{ride.destination}}  
     **Date:** {{ride.date}}  
-    **Seats:** {{ride.seats}}  
-    **Driver Name:** {{ride.driverName}}  
-    **Driver Phone:** {{ride.driverPhone}}
+    **Seats Available:** {{ride.seats}}  
+    **Driver's Name:** {{ride.driverName}}  
+    **Driver's Phone:** {{ride.driverPhone}}
     **Price per Seat:** {{ride.price}}  
-    [[Join Ride | /join-ride/:rideId]]
+    [[Book this Ride | /join-ride/:rideId]] 
 
   Profile:
-    ## User Profile
-    Name: {{user.name}}  
-    Email: {{user.email}}  
-    Phone: {{user.phone}}  
-    ### My Cars
+    ## Your Profile Information
+    Full Name: {{user.name}}  
+    Email Address: {{user.email}}  
+    Phone Number: {{user.phone}}  
+    ### My Vehicles
     | **Car Model** | **Car Year** | **License Plate** | **Actions** |
     |---------------|--------------|-------------------|-------------|
     | {{user.car.model}}         | {{user.car.year}}         | {{user.car.licensePlate}}           | [[Edit | /profile/edit-car/{{user.car.carId}}, icon=PenIcon]] [[Delete | /profile/delete-car/:carId, icon=TrashIcon]] |
-    [[Add car | /profile/add-car, icon=PlusIcon]]
+    [[Add New Car | /profile/add-car, icon=PlusIcon]]  
 
   Feedback:
-    ## Rate Your Ride
+    ## Provide Feedback for Your Ride
     //Form//
-    Rating: [Input Number, min: 1, max: 5]  
+    Rating (1-5): [Input Number Field, min:1, max: 5]  
     Comments: [Input Textarea]  
-    [[Submit Feedback | /feedback]]
+    [[Submit Feedback /feedback]] 
 
   Login:
     ## Login
     //Form//
     Email: [Input Email]  
     Password:[Input Password]  
-    [[Login | /login]] 
+    [[Login | /login]]  
