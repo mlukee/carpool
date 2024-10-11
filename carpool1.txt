@@ -4,149 +4,156 @@ description: Ride sharing and transport cost sharing app
 port: 5000
 theme:
   style: useSystem
-
 menu_position: left
 menu_items:
-  {
     label: Home,
     component: Home
-  }
-  {
+  
     label: Find a Ride,
     component: FindARide
-  }
-  {
+  
     label: Offer a Ride,
     component: OfferARide
-  }
-  {
+  
     label: Profile,
     component: Profile
-  }
-  {
+  
     label: My Rides,
     component: MyRides
-  }
 
 components:
-  {
     name: Home,
-    url: /
-  }
-  {
+    url: /,
+    menu: yes,
+    authentication: no
+  
     name: FindARide,
-    url: /find-ride
-  }
-  {
+    url: /find-ride,
+    menu: yes,
+    authentication: no
+
     name: OfferARide,
-    url: /offer-ride
-  }
-  {
+    url: /offer-ride,
+    menu: yes,
+    authentication: yes
+  
     name: MyRides,
     url: /my-rides
-  }
-  {
+    menu: no,
+    authentication: yes
+  
     name: RideDetails,
-    url: /ride-details
-  }
-  {
+    url: /ride-details,
+    menu: yes,
+    authentication: no
+  
     name: Profile,
-    url: /profile
-  }
-  {
+    url: /profile,
+    menu: no,
+    authentication: yes
+  
     name: Login,
-    url: /login
-  }
-  {
+    url: /login,
+    menu: no,
+    authentication: no
+
     name: Logout,
-    url: /logout
-  }
-  {
+    url: /logout,
+    menu: no,
+    authentication: yes
+  
     name: Feedback,
-    url: /feedback
-  }
+    url: /feedback,
+    menu: no,
+    authentication: yes
 
 api:
   base: http://localhost:5000
   endpoints:
-    {
       name: findRide,
       url: /find-ride,
       method: GET
-    }
-    {
+    
       name: offerRide,
       url: /offer-ride,
       method: POST
-    }
-    {
+    
       name: myRides,
       url: /my-rides,
       method: GET
-    }
-    {
+    
       name: rideDetails,
       url: /ride-details,
       method: GET
-    }
-    {
+    
       name: submitFeedback,
       url: /feedback,
       method: POST
-    }
-    {
+    
       name: profile,
       url: /profile,
       method: GET
-    }
-    {
+    
       name: addCar,
       url: /profile/add-car,
       method: POST
-    }
-    {
+    
       name: editCar,
       url: /profile/edit-car,
       method: POST
-    }
-    {
+    
       name: deleteCar,
       url: /profile/delete-car,
       method: POST
-    }
-    {
+    
       name: logout,
       url: /logout,
       method: POST
-    }
-    {
+    
       name: login,
       url: /login,
       method: POST
-    }
+
+      name: joinRide,
+      url: /join-ride/:rideId
+      method: POST
 
 render:
+  Header:
+    {img: /assets/images/logo.png, alt=Logo, style=align:left;} //align je lahko tudi center, right
+
+  Footer:
+    Copyright @ carpool 2024
+
   Home:
     ## Welcome to Carpool Ride Sharing Dashboard
     Find rides, offer rides, and manage your trips here.
-    {img: /assets/images/home-welcome.png}
+    {img: /assets/images/home-welcome.png, alt="banner Image"}
 
-    ### Ljubljana -> Maribor
-    [Today | /find-ride/:rideId]
-    [Tomorrow | /find-ride/:rideId] 
-    [Saturday | /find-ride/:rideId]
+    //Card//
+      Title: **Ljubljana -> Maribor**
+      Content: 
+          [Today | /ride-details/:rideId]     | 32
+          [Tomorrow | /ride-details/:rideId]  | 11
+          [Saturday | /ride-details/:rideId]  | 4
 
-    ### Koper -> Ljubljana
-    [Today | /find-ride/:rideId]
-    [Tomorrow | /find-ride/:rideId]
-    [Saturday | /find-ride/:rideId]
+    //Card//
+      Title: **Koper -> Ljubljana**
+      Content:
+          style=space:even
+          [Today | /find-ride/:rideId]     | 22
+          [Tomorrow | /find-ride/:rideId]  | 13
+          [Saturday | /find-ride/:rideId]  | 2
 
   FindARide:
+    rides.len == 0 ? No rides for this date and its relation.
+    
     ## Available Rides
     ### Friday, 11.10.2024 **Maribor -> Ljubljana**
     **10:20** | Igor |  6€ | [Details | /ride-details/:rideId]
     **12:00** | Marko |  7€ | [Details | /ride-details/:rideId]  
     **14:00** | Ana |  5€ | [Details | /ride-details/:rideId]
+
 
   OfferARide:
     ## Offer a New Ride
@@ -157,22 +164,22 @@ render:
     Price per Seat: [Input Number, min: 0]  
     Comments: [Input Textarea]  
     Car Model: [Input Text]  
-    [[Offer Ride | /offer-ride]]  
+    [[Offer Ride | /offer-ride]]
+
     _Ride offered successfully!_
 
   MyRides:
     ## Your Upcoming Rides
 
-    |### Maribor -> Ljubljana                                        |
-    |----------------------------------------------------------------|
-    |**10:20** | Igor |    [Details | /ride-details/:rideId]         |
-    |----------------------------------------------------------------|
-    |**12:00** | Marko |    [Details | /ride-details/:rideId]        |
-    |----------------------------------------------------------------|
-    |**14:00** | Ana |      [Details | /ride-details/:rideId]        |
-    |----------------------------------------------------------------|
-    |**[[Cancel Ride | /ride-cancel/:rideId]]**                      |
-    |----------------------------------------------------------------|
+    //Card//
+      Title: **Maribor -> Ljubljana**                                        
+      Content:
+        style=space: even
+        **10:20** | Igor  |      [Details | /ride-details/:rideId, style=text: right]         
+        **12:00** | Marko |      [Details | /ride-details/:rideId, style=text: right]        
+        **14:00** | Ana   |      [Details | /ride-details/:rideId, style=text: right]        
+        **[[Cancel Ride | /ride-cancel/:rideId, icon=CancelIcon]]**                   
+
   RideDetails:
     ## Details of the Ride
     **Origin:** Maribor  
@@ -182,7 +189,7 @@ render:
     **Driver Name:** Igor  
     **Driver Phone:** +38612345678
     **Price per Seat:** 6€  
-    **[[Join Ride]]**
+    **[[Join Ride | /join-ride/:rideId]]**
 
   Profile:
     ## User Profile
@@ -192,8 +199,8 @@ render:
     ### My Cars
     | **Car Model** | **Car Year** | **License Plate** | **Actions** |
     |---------------|--------------|-------------------|-------------|
-    | Car 1         | 2024         | MB123AB           | [Edit | /profile/edit-car/:carId] [Delete | /profile/delete-car/:carId] |
-    **[[Add car | /profile/add-car]]**
+    | Car 1         | 2024         | MB123AB           | [[Edit | /profile/edit-car/:carId, icon=PenIcon]] [[Delete | /profile/delete-car/:carId, icon=TrashIcon]] |
+    [[Add car | /profile/add-car, icon=PlusIcon]]
 
   Feedback:
     ## Rate Your Ride
