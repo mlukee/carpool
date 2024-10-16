@@ -1,0 +1,49 @@
+CarpoolNotation = AppName AppTitle AppDescription AppPort AppTheme AppMenuPosition AppMenuItems AppComponents AppApi AppRenders
+
+AppName = "name:" appName
+AppTitle = "title:" title
+AppDescription = "description:" description
+AppPort = "port:" port
+AppTheme = "theme:" Theme
+AppMenuPosition = "menu_position:" MenuPosition
+AppMenuItems = "menu_items:" MenuItems
+AppComponents = "components:" Components
+AppApi = "api:" Api
+AppRenders = "render:" Render
+
+Theme = "light" | "dark" | "blue" | "orange" | "violet" | "useSystem"
+MenuPosition = "top" | "right" | "left"
+MenuItems = MenuItem+
+MenuItem = "label:" label ',' "component:" componentName
+Components = Component+
+Component = "name:" componentName ',' "url:" url ',' "menu:" YesNo ',' "authentication:" YesNo
+
+Api = "base:" baseURL "endpoints:" Endpoint+
+Endpoint = "name:" name ',' "url:" url ',' "method:" HttpMethod 
+HttpMethod = "GET" | "POST" | "PUT" | "DELETE" 
+
+Render = RenderSection+
+RenderSection = name ':' Content+  
+
+Content = Text | Image | Form | Card | Link | Table | Style 
+
+Text = ("##")? text | "**" text "**" 
+Image = "{img:" url ',' "alt=" altText ',' "style=align:" Align ';' "}" 
+---------------------------------------------Done
+Form = "//Form//" { FormField } 
+FormField = Label, FieldType 
+FieldType = "[Input Text]" | "[Input Date]" | "[Input Number]" | "[Input Textarea]" | "[Input Email]" | "[Input Password]" 
+Card = "//Card//" "Title:" CardTitle, "Content:" CardContent 
+CardContent = { Field } 
+Field = Identifier 
+Link = "[[" Label, "|", URL, [ "style=" Style ] "]]" 
+Table = { TableRow } 
+TableRow = "|" { Field } "|" 
+Align = "left" | "center" | "right" 
+
+YesNo = "yes" | "no" 
+
+
+//TODO: Check form, card, link, field,...
+
+
