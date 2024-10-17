@@ -17,6 +17,7 @@ MenuItems = MenuItem+
 MenuItem = "label:" label ',' "component:" componentName
 Components = Component+
 Component = "name:" componentName ',' "url:" url ',' "menu:" YesNo ',' "authentication:" YesNo
+YesNo = "yes" | "no" 
 
 Api = "base:" baseURL "endpoints:" Endpoint+
 Endpoint = "name:" name ',' "url:" url ',' "method:" HttpMethod 
@@ -25,25 +26,20 @@ HttpMethod = "GET" | "POST" | "PUT" | "DELETE"
 Render = RenderSection+
 RenderSection = name ':' Content+  
 
-Content = Text | Image | Form | Card | Link | Table | Style 
+Content = Text | Image | Form | Card | Link | Table | Button
 
-Text = ("##")? text | "**" text "**" 
+Text = ("#"+)? text | "**" text "**" | text
 Image = "{img:" url ',' "alt=" altText ',' "style=align:" Align ';' "}" 
----------------------------------------------Done
-Form = "//Form//" { FormField } 
-FormField = Label, FieldType 
-FieldType = "[Input Text]" | "[Input Date]" | "[Input Number]" | "[Input Textarea]" | "[Input Email]" | "[Input Password]" 
-Card = "//Card//" "Title:" CardTitle, "Content:" CardContent 
-CardContent = { Field } 
-Field = Identifier 
-Link = "[[" Label, "|", URL, [ "style=" Style ] "]]" 
-Table = { TableRow } 
-TableRow = "|" { Field } "|" 
 Align = "left" | "center" | "right" 
-
-YesNo = "yes" | "no" 
-
-
-//TODO: Check form, card, link, field,...
-
-
+Card = "//Card//" "Title:" cardTitle, "Content:" CardStyle* CardContent+ 
+CardStyle = "style=space:even"
+CardContent = (Text '|')+ Link Button*
+Form = "//Form//" FormField+ Button 
+FormField = Text "[Input " InputType (', min: ' minValue (', max:' maxValue)?)? "]"
+InputType = "Text" | "Date" | "Number" | "Textarea" | "Email" | "Password" 
+Link = "[" label "|" url (',' "style=text:right")? "]" 
+Button = "[[" label "|" url (',' Icon)? "]]"
+Icon = "icon:" iconName
+Table = TableHeader TableRow+
+TableHeader = ("|" Text "|")+ ("|----------|")+
+TableRow = "|" Text "|" | "|" Button* "|" 
