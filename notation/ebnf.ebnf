@@ -42,4 +42,4 @@ Button = "[[" label "|" url (',' Icon)? "]]"
 Icon = "icon:" iconName
 Table = TableHeader TableRow+
 TableHeader = ("|" Text "|")+ ("|----------|")+
-TableRow = "|" Text "|" | "|" Button* "|" 
+TableRow = "|" Text "|" | "|" Button* "|" | "{{"  "}}"
