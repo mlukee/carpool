@@ -96,6 +96,12 @@ export const DELETE = async (
       return new NextResponse("Car not found", { status: 404 });
     }
 
+    await User.findByIdAndUpdate(
+      ownerId,
+      { $pull: { cars: carId } },
+      { new: true }
+    );
+
     await Car.findByIdAndDelete(carId);
 
     return new NextResponse(

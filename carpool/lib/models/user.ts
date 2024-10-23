@@ -1,6 +1,17 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, Document, Types } from "mongoose";
 
-const UserSchema = new Schema(
+interface IUser extends Document {
+  _id: Types.ObjectId;
+  username: string;
+  name: string;
+  surname: string;
+  email: string;
+  password: string;
+  phone: string;
+  cars: Types.ObjectId[];
+}
+
+const UserSchema = new Schema<IUser>(
   {
     username: {
       type: String,
@@ -28,10 +39,14 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    cars: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Car",
+      },
+    ],
   },
   { timestamps: true }
 );
 
-const User = models.User || model("User", UserSchema);
-
-export default User;
+export default model<IUser>("User", UserSchema);

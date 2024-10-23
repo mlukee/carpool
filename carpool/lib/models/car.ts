@@ -1,6 +1,14 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, Document, Types } from "mongoose";
 
-const CarSchema = new Schema(
+interface ICar extends Document {
+  _id: Types.ObjectId;
+  carModel: string;
+  year: number;
+  licensePlate: string;
+  owner: Types.ObjectId;
+}
+
+const CarSchema = new Schema<ICar>(
   {
     carModel: {
       type: String,
@@ -17,11 +25,10 @@ const CarSchema = new Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: "User",
+      required: true,
     },
   },
   { timestamps: true }
 );
 
-const Car = models.Car || model("Car", CarSchema);
-
-export default Car;
+export default model<ICar>("Car", CarSchema);

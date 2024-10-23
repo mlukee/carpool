@@ -67,7 +67,11 @@ export const POST = async (req: Request) => {
       owner: new Types.ObjectId(ownerId),
     });
 
-    await newCar.save();
+    const savedCar = await newCar.save();
+
+    user.cars.push(savedCar._id);
+
+    await user.save();
 
     return new NextResponse(
       JSON.stringify({ message: "Car added successfully", car: newCar }),
