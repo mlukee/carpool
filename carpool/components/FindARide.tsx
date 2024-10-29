@@ -34,7 +34,6 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 
 function FindARide() {
-  const [date, setDate] = React.useState<Date>(new Date());
   const form = useForm<z.infer<typeof searchForRideSchema>>({
     resolver: zodResolver(searchForRideSchema),
     defaultValues: {
@@ -51,13 +50,6 @@ function FindARide() {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
-
-  const handleSelectedDateChange = (date: Date) => {
-    setSelectedDate(date);
-    form.setValue("date", date);
   };
 
   return (

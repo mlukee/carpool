@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+
+import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import {
@@ -7,138 +8,141 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { searchForRideSchema } from "@/lib/zod";
+import { Input } from "@/components/ui/input";
 import {
   Select,
-  SelectContent,
-  SelectItem,
   SelectTrigger,
   SelectValue,
+  SelectContent,
+  SelectItem,
 } from "@/components/ui/select";
 import {
   Popover,
-  PopoverContent,
   PopoverTrigger,
+  PopoverContent,
 } from "@/components/ui/popover";
-import cities from "@/types/cities";
-import { cn } from "@/lib/utils";
-import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
+import { CalendarIcon } from "@radix-ui/react-icons";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { addRideSchema } from "@/lib/zod";
 import { format } from "date-fns";
+import cities from "@/types/cities";
+import { toast } from "sonner";
 
-function AddRide() {
-  const [date, setDate] = React.useState<Date>(new Date());
-  const form = useForm<z.infer<typeof searchForRideSchema>>({
-    resolver: zodResolver(searchForRideSchema),
+export default function AddRide() {
+  const form = useForm<z.infer<typeof addRideSchema>>({
+    resolver: zodResolver(addRideSchema),
     defaultValues: {
       origin: "",
       destination: "",
       date: new Date(),
+      departureTime: undefined,
+      seatsAvailable: undefined,
+      pricePerSeat: undefined,
+      comments: "",
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof searchForRideSchema>) => {
-    try {
-      // TODO: make API call and redirect to different page
-      console.log(values);
-    } catch (error) {
-      console.log(error);
+  const onSubmit = async (values: z.infer<typeof addRideSchema>) => {
+    console.log("Form submitted:", values);
+
+    const {
+      origin,
+      destination,
+      date,
+      departureTime,
+      seatsAvailable,
+      pricePerSeat,
+      comments,
+    } = values;
+    if (origin === destination) {
+      toast.error("Origin and destination cannot be the same");
     }
-  };
 
-  const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
-
-  const handleSelectedDateChange = (date: Date) => {
-    setSelectedDate(date);
-    form.setValue("date", date);
+    try {
+    } catch (error) {}
   };
 
   return (
     <div className="flex w-full items-center justify-center mx-auto">
       <Card className="md:h-auto w-full sm:w-[420px] p-4 sm:p-8">
         <CardHeader>
-          <CardTitle className="text-center text-lg">Find A Ride</CardTitle>
+          <CardTitle className="text-center text-lg">Add A Ride</CardTitle>
         </CardHeader>
         <CardContent className="px-2 sm:px-6">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+              {/* Origin Field */}
               <FormField
                 control={form.control}
                 name="origin"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>From</FormLabel>
-                    <Select onValueChange={field.onChange}>
-                      <FormControl>
+                    <FormControl>
+                      <Select onValueChange={field.onChange}>
                         <SelectTrigger>
-                          <SelectValue placeholder="From"></SelectValue>
+                          <SelectValue placeholder="From" />
                         </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {cities.map((city) => (
-                          <SelectItem key={city.city} value={city.city}>
-                            {city.city}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                        <SelectContent>
+                          {cities.map((city) => (
+                            <SelectItem key={city.city} value={city.city}>
+                              {city.city}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
+              {/* Destination Field */}
               <FormField
                 control={form.control}
                 name="destination"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>To</FormLabel>
-                    <Select onValueChange={field.onChange}>
-                      <FormControl>
+                    <FormControl>
+                      <Select onValueChange={field.onChange}>
                         <SelectTrigger>
-                          <SelectValue placeholder="To"></SelectValue>
+                          <SelectValue placeholder="To" />
                         </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {cities.map((city) => (
-                          <SelectItem key={city.city} value={city.city}>
-                            {city.city}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                        <SelectContent>
+                          {cities.map((city) => (
+                            <SelectItem key={city.city} value={city.city}>
+                              {city.city}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
+              {/* Date Field */}
               <FormField
                 control={form.control}
                 name="date"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Date</FormLabel>
                     <FormControl>
                       <Popover>
                         <PopoverTrigger asChild>
                           <Button
                             variant={"outline"}
-                            className={cn(
-                              "w-full justify-start text-left font-normal",
-                              !field.value && "text-muted-foreground"
-                            )}
+                            className="w-full justify-start text-left font-normal"
                           >
-                            <CalendarIcon />
-                            {field.value ? (
-                              format(field.value, "PPP")
-                            ) : (
-                              <span>Pick a date</span>
-                            )}
+                            <CalendarIcon className="mr-2" />
+                            {field.value
+                              ? format(field.value, "PPP")
+                              : "Pick a date"}
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="start">
@@ -157,6 +161,92 @@ function AddRide() {
                   </FormItem>
                 )}
               />
+
+              {/* Departure Time Field */}
+              <FormField
+                control={form.control}
+                name="departureTime"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        type="time"
+                        step={900}
+                        placeholder="Time"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Seats Available Field */}
+              <FormField
+                control={form.control}
+                name="seatsAvailable"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder="Seats available"
+                        min={1}
+                        onChange={(e) =>
+                          field.onChange(
+                            e.target.value ? Number(e.target.value) : ""
+                          )
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Price Per Seat Field */}
+              <FormField
+                control={form.control}
+                name="pricePerSeat"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder="Price per seat"
+                        min={0}
+                        step="0.2"
+                        onChange={(e) =>
+                          field.onChange(
+                            e.target.value ? Number(e.target.value) : ""
+                          )
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Comments Field */}
+              <FormField
+                control={form.control}
+                name="comments"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        type="text"
+                        placeholder="Comments (optional)"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Submit Button */}
               <Button className="w-full" type="submit">
                 Find ride
               </Button>
@@ -167,5 +257,3 @@ function AddRide() {
     </div>
   );
 }
-
-export default AddRide;

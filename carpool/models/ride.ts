@@ -58,7 +58,7 @@ const RideSchema = new Schema<IRide>(
     car: {
       type: Schema.Types.ObjectId,
       ref: "Car",
-      required: true,
+      required: false,
     },
   },
   { timestamps: true }

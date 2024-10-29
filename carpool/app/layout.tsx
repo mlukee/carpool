@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import SessionWrapper from "@/components/SessionWrapper";
 import Navbar from "@/components/navbar";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,16 +28,26 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <SessionWrapper>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased container mx-auto px-4 sm:px-6 lg:px-8 `}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          themes={["light", "dark", "green", "darkGreen"]}
+          disableTransitionOnChange
         >
-          {/* <Sidebar /> */}
-          <Toaster />
-          <Navbar />
-          {children}
-        </body>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+          >
+            {/* <Sidebar /> */}
+            <Toaster />
+            <div className=" container mx-auto">
+              <Navbar />
+            </div>
+            {children}
+          </body>
+        </ThemeProvider>
       </SessionWrapper>
     </html>
   );
