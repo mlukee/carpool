@@ -14,7 +14,7 @@ export const GET = async (req: NextRequest) => {
       return new NextResponse("User not found", { status: 404 });
     }
 
-    return new NextResponse(JSON.stringify(user), { status: 200 });
+    return new NextResponse(user, { status: 200 });
   } catch (error: unknown) {
     return new NextResponse(
       "Error when fetching users " + (error as Error).message,

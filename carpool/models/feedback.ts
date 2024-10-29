@@ -1,4 +1,4 @@
-import { Schema, model, Document, Types } from "mongoose";
+import mongoose, { Schema, model, Document, Types } from "mongoose";
 
 interface IFeedback extends Document {
   rating: number;
@@ -32,4 +32,6 @@ const FeedbackSchema = new Schema<IFeedback>(
   { timestamps: true }
 );
 
-export default model<IFeedback>("Feedback", FeedbackSchema);
+const Feedback =
+  mongoose.models?.Feedback || model<IFeedback>("Feedback", FeedbackSchema);
+export default Feedback;

@@ -8,10 +8,8 @@ body,
   height: 100%;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+html {
+  overflow-y: scroll;
 }
 
 @layer base {

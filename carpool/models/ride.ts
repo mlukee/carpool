@@ -1,9 +1,10 @@
-import { Schema, model, Document, Types } from "mongoose";
+import mongoose, { Schema, model, Document, Types } from "mongoose";
 
 interface IRide extends Document {
   origin: string;
   destination: string;
   date: Date;
+  departureTime: string;
   seatsAvailable: number;
   driver: Types.ObjectId;
   pricePerSeat: number;
@@ -24,6 +25,10 @@ const RideSchema = new Schema<IRide>(
     },
     date: {
       type: Date,
+      required: true,
+    },
+    departureTime: {
+      type: String,
       required: true,
     },
     seatsAvailable: {
@@ -59,4 +64,5 @@ const RideSchema = new Schema<IRide>(
   { timestamps: true }
 );
 
-export default model<IRide>("Ride", RideSchema);
+const Ride = mongoose.models?.Ride || model<IRide>("Ride", RideSchema);
+export default Ride;

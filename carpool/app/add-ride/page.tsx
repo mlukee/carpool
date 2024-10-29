@@ -33,7 +33,7 @@ import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 
-function FindARide() {
+function AddRide() {
   const [date, setDate] = React.useState<Date>(new Date());
   const form = useForm<z.infer<typeof searchForRideSchema>>({
     resolver: zodResolver(searchForRideSchema),
@@ -168,4 +168,4 @@ function FindARide() {
   );
 }
 
-export default FindARide;
+export default AddRide;

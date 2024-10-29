@@ -1,15 +1,7 @@
 "use client";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import FindARide from "@/components/FindARide";
 
 export default function Home() {
-  const [fromCountry, setFromCountry] = useState("Slovenija");
-  const [toCountry, setToCountry] = useState("Slovenija");
-  const [fromCity, setFromCity] = useState("Maribor");
-  const [toCity, setToCity] = useState("Ljubljana");
-  const [date, setDate] = useState("torek, 29.10.");
-
   return (
     <div className=" min-h-screen p-6 flex">
       <main className="flex-1 ml-8 w-full">

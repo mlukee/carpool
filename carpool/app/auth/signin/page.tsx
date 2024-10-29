@@ -37,19 +37,19 @@ export default function SignIn() {
 
   const onSubmit = async (values: z.infer<typeof signInSchema>) => {
     try {
-      const res = await handleCredentialsSignin(values);
+      await handleCredentialsSignin(values);
     } catch (error) {
       if (error instanceof AuthError) {
         switch (error.type) {
           case "CredentialsSignin":
-            toast.error("Invalid credentials");
+            form.setError("password", { message: "Invalid credentials." });
+            form.setError("email", { message: "Invalid credentials." });
             return;
           default:
             toast.error("Something went wrong.");
             return;
         }
       }
-      throw error;
     }
   };
 
@@ -73,7 +73,9 @@ export default function SignIn() {
                     <FormControl>
                       <Input placeholder="Email" type="email" {...field} />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage>
+                      {form.formState.errors.email?.message}
+                    </FormMessage>
                   </FormItem>
                 )}
               />
@@ -89,8 +91,9 @@ export default function SignIn() {
                         {...field}
                       />
                     </FormControl>
-
-                    <FormMessage />
+                    <FormMessage>
+                      {form.formState.errors.password?.message}
+                    </FormMessage>
                   </FormItem>
                 )}
               />

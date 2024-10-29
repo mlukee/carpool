@@ -3,9 +3,10 @@ import Credentials from "next-auth/providers/credentials";
 import { signInSchema } from "@/lib/zod";
 import connect from "@/lib/db";
 import bcrypt from "bcryptjs";
-import { User } from "@/models/user";
+import User from "@/models/user";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  session: { strategy: "jwt" },
   providers: [
     Credentials({
       name: "Credentials",
@@ -18,27 +19,31 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         const { email, password } = parsedCredentials.data;
 
-        await connect();
+        try {
+          await connect();
 
-        const user = await User.findOne({ email });
+          const user = await User.findOne({ email });
 
-        if (!user) {
-          return null;
+          if (!user) {
+            return null;
+          }
+
+          const isMatch = await bcrypt.compare(password, user.password);
+
+          if (!isMatch) {
+            return null;
+          }
+
+          return {
+            id: user._id.toString(),
+            name: user.name,
+            surname: user.surname,
+            email: user.email,
+            phone: user.phone,
+          };
+        } catch (error) {
+          console.log(error);
         }
-
-        const isMatch = await bcrypt.compare(password, user.password);
-
-        if (!isMatch) {
-          return null;
-        }
-
-        return {
-          id: user._id.toString(),
-          name: user.name,
-          surname: user.surname,
-          email: user.email,
-          phone: user.phone,
-        };
 
         return null;
       },
@@ -70,4 +75,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return token;
     },
   },
+  secret: process.env.AUTH_SECRET,
 });
