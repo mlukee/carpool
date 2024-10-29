@@ -1,8 +1,7 @@
 "use server";
 
-import { error } from "console";
-import AuthError from "next-auth";
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut } from "@/auth";
+import { AuthError } from "next-auth";
 
 export async function handleCredentialsSignin({
   email,
@@ -12,7 +11,7 @@ export async function handleCredentialsSignin({
   password: string;
 }) {
   try {
-    await signIn("credentials", { email, password });
+    await signIn("credentials", { email, password, redirectTo: "/" });
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {

@@ -55,7 +55,7 @@ function SignUp() {
 
       if (res.ok) {
         toast.success(data.message);
-        router.push("/sign-in");
+        router.push("auth/signin");
       } else if (res.status === 400) {
         toast.error(data.message);
         form.reset();

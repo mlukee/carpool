@@ -24,6 +24,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { handleCredentialsSignin } from "@/app/actions/authActions";
 import { toast } from "sonner";
+import { AuthError } from "next-auth";
 
 export default function SignIn() {
   const form = useForm<z.infer<typeof signInSchema>>({
@@ -36,11 +37,20 @@ export default function SignIn() {
 
   const onSubmit = async (values: z.infer<typeof signInSchema>) => {
     try {
-      console.log(values);
       const res = await handleCredentialsSignin(values);
-
-      console.log(res);
-    } catch (error) {}
+    } catch (error) {
+      if (error instanceof AuthError) {
+        switch (error.type) {
+          case "CredentialsSignin":
+            toast.error("Invalid credentials");
+            return;
+          default:
+            toast.error("Something went wrong.");
+            return;
+        }
+      }
+      throw error;
+    }
   };
 
   return (

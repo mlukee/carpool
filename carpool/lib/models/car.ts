@@ -1,4 +1,4 @@
-import { Schema, model, Document, Types } from "mongoose";
+import { Schema, model, models, Document, Types } from "mongoose";
 
 interface ICar extends Document {
   _id: Types.ObjectId;
@@ -31,4 +31,6 @@ const CarSchema = new Schema<ICar>(
   { timestamps: true }
 );
 
-export default model<ICar>("Car", CarSchema);
+const Car = models.Car || model<ICar>("Car", CarSchema);
+
+export default Car;
