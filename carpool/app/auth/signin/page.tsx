@@ -25,11 +25,8 @@ import { z } from "zod";
 import { handleCredentialsSignin } from "@/app/actions/authActions";
 import { toast } from "sonner";
 import { AuthError } from "next-auth";
-import { useSession } from "next-auth/react";
 
 export default function SignIn() {
-  const session = useSession();
-  console.log("******************", session);
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
