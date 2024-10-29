@@ -11,7 +11,13 @@ export default async function Navbar() {
       <Link href="/" className="text-xl font-bold">
         Carpool
       </Link>
-      <Link href="/addCar">Add Car</Link>
+      <Button asChild>
+        <Link href="/add-ride">Add Ride</Link>
+      </Button>
+      <Button asChild>
+        <Link href="/addCar">Add Car</Link>
+      </Button>
+
       {!session ? (
         <Link href="/auth/signin">
           <Button variant="default">Sign In</Button>
