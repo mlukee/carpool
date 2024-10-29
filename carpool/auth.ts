@@ -3,13 +3,14 @@ import Credentials from "next-auth/providers/credentials";
 import { signInSchema } from "@/lib/zod";
 import connect from "@/lib/db";
 import bcrypt from "bcryptjs";
+import { User } from "@/models/user";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credentials({
       name: "Credentials",
       credentials: {},
-      async authorize(credentials) {
+      authorize: async (credentials) => {
         const parsedCredentials = signInSchema.safeParse(credentials);
         if (!parsedCredentials.success) {
           return null;
@@ -19,24 +20,54 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         await connect();
 
-        const user = await fetch("http://localhost:3000/api/users");
+        const user = await User.findOne({ email });
 
-        const data = await user.json();
-
-        const foundUser = data.find((user: any) => user.email === email);
-
-        if (!foundUser) {
+        if (!user) {
           return null;
         }
 
-        if (await bcrypt.compare(password, foundUser.password)) {
-          return foundUser;
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if (!isMatch) {
+          return null;
         }
+
+        return {
+          id: user._id.toString(),
+          name: user.name,
+          surname: user.surname,
+          email: user.email,
+          phone: user.phone,
+        };
+
         return null;
       },
     }),
   ],
   pages: {
     signIn: "/auth/signin",
+  },
+  callbacks: {
+    async session({ session, token }) {
+      if (token?.sub && token?.email) {
+        session.user.id = token.sub;
+        session.user.email = token.email;
+        session.user.name = token.name;
+        session.user.surname = token.surname;
+        session.user.phone = token.phone;
+      }
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.sub = user.id;
+        token.email = user.email;
+        token.name = user.name;
+        token.surname = user.surname;
+        token.phone = user.phone;
+      }
+
+      return token;
+    },
   },
 });

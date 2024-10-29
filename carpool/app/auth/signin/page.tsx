@@ -25,8 +25,11 @@ import { z } from "zod";
 import { handleCredentialsSignin } from "@/app/actions/authActions";
 import { toast } from "sonner";
 import { AuthError } from "next-auth";
+import { useSession } from "next-auth/react";
 
 export default function SignIn() {
+  const session = useSession();
+  console.log("******************", session);
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -57,9 +60,9 @@ export default function SignIn() {
     <div className="h-full flex items-center justify-center">
       <Card className="md:h-auto w-[80%] sm:w-[420px] p-4 sm:p-8">
         <CardHeader>
-          <CardTitle className="text-center text-lg">Sign up</CardTitle>
+          <CardTitle className="text-center text-lg">Sign in</CardTitle>
           <CardDescription className="text-sm text-center text-accent-foreground">
-            Create account.
+            Log in to your account.
           </CardDescription>
         </CardHeader>
         <CardContent className="px-2 sm:px-6">
@@ -105,12 +108,12 @@ export default function SignIn() {
             </form>
             <Separator className="my-6" />
             <p className="text-center text-sm text-muted-foreground">
-              Already have an account?
+              Don&apos;t have an account?
               <Link
                 className="text-sky-700 ml-4 hover:underline cursor-pointer"
-                href="sign-in"
+                href="/sign-up"
               >
-                Sign In
+                Sign Up
               </Link>
             </p>
           </Form>

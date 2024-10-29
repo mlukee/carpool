@@ -1,8 +1,8 @@
 import connect from "@/lib/db";
-import Car from "@/lib/models/car";
+import Car from "@/models/car";
 import { NextResponse } from "next/server";
 import { Types } from "mongoose";
-import User from "@/lib/models/user";
+import User from "@/models/user";
 
 export const PATCH = async (
   req: Request,

@@ -1,7 +1,12 @@
+"use client";
 import Image from "next/image";
+import { signOut, useSession } from "next-auth/react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { auth } from "@/auth";
 
 export default function Home() {
-  const session = 
+  const session = useSession();
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -23,7 +28,23 @@ export default function Home() {
             .
           </li>
           <li>Save and see your changes instantly.</li>
-          <li>Test 123 Lepa</li>
+          <li>
+            <>
+              {session.user ? (
+                <Button
+                  onClick={async () => {
+                    await signOut();
+                  }}
+                >
+                  Log out
+                </Button>
+              ) : (
+                <Button asChild>
+                  <Link href="/auth/signin">Log in</Link>
+                </Button>
+              )}
+            </>
+          </li>
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">

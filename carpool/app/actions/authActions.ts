@@ -2,6 +2,7 @@
 
 import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
+import { redirect } from "next/navigation";
 
 export async function handleCredentialsSignin({
   email,
@@ -11,7 +12,7 @@ export async function handleCredentialsSignin({
   password: string;
 }) {
   try {
-    await signIn("credentials", { email, password, redirectTo: "/" });
+    await signIn("credentials", { email, password, redirect: false });
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
@@ -27,6 +28,7 @@ export async function handleCredentialsSignin({
     }
     throw error;
   }
+  redirect("/");
 }
 
 export async function handleSignOut() {
