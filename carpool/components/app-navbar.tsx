@@ -17,6 +17,7 @@ import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 
 import AuthButton from "./auth-button";
+import { ThemeToggle } from "./theme-toggle";
 
 export default function AppNavbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -27,17 +28,19 @@ export default function AppNavbar() {
       label: "Add Ride",
       href: "/add-ride",
     },
-    {
-      label: "Add Car",
-      href: "/add-car",
-    },
   ];
 
   if (status == "authenticated") {
-    menuItems.push({
-      label: "Profile",
-      href: "/profile",
-    });
+    menuItems.push(
+      {
+        label: "Profile",
+        href: "/profile",
+      },
+      {
+        label: "Add Car",
+        href: "/add-car",
+      }
+    );
   }
 
   return (
@@ -67,6 +70,9 @@ export default function AppNavbar() {
         <NavbarItem>
           <AuthButton />
         </NavbarItem>
+        <NavbarItem>
+          <ThemeToggle />
+        </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
         {menuItems.map((item, index) => (
@@ -76,6 +82,9 @@ export default function AppNavbar() {
             </Link>
           </NavbarMenuItem>
         ))}
+        <NavbarMenuItem>
+          <AuthButton />
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );

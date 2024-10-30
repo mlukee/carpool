@@ -1,7 +1,6 @@
 import { ThemeProvider } from "next-themes";
 
 import AppNavbar from "@/components/app-navbar";
-import Navbar from "@/components/navbar";
 import Providers from "@/components/providers";
 import SessionWrapper from "@/components/session-wrapper";
 import { Toaster } from "@/components/ui/sonner";
@@ -34,8 +33,6 @@ export default async function RootLayout({
               <main className="flex-grow">{children}</main>
               <Toaster />
             </Providers>
-            {/* <Sidebar /> */}
-            <Navbar />
           </body>
         </ThemeProvider>
       </SessionWrapper>
