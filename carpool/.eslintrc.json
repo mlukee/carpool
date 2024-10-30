@@ -22,7 +22,7 @@
       "error",
       {
         // all folders within app (except __tests__)should be named in kebab-case
-        "./**/": "KEBAB_CASE"
+        "./**/!^[.*": "KEBAB_CASE"
       }
     ]
   }

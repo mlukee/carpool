@@ -8,7 +8,7 @@ import getSession from "@/lib/getSession";
 export default async function Navbar() {
   const session = await getSession();
   return (
-    <nav className="flex items-center justify-between px-4 py-3 shadow-md">
+    <nav className="flex w-full items-center justify-between px-4 py-3 shadow-md">
       <Link href="/" className="text-xl font-bold">
         Carpool
       </Link>

@@ -1,23 +1,13 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 
+import AppNavbar from "@/components/app-navbar";
 import Navbar from "@/components/navbar";
+import Providers from "@/components/providers";
 import SessionWrapper from "@/components/session-wrapper";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 
 import "./globals.css";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export const metadata: Metadata = {
   title: "Carpool",
@@ -30,7 +20,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressContentEditableWarning>
       <SessionWrapper>
         <ThemeProvider
           attribute="class"
@@ -39,15 +29,14 @@ export default async function RootLayout({
           themes={["light", "dark", "green", "darkGreen"]}
           disableTransitionOnChange
         >
-          <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-          >
+          <body className="h-screen w-screen">
+            <Providers>
+              <AppNavbar />
+              <main className="flex-grow">{children}</main>
+            </Providers>
             {/* <Sidebar /> */}
             <Toaster />
-            <div className="container mx-auto">
-              <Navbar />
-            </div>
-            {children}
+            <Navbar />
           </body>
         </ThemeProvider>
       </SessionWrapper>
