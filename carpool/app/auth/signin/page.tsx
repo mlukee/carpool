@@ -40,6 +40,7 @@ export default function SignIn() {
   const onSubmit = async (values: z.infer<typeof signInSchema>) => {
     try {
       await handleCredentialsSignin(values);
+      window.location.href = "/";
     } catch (error) {
       if (error instanceof AuthError) {
         switch (error.type) {

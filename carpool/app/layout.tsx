@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
 
 import AppNavbar from "@/components/app-navbar";
 import Navbar from "@/components/navbar";
@@ -21,23 +21,23 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressContentEditableWarning>
       <SessionWrapper>
-        {/* <ThemeProvider
+        <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           themes={["light", "dark", "green", "darkGreen"]}
           disableTransitionOnChange
-        > */}
-        <body className="h-screen w-screen">
-          <Providers>
-            <AppNavbar />
-            <main className="flex-grow">{children}</main>
-            <Toaster />
-          </Providers>
-          {/* <Sidebar /> */}
-          <Navbar />
-        </body>
-        {/* </ThemeProvider> */}
+        >
+          <body className="h-screen w-screen">
+            <Providers>
+              <AppNavbar />
+              <main className="flex-grow">{children}</main>
+              <Toaster />
+            </Providers>
+            {/* <Sidebar /> */}
+            <Navbar />
+          </body>
+        </ThemeProvider>
       </SessionWrapper>
     </html>
   );

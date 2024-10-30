@@ -8,9 +8,9 @@ import User from "@/models/user";
 
 export const PATCH = async (
   req: Request,
-  context: { params: { carId: string } }
+  context: { params: Promise<{ carId: string }> }
 ) => {
-  const { carId } = context.params;
+  const { carId } = await context.params;
   try {
     const body = await req.json();
     const { newCarModel } = body;
@@ -57,7 +57,7 @@ export const PATCH = async (
   } catch (error: unknown) {
     const errorMessage =
       error instanceof Error ? error.message : "Unknown error";
-    return new NextResponse("Error updating car " + errorMessage, {
+    return new NextResponse(`Error updating car ${errorMessage}`, {
       status: 500,
     });
   }
@@ -65,9 +65,9 @@ export const PATCH = async (
 
 export const DELETE = async (
   req: Request,
-  context: { params: { carId: string } }
+  context: { params: Promise<{ carId: string }> }
 ) => {
-  const { carId } = context.params;
+  const { carId } = await context.params;
   try {
     const { searchParams } = new URL(req.url);
     const ownerId = searchParams.get("ownerId");
@@ -113,7 +113,7 @@ export const DELETE = async (
   } catch (error: unknown) {
     const errorMessage =
       error instanceof Error ? error.message : "Unknown error";
-    return new NextResponse("Error deleting car " + errorMessage, {
+    return new NextResponse(`Error deleting car ${errorMessage}`, {
       status: 500,
     });
   }

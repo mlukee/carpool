@@ -1,7 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-
 import { AuthError } from "next-auth";
 
 import { signIn, signOut } from "@/auth";
@@ -14,8 +12,7 @@ export async function handleCredentialsSignin({
   password: string;
 }) {
   try {
-    await signIn("credentials", { email, password, redirectTo: "/" });
-    revalidatePath("/");
+    await signIn("credentials", { email, password, redirect: false });
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
@@ -34,5 +31,9 @@ export async function handleCredentialsSignin({
 }
 
 export async function handleSignOut() {
-  await signOut();
+  try {
+    await signOut({ redirect: false });
+  } catch (error) {
+    console.log(error);
+  }
 }

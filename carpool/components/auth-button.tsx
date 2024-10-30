@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 import { useSession } from "next-auth/react";
@@ -10,7 +12,7 @@ export default function AuthButton() {
 
   const logOut = async () => {
     await handleSignOut();
-    location.reload();
+    window.location.href = "/";
   };
   return !session ? (
     <Link href="/auth/signin">

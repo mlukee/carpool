@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -41,7 +39,7 @@ function FindARide() {
     defaultValues: {
       origin: "",
       destination: "",
-      date: new Date(),
+      date: undefined,
     },
   });
 

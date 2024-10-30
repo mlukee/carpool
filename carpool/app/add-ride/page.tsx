@@ -1,7 +1,5 @@
 "use client";
 
-import * as React from "react";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
@@ -41,7 +39,7 @@ export default function AddRide() {
     defaultValues: {
       origin: "",
       destination: "",
-      date: new Date(),
+      date: undefined,
       departureTime: undefined,
       seatsAvailable: undefined,
       pricePerSeat: undefined,
