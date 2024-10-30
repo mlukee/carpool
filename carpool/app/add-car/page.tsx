@@ -44,7 +44,6 @@ export default function AddCar() {
       if (res.ok) {
         toast.success("Car added successfully");
         // Go to home page
-        window.location.href = "/";
       } else {
         toast.error("Failed to add car. Please try again.");
       }

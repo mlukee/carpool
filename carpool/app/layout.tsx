@@ -4,7 +4,6 @@ import AppNavbar from "@/components/app-navbar";
 import Navbar from "@/components/navbar";
 import Providers from "@/components/providers";
 import SessionWrapper from "@/components/session-wrapper";
-import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 
 import "./globals.css";
@@ -22,23 +21,23 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressContentEditableWarning>
       <SessionWrapper>
-        <ThemeProvider
+        {/* <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           themes={["light", "dark", "green", "darkGreen"]}
           disableTransitionOnChange
-        >
-          <body className="h-screen w-screen">
-            <Providers>
-              <AppNavbar />
-              <main className="flex-grow">{children}</main>
-            </Providers>
-            {/* <Sidebar /> */}
+        > */}
+        <body className="h-screen w-screen">
+          <Providers>
+            <AppNavbar />
+            <main className="flex-grow">{children}</main>
             <Toaster />
-            <Navbar />
-          </body>
-        </ThemeProvider>
+          </Providers>
+          {/* <Sidebar /> */}
+          <Navbar />
+        </body>
+        {/* </ThemeProvider> */}
       </SessionWrapper>
     </html>
   );

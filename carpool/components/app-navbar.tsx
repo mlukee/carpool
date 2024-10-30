@@ -12,15 +12,17 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@nextui-org/react";
+import { useSession } from "next-auth/react";
+
+import { Button } from "@/components/ui/button";
+
+import AuthButton from "./auth-button";
 
 export default function AppNavbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { status } = useSession();
 
   const menuItems = [
-    {
-      label: "Home",
-      href: "/",
-    },
     {
       label: "Add Ride",
       href: "/add-ride",
@@ -31,6 +33,13 @@ export default function AppNavbar() {
     },
   ];
 
+  if (status == "authenticated") {
+    menuItems.push({
+      label: "Profile",
+      href: "/profile",
+    });
+  }
+
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
@@ -39,18 +48,25 @@ export default function AppNavbar() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <p className="font-bold text-inherit">ACME</p>
+          <p className="font-bold text-inherit">
+            <Link href="/">Carpool</Link>
+          </p>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden gap-4 sm:flex" justify="center">
         {menuItems.map((item, index) => (
           <NavbarItem key={`${item}-${index}`}>
-            <Link className="w-full" href={item.href} size="lg">
-              {item.label}
-            </Link>
+            <Button asChild variant={"link"}>
+              <Link className="w-full" href={item.href} size="lg">
+                {item.label}
+              </Link>
+            </Button>
           </NavbarItem>
         ))}
+        <NavbarItem>
+          <AuthButton />
+        </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
         {menuItems.map((item, index) => (

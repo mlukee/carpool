@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthError } from "next-auth";
@@ -9,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-import { handleCredentialsSignin } from "@/app/actions/authActions";
+import { handleCredentialsSignin } from "@/app/actions/auth-actions";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -114,7 +113,7 @@ export default function SignIn() {
               Don&apos;t have an account?
               <Link
                 className="ml-4 cursor-pointer text-sky-700 hover:underline"
-                href="/sign-up"
+                href="/auth/signup"
               >
                 Sign Up
               </Link>
