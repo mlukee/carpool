@@ -1,6 +1,8 @@
+import { NextRequest, NextResponse } from "next/server";
+
 import connect from "@/lib/db";
 import User from "@/models/user";
-import { NextRequest, NextResponse } from "next/server";
+
 export const GET = async (req: NextRequest) => {
   try {
     const { searchParams } = new URL(req.url);

@@ -1,8 +1,17 @@
 "use client";
 
 import * as React from "react";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CalendarIcon } from "@radix-ui/react-icons";
+import { format } from "date-fns";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
+import { Calendar } from "@/components/ui/calendar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -12,26 +21,19 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
   Select,
-  SelectTrigger,
-  SelectValue,
   SelectContent,
   SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { CalendarIcon } from "@radix-ui/react-icons";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { addRideSchema } from "@/lib/zod";
-import { format } from "date-fns";
 import cities from "@/types/cities";
-import { toast } from "sonner";
 
 export default function AddRide() {
   const form = useForm<z.infer<typeof addRideSchema>>({
@@ -68,8 +70,8 @@ export default function AddRide() {
   };
 
   return (
-    <div className="flex w-full items-center justify-center mx-auto">
-      <Card className="md:h-auto w-full sm:w-[420px] p-4 sm:p-8">
+    <div className="mx-auto flex w-full items-center justify-center">
+      <Card className="w-full p-4 sm:w-[420px] sm:p-8 md:h-auto">
         <CardHeader>
           <CardTitle className="text-center text-lg">Add A Ride</CardTitle>
         </CardHeader>

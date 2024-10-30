@@ -1,11 +1,21 @@
 "use client";
+
+import Link from "next/link";
 import React from "react";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AuthError } from "next-auth";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+
+import { handleCredentialsSignin } from "@/app/actions/authActions";
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardHeader,
-  CardDescription,
   CardContent,
+  CardDescription,
+  CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import {
@@ -17,14 +27,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
 import { signInSchema } from "@/lib/zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { handleCredentialsSignin } from "@/app/actions/authActions";
-import { toast } from "sonner";
-import { AuthError } from "next-auth";
 
 export default function SignIn() {
   const form = useForm<z.infer<typeof signInSchema>>({
@@ -54,11 +57,11 @@ export default function SignIn() {
   };
 
   return (
-    <div className="h-full flex items-center justify-center">
-      <Card className="md:h-auto w-[80%] sm:w-[420px] p-4 sm:p-8">
+    <div className="flex h-full items-center justify-center">
+      <Card className="w-[80%] p-4 sm:w-[420px] sm:p-8 md:h-auto">
         <CardHeader>
           <CardTitle className="text-center text-lg">Sign in</CardTitle>
-          <CardDescription className="text-sm text-center text-accent-foreground">
+          <CardDescription className="text-center text-sm text-accent-foreground">
             Log in to your account.
           </CardDescription>
         </CardHeader>
@@ -110,7 +113,7 @@ export default function SignIn() {
             <p className="text-center text-sm text-muted-foreground">
               Don&apos;t have an account?
               <Link
-                className="text-sky-700 ml-4 hover:underline cursor-pointer"
+                className="ml-4 cursor-pointer text-sky-700 hover:underline"
                 href="/sign-up"
               >
                 Sign Up

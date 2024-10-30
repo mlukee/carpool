@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, Document, Types } from "mongoose";
+import mongoose, { Document, Schema, Types, model } from "mongoose";
 
 interface ICar extends Document {
   _id: Types.ObjectId;

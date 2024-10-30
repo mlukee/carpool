@@ -1,11 +1,11 @@
-import { Search, PlusCircle, Mountain, User } from "lucide-react";
+import { Mountain, PlusCircle, Search, User } from "lucide-react";
 
 const Sidebar = () => {
   return (
-    <aside className="w-1/4 bg-white rounded-lg p-4 shadow-lg">
+    <aside className="w-1/4 rounded-lg bg-white p-4 shadow-lg">
       <h2 className="text-xl font-semibold">Kam greš danes?</h2>
-      <ul className="space-y-4 mt-4 text-lg">
-        <li className="flex items-center space-x-2 text-orange-500 font-semibold">
+      <ul className="mt-4 space-y-4 text-lg">
+        <li className="flex items-center space-x-2 font-semibold text-orange-500">
           <Search />
           <span> Išči prevoz</span>
         </li>
@@ -22,7 +22,7 @@ const Sidebar = () => {
           <span> Moj profil</span>
         </li>
       </ul>
-      <button className="mt-8 bg-orange-500 text-white font-semibold w-full py-2 rounded-full flex items-center justify-center space-x-2">
+      <button className="mt-8 flex w-full items-center justify-center space-x-2 rounded-full bg-orange-500 py-2 font-semibold text-white">
         <PlusCircle />
         <span>Dodaj prevoz</span>
       </button>

@@ -1,13 +1,14 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+
 import { handleSignOut } from "@/app/actions/authActions";
-import getSession from "@/lib/getSession";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
+import getSession from "@/lib/getSession";
 
 export default async function Navbar() {
   const session = await getSession();
   return (
-    <nav className=" flex justify-between items-center py-3 px-4 shadow-md">
+    <nav className="flex items-center justify-between px-4 py-3 shadow-md">
       <Link href="/" className="text-xl font-bold">
         Carpool
       </Link>

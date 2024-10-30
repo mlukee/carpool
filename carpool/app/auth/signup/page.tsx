@@ -1,11 +1,20 @@
 "use client";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardHeader,
-  CardDescription,
   CardContent,
+  CardDescription,
+  CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import {
@@ -16,15 +25,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-
-import { signUpSchema } from "@/lib/zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
+import { signUpSchema } from "@/lib/zod";
 
 function SignUp() {
   const form = useForm<z.infer<typeof signUpSchema>>({
@@ -69,11 +71,11 @@ function SignUp() {
   };
 
   return (
-    <div className="h-full flex items-center justify-center">
-      <Card className="md:h-auto w-[80%] sm:w-[420px] p-4 sm:p-8">
+    <div className="flex h-full items-center justify-center">
+      <Card className="w-[80%] p-4 sm:w-[420px] sm:p-8 md:h-auto">
         <CardHeader>
           <CardTitle className="text-center text-lg">Sign up</CardTitle>
-          <CardDescription className="text-sm text-center text-accent-foreground">
+          <CardDescription className="text-center text-sm text-accent-foreground">
             Create account.
           </CardDescription>
         </CardHeader>
@@ -181,7 +183,7 @@ function SignUp() {
             <p className="text-center text-sm text-muted-foreground">
               Already have an account?
               <Link
-                className="text-sky-700 ml-4 hover:underline cursor-pointer"
+                className="ml-4 cursor-pointer text-sky-700 hover:underline"
                 href="auth/signin"
               >
                 Sign In

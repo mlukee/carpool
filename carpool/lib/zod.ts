@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 import cities from "@/types/cities";
 
 export const signUpSchema = z

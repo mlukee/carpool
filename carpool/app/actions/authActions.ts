@@ -1,8 +1,10 @@
 "use server";
 
-import { signIn, signOut } from "@/auth";
-import { AuthError } from "next-auth";
 import { revalidatePath } from "next/cache";
+
+import { AuthError } from "next-auth";
+
+import { signIn, signOut } from "@/auth";
 
 export async function handleCredentialsSignin({
   email,

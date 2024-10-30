@@ -1,6 +1,13 @@
 "use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useSession } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -9,13 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-
 import { addCarSchema } from "@/lib/zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { useSession } from "next-auth/react";
 
 export default function AddCar() {
   const session = useSession();
@@ -54,8 +55,8 @@ export default function AddCar() {
   };
 
   return (
-    <div className="h-full flex items-center justify-center">
-      <Card className="md:h-auto w-[80%] sm:w-[420px] p-4 sm:p-8">
+    <div className="flex h-full items-center justify-center">
+      <Card className="w-[80%] p-4 sm:w-[420px] sm:p-8 md:h-auto">
         <CardHeader>
           <CardTitle className="text-center text-lg">Add your car</CardTitle>
         </CardHeader>

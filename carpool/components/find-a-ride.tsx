@@ -1,7 +1,16 @@
 "use client";
+
 import React from "react";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
+import { Calendar } from "@/components/ui/calendar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -10,11 +19,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { searchForRideSchema } from "@/lib/zod";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -22,16 +31,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import cities from "@/types/cities";
 import { cn } from "@/lib/utils";
-import { CalendarIcon } from "lucide-react";
-import { Calendar } from "@/components/ui/calendar";
-import { format } from "date-fns";
+import { searchForRideSchema } from "@/lib/zod";
+import cities from "@/types/cities";
 
 function FindARide() {
   const form = useForm<z.infer<typeof searchForRideSchema>>({
@@ -53,8 +55,8 @@ function FindARide() {
   };
 
   return (
-    <div className="flex w-full items-center justify-center mx-auto">
-      <Card className="md:h-auto w-full sm:w-[420px] p-4 sm:p-8">
+    <div className="mx-auto flex w-full items-center justify-center">
+      <Card className="w-full p-4 sm:w-[420px] sm:p-8 md:h-auto">
         <CardHeader>
           <CardTitle className="text-center text-lg">Find A Ride</CardTitle>
         </CardHeader>

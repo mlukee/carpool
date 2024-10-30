@@ -1,7 +1,9 @@
+import { NextResponse } from "next/server";
+
+import { Types } from "mongoose";
+
 import connect from "@/lib/db";
 import User from "@/models/user";
-import { NextResponse } from "next/server";
-import { Types } from "mongoose";
 
 export const GET = async () => {
   try {
