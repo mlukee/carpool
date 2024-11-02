@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { Pencil, Trash2 } from "lucide-react";
+import { Loader2Icon, Pencil, Trash2 } from "lucide-react";
 
 import {
   AlertDialog,
@@ -88,61 +88,70 @@ export function UserCars({ userId }: UserCarsProps) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {cars.map((car) => (
-              <TableRow key={car._id}>
-                <TableCell>{car.carModel}</TableCell>
-                <TableCell className="hidden lg:table-cell">
-                  {car.year}
-                </TableCell>
-                <TableCell>{car.licensePlate}</TableCell>
-                <TableCell className="text-right">
-                  <div className="flex justify-end gap-2">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => handleEdit(car._id)}
-                    >
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="text-destructive"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>Delete Car</AlertDialogTitle>
-                          <AlertDialogDescription>
-                            Are you sure you want to delete this car? This
-                            action cannot be undone.
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction
-                            onClick={() => handleDelete(car._id)}
-                            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                          >
-                            Delete
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-                  </div>
+            {isLoading ? (
+              <TableRow>
+                <TableCell colSpan={4} className="text-center">
+                  <Loader2Icon className="mx-auto h-4 w-4 animate-spin" />
                 </TableCell>
               </TableRow>
-            ))}
+            ) : (
+              cars.map((car) => (
+                <TableRow key={car._id}>
+                  <TableCell>{car.carModel}</TableCell>
+                  <TableCell className="hidden lg:table-cell">
+                    {car.year}
+                  </TableCell>
+                  <TableCell>{car.licensePlate}</TableCell>
+                  <TableCell className="text-right">
+                    <div className="flex justify-end gap-2">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => handleEdit(car._id)}
+                      >
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="text-destructive"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Delete Car</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              Are you sure you want to delete this car? This
+                              action cannot be undone.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction
+                              onClick={() => handleDelete(car._id)}
+                              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                            >
+                              Delete
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
           </TableBody>
         </Table>
       </div>
 
       {/* Card layout for mobile */}
       <div className="space-y-4 md:hidden">
+        {isLoading && <Loader2Icon className="mx-auto h-4 w-4 animate-spin" />}
         {cars.map((car) => (
           <Card key={car._id}>
             <CardHeader>
