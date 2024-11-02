@@ -41,6 +41,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             surname: user.surname,
             email: user.email,
             phone: user.phone,
+            username: user.username,
           };
         } catch (error) {
           console.log(error);
@@ -55,12 +56,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     async session({ session, token }) {
-      if (token?.sub && token?.email) {
-        session.user.id = token.sub;
-        session.user.email = token.email;
-        session.user.name = token.name;
-        session.user.surname = token.surname;
-        session.user.phone = token.phone;
+      if (token) {
+        session.user = {
+          id: token.sub as string,
+          email: token.email as string,
+          name: token.name as string,
+          surname: token.surname as string,
+          phone: token.phone as string,
+          username: token.username as string,
+        };
       }
       return session;
     },
@@ -71,6 +75,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.name = user.name;
         token.surname = user.surname;
         token.phone = user.phone;
+        token.username = user.username;
       }
 
       return token;

@@ -1,25 +1,23 @@
-import { ObjectId } from "mongodb";
-
 export interface Car {
-  carId: ObjectId;
-  model: string;
+  _id: string;
+  carModel: string;
   year: number;
   licensePlate: string;
+  owner: string;
 }
 
 export interface User {
-  userId: ObjectId;
+  userId: string;
   username: string;
   name: string;
   surname: string;
   email: string;
   password: string;
   phone: string;
-  cars: Car[];
 }
 
 export interface Ride {
-  rideId: ObjectId;
+  rideId: string;
   origin: string;
   destination: string;
   date: Date;
@@ -33,9 +31,9 @@ export interface Ride {
 }
 
 export interface Feedback {
-  feedbackId: ObjectId;
-  rideId: ObjectId;
-  userId: ObjectId;
+  feedbackId: string;
+  rideId: string;
+  userId: string;
   rating: number;
   comment: string;
   date: Date;

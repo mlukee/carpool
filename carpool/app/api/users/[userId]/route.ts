@@ -19,7 +19,7 @@ export const GET = async (req: NextRequest) => {
     return new NextResponse(user, { status: 200 });
   } catch (error: unknown) {
     return new NextResponse(
-      "Error when fetching users " + (error as Error).message,
+      `Error when fetching users ${(error as Error).message}`,
       {
         status: 500,
       }

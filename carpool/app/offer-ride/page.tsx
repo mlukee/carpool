@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
+import { Euro, Users } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -30,6 +31,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { addRideSchema } from "@/lib/zod";
 import cities from "@/types/cities";
 
@@ -71,7 +73,7 @@ export default function AddRide() {
     <div className="mx-auto flex w-full items-center justify-center">
       <Card className="w-full p-4 sm:w-[420px] sm:p-8 md:h-auto">
         <CardHeader>
-          <CardTitle className="text-center text-lg">Add A Ride</CardTitle>
+          <CardTitle className="text-center text-lg">Offer a Ride</CardTitle>
         </CardHeader>
         <CardContent className="px-2 sm:px-6">
           <Form {...form}>
@@ -188,18 +190,25 @@ export default function AddRide() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Input
-                        type="number"
-                        placeholder="Seats available"
-                        min={1}
-                        onChange={(e) =>
-                          field.onChange(
-                            e.target.value ? Number(e.target.value) : ""
-                          )
-                        }
-                      />
+                      <div className="space-y-2">
+                        <div className="relative">
+                          <Input
+                            type="number"
+                            min="1"
+                            max="8"
+                            className="pl-10"
+                            placeholder="Number of seats"
+                            onChange={(e) =>
+                              field.onChange(
+                                e.target.value ? Number(e.target.value) : ""
+                              )
+                            }
+                          />
+                          <Users className="absolute left-3 top-3 h-4 w-4" />
+                        </div>
+                        <FormMessage />
+                      </div>
                     </FormControl>
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -211,17 +220,24 @@ export default function AddRide() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Input
-                        type="number"
-                        placeholder="Price per seat"
-                        min={0}
-                        step="0.2"
-                        onChange={(e) =>
-                          field.onChange(
-                            e.target.value ? Number(e.target.value) : ""
-                          )
-                        }
-                      />
+                      <div className="space-y-2">
+                        <div className="relative">
+                          <Input
+                            id="seats"
+                            type="number"
+                            className="pl-10"
+                            placeholder="Price in EUR"
+                            min={0}
+                            step={0.5}
+                            onChange={(e) =>
+                              field.onChange(
+                                e.target.value ? Number(e.target.value) : ""
+                              )
+                            }
+                          />
+                          <Euro className="absolute left-3 top-3 h-4 w-4" />
+                        </div>
+                      </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -235,11 +251,7 @@ export default function AddRide() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Input
-                        type="text"
-                        placeholder="Comments (optional)"
-                        {...field}
-                      />
+                      <Textarea placeholder="Comments (optional)" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -248,7 +260,7 @@ export default function AddRide() {
 
               {/* Submit Button */}
               <Button className="w-full" type="submit">
-                Find ride
+                Offer a Ride
               </Button>
             </form>
           </Form>

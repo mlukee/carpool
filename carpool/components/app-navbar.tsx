@@ -12,6 +12,7 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@nextui-org/react";
+import { Car } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 import { Button } from "@/components/ui/button";
@@ -26,7 +27,7 @@ export default function AppNavbar() {
   const menuItems = [
     {
       label: "Add Ride",
-      href: "/add-ride",
+      href: "/offer-ride",
     },
   ];
 
@@ -52,7 +53,10 @@ export default function AppNavbar() {
         />
         <NavbarBrand>
           <p className="font-bold text-inherit">
-            <Link href="/">Carpool</Link>
+            <Link href="/">
+              <Car className="mr-2" />
+              Carpool
+            </Link>
           </p>
         </NavbarBrand>
       </NavbarContent>

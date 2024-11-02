@@ -1,35 +1,37 @@
 "use client";
 
-import FindARide from "@/components/find-a-ride";
+import Link from "next/link";
+
+import { Car } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen p-6">
-      <main className="ml-8 w-full flex-1">
-        <h1 className="mb-4 text-3xl font-bold">Išči prevoz</h1>
-        <FindARide />
-
-        <div className="space-y-4">
-          <div className="rounded-lg bg-gray-100 p-4 shadow-lg">
-            <h2 className="text-lg font-semibold text-black">
-              Ljubljana &gt; Maribor
-            </h2>
-            <div className="mt-2 flex justify-around">
-              <span>30 Danes</span>
-              <span>29 Sreda</span>
-              <span>8 Četrtek</span>
-            </div>
-          </div>
-          <div className="rounded-lg bg-gray-100 p-4 shadow-lg">
-            <h2 className="text-lg font-semibold">Koper &gt; Ljubljana</h2>
-            <div className="mt-2 flex justify-around">
-              <span>33 Danes</span>
-              <span>19 Sreda</span>
-              <span>4 Četrtek</span>
+    <main className="">
+      {/* Hero Section */}
+      <div className="relative">
+        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+          <div className="flex flex-col items-center text-center">
+            <Car className="mb-8 h-16 w-16 text-primary" />
+            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
+              Share Your Ride
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
+              Connect with fellow travelers, share costs, and reduce your carbon
+              footprint. Find your perfect ride or offer one today.
+            </p>
+            <div className="mt-10 flex items-center gap-x-6">
+              <Button size="lg" asChild>
+                <Link href="/find-ride">Find a Ride</Link>
+              </Button>
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/offer-ride">Offer a Ride</Link>
+              </Button>
             </div>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }

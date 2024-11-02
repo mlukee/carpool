@@ -152,7 +152,7 @@ render:
   OfferARide:
     ## Offer a New Ride
     //Form//
-    Start Location: [Input Text]  
+    Start Location: [Input Select]  
     End Location: [Input Text]  
     Date of Departure: [Input Date]  
     Available Seats: [Input Number, min: 1]  
