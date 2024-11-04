@@ -24,6 +24,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { UserBookedRides } from "@/components/user-booked-rides";
 import { UserCars } from "@/components/user-cars";
 import { updateProfileSchema } from "@/lib/zod";
 
@@ -105,6 +106,7 @@ export default function ProfilePage() {
           <TabsList>
             <TabsTrigger value="profile">Profile</TabsTrigger>
             <TabsTrigger value="cars">My Cars</TabsTrigger>
+            <TabsTrigger value="rides">My Rides</TabsTrigger>
           </TabsList>
 
           <TabsContent value="profile">
@@ -217,6 +219,24 @@ export default function ProfilePage() {
                 </Link>
               </div>
               <UserCars userId={session?.user.id} />
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="rides">
+            <Card className="p-6">
+              <div className="mb-6 flex items-center justify-between">
+                <h2 className="flex items-center gap-2 text-xl font-semibold">
+                  <Car className="h-5 w-5" />
+                  My Booked Rides
+                </h2>
+                <Link href="/find-ride">
+                  <Button>
+                    <Car className="mr-2 h-4 w-4" />
+                    Book a Ride
+                  </Button>
+                </Link>
+              </div>
+              <UserBookedRides userId={session?.user.id} />
             </Card>
           </TabsContent>
         </Tabs>

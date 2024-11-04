@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Calendar, Clock, MapPin, Users } from "lucide-react";
+import { Calendar, Clock, MapPin, User, Users } from "lucide-react";
 import { toast } from "sonner";
 
 import { Ride } from "@/types/types";
@@ -135,6 +135,12 @@ export default function RideList({
                   </span>
                   <span className="text-sm">per seat</span>
                 </div>
+                <div className="col-span-2 flex items-center gap-2">
+                  <User className="h-4 w-4" />
+                  <span className="text-sm">
+                    Driver: {ride.driver.name} {ride.driver.surname}
+                  </span>
+                </div>
               </div>
 
               <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
@@ -143,7 +149,11 @@ export default function RideList({
                   onClick={() => handleBookNow(ride)}
                   disabled={checkIfRideIsAvailable(ride, userId)}
                 >
-                  {checkIfRideIsAvailable(ride, userId) ? "Booked" : "Book Now"}
+                  {!userId
+                    ? "Sign in to book"
+                    : checkIfRideIsAvailable(ride, userId)
+                      ? "Booked"
+                      : "Book Now"}
                 </Button>
               </div>
             </div>
