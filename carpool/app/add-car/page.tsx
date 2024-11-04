@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter, useSearchParams } from "next/navigation";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
@@ -18,23 +20,47 @@ import {
 import { Input } from "@/components/ui/input";
 import { addCarSchema } from "@/lib/zod";
 
+interface CarProps {
+  car?: {
+    _id: string;
+    carModel: string;
+    year: number;
+    licensePlate: string;
+    owner: string;
+  };
+}
+
 export default function AddCar() {
   const session = useSession();
   const user = session.data?.user;
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const carId = searchParams.get("carId");
+  const carModel = searchParams.get("carModel") || "";
+  const year = searchParams.get("year")
+    ? Number(searchParams.get("year"))
+    : 2000;
+  const licensePlate = searchParams.get("licensePlate") || "";
 
   const form = useForm<z.infer<typeof addCarSchema>>({
     resolver: zodResolver(addCarSchema),
     defaultValues: {
-      carModel: "",
-      year: 2000,
-      licensePlate: "",
+      carModel,
+      year,
+      licensePlate,
     },
   });
 
   const onSubmit = async (values: z.infer<typeof addCarSchema>) => {
     try {
-      const res = await fetch(`/api/cars?ownerId=${user.id}`, {
-        method: "POST",
+      const endpoint = carId
+        ? `/api/users/${user.id}/cars/${carId}`
+        : `/api/cars?ownerId=${user.id}`;
+      const method = carId ? "PATCH" : "POST";
+
+      const res = await fetch(endpoint, {
+        method: method,
         headers: {
           "Content-Type": "application/json",
         },
@@ -42,10 +68,14 @@ export default function AddCar() {
       });
 
       if (res.ok) {
-        toast.success("Car added successfully");
-        // Go to home page
+        toast.success(
+          carId ? "Car updated successfully" : "Car added successfully"
+        );
+        router.push("/profile");
       } else {
-        toast.error("Failed to add car. Please try again.");
+        toast.error(
+          `Failed to ${carId ? "update" : "add"} car. Please try again.`
+        );
       }
     } catch (error) {
       console.error("Error submitting form:", error);

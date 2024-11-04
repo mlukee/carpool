@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -43,7 +44,6 @@ export default function ProfilePage() {
   console.log("SESSION:", session);
 
   const handleSubmit = async (values: z.infer<typeof updateProfileSchema>) => {
-    console.log("FORM DATA:", values);
     try {
       const response = await fetch(`/api/users/${session?.user.id}`, {
         method: "PATCH",
@@ -56,7 +56,6 @@ export default function ProfilePage() {
       if (response.ok) {
         const updatedUser = await response.json();
 
-        console.log("UPDATED USER:", updatedUser);
         const user = {
           ...session!.user,
           name: updatedUser.name,
@@ -210,10 +209,12 @@ export default function ProfilePage() {
                   <Car className="h-5 w-5" />
                   My Cars
                 </h2>
-                <Button>
-                  <Car className="mr-2 h-4 w-4" />
-                  Add New Car
-                </Button>
+                <Link href="/add-car">
+                  <Button>
+                    <Car className="mr-2 h-4 w-4" />
+                    Add New Car
+                  </Button>
+                </Link>
               </div>
               <UserCars userId={session?.user.id} />
             </Card>

@@ -37,14 +37,3 @@ export const GET = async (
     );
   }
 };
-
-export const DELETE = async (request: NextRequest) => {
-  try {
-  } catch (error) {
-    console.error("Error deleting cars:", error);
-    return NextResponse.json(
-      { message: "Error deleting cars" },
-      { status: 500 }
-    );
-  }
-};

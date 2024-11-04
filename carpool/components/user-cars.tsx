@@ -1,8 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Loader2Icon, Pencil, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
 import {
   AlertDialog,
@@ -41,6 +43,7 @@ export function UserCars({ userId }: UserCarsProps) {
   const [cars, setCars] = useState<Car[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (!userId) return;
@@ -64,14 +67,29 @@ export function UserCars({ userId }: UserCarsProps) {
     fetchCars();
   }, [userId]);
 
-  const handleDelete = (carId: string) => {
-    // Implement delete functionality
+  const handleDelete = async (carId: string) => {
     console.log("Deleting car:", carId);
+
+    try {
+      const response = await fetch(`/api/users/${userId}/cars/${carId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        toast.error("Failed to delete car. Please try again.");
+        return;
+      }
+      setCars(cars.filter((car) => car._id !== carId));
+    } catch (error) {}
   };
 
-  const handleEdit = (carId: string) => {
-    // Implement edit functionality
-    console.log("Editing car:", carId);
+  const handleEdit = (car: Car) => {
+    router.push(
+      `/add-car?carId=${car._id}&carModel=${car.carModel}&year=${car.year}&licensePlate=${car.licensePlate}`
+    );
   };
 
   return (
@@ -107,7 +125,7 @@ export function UserCars({ userId }: UserCarsProps) {
                       <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() => handleEdit(car._id)}
+                        onClick={() => handleEdit(car)}
                       >
                         <Pencil className="h-4 w-4" />
                       </Button>
