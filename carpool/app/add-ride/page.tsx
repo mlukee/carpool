@@ -1,9 +1,12 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import { Euro, Users } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -36,13 +39,15 @@ import { addRideSchema } from "@/lib/zod";
 import cities from "@/types/cities";
 
 export default function AddRide() {
+  const { data: session } = useSession();
+  const router = useRouter();
   const form = useForm<z.infer<typeof addRideSchema>>({
     resolver: zodResolver(addRideSchema),
     defaultValues: {
       origin: "",
       destination: "",
       date: undefined,
-      departureTime: undefined,
+      departureTime: "",
       seatsAvailable: undefined,
       pricePerSeat: undefined,
       comments: "",
@@ -50,22 +55,31 @@ export default function AddRide() {
   });
 
   const onSubmit = async (values: z.infer<typeof addRideSchema>) => {
-    console.log("Form submitted:", values);
-
-    const {
-      origin,
-      destination,
-      date,
-      departureTime,
-      seatsAvailable,
-      pricePerSeat,
-      comments,
-    } = values;
-    if (origin === destination) {
-      toast.error("Origin and destination cannot be the same");
-    }
+    const reqBody = {
+      ...values,
+      driver: session?.user.id,
+    };
 
     try {
+      const endpoint = "http://localhost:3000/api/rides";
+
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reqBody),
+      });
+
+      if (res.ok) {
+        toast.success("Ride added successfully");
+        form.reset();
+        router.push("/find-ride");
+      } else {
+        toast.error("Failed to add ride. Please try again.");
+      }
+
+      console.log("Form submitted:", reqBody);
     } catch (error) {}
   };
 
@@ -197,7 +211,7 @@ export default function AddRide() {
                             min="1"
                             max="8"
                             className="pl-10"
-                            placeholder="Number of seats"
+                            placeholder="Seats available"
                             onChange={(e) =>
                               field.onChange(
                                 e.target.value ? Number(e.target.value) : ""

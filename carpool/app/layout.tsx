@@ -24,30 +24,30 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <SessionWrapper>
-        <body className={`${inter.className}`}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            themes={["light", "dark", "green", "darkGreen"]}
-            disableTransitionOnChange
-          >
+      <body className="overflow-x-hidden">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          themes={["light", "dark", "green", "darkGreen"]}
+          disableTransitionOnChange
+        >
+          <SessionWrapper>
             <Providers>
-              <div className="flex h-screen flex-col">
+              <div className="flex min-h-screen flex-col">
                 <AppNavbar />
                 <div className="flex flex-1 p-3">
                   <main className="flex-1">{children}</main>
                 </div>
-                <footer className="mx-auto my-1 items-center justify-center">
+                <footer className="mx-auto mb-1 items-center justify-center">
                   Carpool © {new Date().getFullYear()}
                 </footer>
               </div>
               <Toaster />
             </Providers>
-          </ThemeProvider>
-        </body>
-      </SessionWrapper>
+          </SessionWrapper>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

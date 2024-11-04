@@ -1,8 +1,7 @@
-"use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -32,24 +31,28 @@ import {
 import { cn } from "@/lib/utils";
 import { searchForRideSchema } from "@/lib/zod";
 import cities from "@/types/cities";
+import { FilterCriteria } from "@/types/types";
 
-function FindARide() {
-  const form = useForm<z.infer<typeof searchForRideSchema>>({
+interface FindARideProps {
+  onFilter: (criteria: FilterCriteria) => void;
+}
+
+//TODO: do this everywhere
+type SearchFormValues = z.infer<typeof searchForRideSchema>;
+
+function FindARide({ onFilter }: FindARideProps) {
+  const form = useForm<SearchFormValues>({
     resolver: zodResolver(searchForRideSchema),
     defaultValues: {
-      origin: "",
-      destination: "",
+      origin: "All",
+      destination: "All",
       date: undefined,
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof searchForRideSchema>) => {
-    try {
-      // TODO: make API call and redirect to different page
-      console.log(values);
-    } catch (error) {
-      console.log(error);
-    }
+  const onSubmit = async (values: SearchFormValues) => {
+    console.log("Form submitted:", values);
+    onFilter(values);
   };
 
   return (
@@ -74,11 +77,13 @@ function FindARide() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {cities.map((city) => (
-                          <SelectItem key={city.city} value={city.city}>
-                            {city.city}
-                          </SelectItem>
-                        ))}
+                        {["All", ...cities.map((city) => city.city)].map(
+                          (city) => (
+                            <SelectItem key={city} value={city}>
+                              {city}
+                            </SelectItem>
+                          )
+                        )}
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -98,11 +103,13 @@ function FindARide() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {cities.map((city) => (
-                          <SelectItem key={city.city} value={city.city}>
-                            {city.city}
-                          </SelectItem>
-                        ))}
+                        {["All", ...cities.map((city) => city.city)].map(
+                          (city) => (
+                            <SelectItem key={city} value={city}>
+                              {city}
+                            </SelectItem>
+                          )
+                        )}
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -137,9 +144,7 @@ function FindARide() {
                           <Calendar
                             mode="single"
                             selected={field.value}
-                            onSelect={(day) =>
-                              field.onChange(day || new Date())
-                            }
+                            onSelect={(day) => field.onChange(day)}
                             initialFocus
                           />
                         </PopoverContent>

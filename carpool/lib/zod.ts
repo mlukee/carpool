@@ -31,15 +31,11 @@ export const signUpSchema = z
 const cityNames = cities.map((city) => city.city);
 
 export const searchForRideSchema = z.object({
-  origin: z.enum(cityNames as [string, ...string[]], {
-    required_error: "Origin is required",
-    message: "Origin is required",
-  }),
-  destination: z.enum(cityNames as [string, ...string[]], {
-    required_error: "Destination is required",
-    message: "Destination is required",
-  }),
-  date: z.date({ required_error: "Date is required" }),
+  origin: z.enum(["All", ...cityNames] as [string, ...string[]]).optional(),
+  destination: z
+    .enum(["All", ...cityNames] as [string, ...string[]])
+    .optional(),
+  date: z.date({ required_error: "Date is required" }).optional(),
 });
 
 export const signInSchema = z.object({
@@ -47,21 +43,31 @@ export const signInSchema = z.object({
   password: z.string({ required_error: "Password is required" }),
 });
 
-export const addRideSchema = z.object({
-  origin: z.enum(cityNames as [string, ...string[]], {
-    required_error: "Origin is required",
-    message: "Origin is required",
-  }),
-  destination: z.enum(cityNames as [string, ...string[]], {
-    required_error: "Destination is required",
-    message: "Destination is required",
-  }),
-  date: z.date({ required_error: "Date is required" }),
-  departureTime: z.string({ required_error: "Time is required" }),
-  seatsAvailable: z.number({ required_error: "Seats are required" }),
-  pricePerSeat: z.number({ required_error: "Price per seat is required" }),
-  comments: z.string(),
-});
+export const addRideSchema = z
+  .object({
+    origin: z.enum(cityNames as [string, ...string[]], {
+      required_error: "Origin is required",
+      message: "Origin is required",
+    }),
+    destination: z.enum(cityNames as [string, ...string[]], {
+      required_error: "Destination is required",
+      message: "Destination is required",
+    }),
+    date: z.date({ required_error: "Date is required" }),
+    departureTime: z.string({ required_error: "Time is required" }),
+    seatsAvailable: z.number({ required_error: "Seats are required" }),
+    pricePerSeat: z.number({ required_error: "Price per seat is required" }),
+    driver: z.string().optional(),
+    comments: z.string().optional(),
+  })
+  .refine(
+    (data: { origin: string; destination: string }) =>
+      data.origin !== data.destination,
+    {
+      message: "Origin and destination cannot be the same",
+      path: ["destination"],
+    }
+  );
 
 export const addCarSchema = z.object({
   carModel: z

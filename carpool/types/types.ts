@@ -17,7 +17,7 @@ export interface User {
 }
 
 export interface Ride {
-  rideId: string;
+  id: string;
   origin: string;
   destination: string;
   date: Date;
@@ -27,7 +27,12 @@ export interface Ride {
   driver: User;
   passengers: User[];
   comments?: string;
-  status: "active" | "cancelled" | "completed";
+}
+
+export interface FilterCriteria {
+  origin?: string;
+  destination?: string;
+  date?: Date;
 }
 
 export interface Feedback {

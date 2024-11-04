@@ -39,7 +39,7 @@ export default function AppNavbar() {
       },
       {
         label: "Add Ride",
-        href: "/offer-ride",
+        href: "/add-ride",
       },
       {
         label: "Add Car",
