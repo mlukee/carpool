@@ -15,11 +15,10 @@ export default function Home() {
           <div className="flex flex-col items-center text-center">
             <Car className="mb-8 h-16 w-16 text-primary" />
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
-              Share Your Ride
+              Welcome to Carpool Ride Sharing Dashboard
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
-              Connect with fellow travelers, share costs, and reduce your carbon
-              footprint. Find your perfect ride or offer one today.
+              Find rides, offer rides, and manage your trips here.
             </p>
             <div className="mt-10 flex items-center gap-x-6">
               <Button size="lg" asChild>

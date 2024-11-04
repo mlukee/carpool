@@ -11,14 +11,14 @@ menu_items:
   label: Find a Ride,
   component: FindARide
 
-  label: Offer a Ride,
-  component: OfferARide
+  label: Add Ride,
+  component: AddRide
 
   label: Profile,
   component: Profile
 
   label: My Rides,
-  component: MyRides
+  component: UserBookedRides
 
 components:
   name: Home,
@@ -36,11 +36,6 @@ components:
   menu: yes,
   authentication: yes
 
-  name: MyRides,
-  url: /my-rides
-  menu: no,
-  authentication: yes
-
   name: RideDetails,
   url: /ride-details,
   menu: yes,
@@ -51,107 +46,81 @@ components:
   menu: no,
   authentication: yes
 
-  name: Login,
-  url: /login,
+  name: Sign Up,
+  url: /auth/signup,
   menu: no,
   authentication: no
 
-  name: Logout,
-  url: /logout,
+  name: Sign In,
+  url: /auth/signin,
   menu: no,
-  authentication: yes
-
-  name: Feedback,
-  url: /feedback,
-  menu: no,
-  authentication: yes
+  authentication: no
 
 api:
-  base: http://localhost:5000
+  base: http://localhost:3000
   endpoints:
     name: findRide,
-    url: /find-ride,
+    url: /api/rides,
     method: GET
   
     name: offerRide,
-    url: /offer-ride,
+    url: /api/rides,
     method: POST
   
     name: myRides,
-    url: /my-rides,
+    url: /api/users/[userId]/rides,
     method: GET
   
     name: rideDetails,
     url: /ride-details,
     method: GET
-  
-    name: submitFeedback,
-    url: /feedback,
-    method: POST
-  
+
     name: profile,
-    url: /profile,
+    url: /api/users/[userId],
     method: GET
   
     name: addCar,
-    url: /profile/add-car,
+    url: /api/cars?ownerId=[userId],
     method: POST
   
     name: editCar,
-    url: /profile/edit-car,
+    url: /api/users/[user.id]/cars/[carId],
     method: PUT
   
     name: deleteCar,
-    url: /profile/delete-car,
+    url: /api/users/[userId]/cars/[carId],
     method: DELETE
   
-    name: logout,
-    url: /logout,
+    name: signin,
+    url: /api/auth/signin,
     method: POST
   
-    name: login,
-    url: /login,
+    name: signout,
+    url: /api/auth/signout,
     method: POST
 
     name: joinRide,
-    url: /join-ride/:rideId
-    method: POST
+    url: /api/rides/[ride._id]
+    method: PATCH
 
 render:
-  Header:
-    {img: /assets/images/logo.png, alt=Logo, style=align:left;} 
-
   Footer:
     Carpool © 2024
 
   Home:
     ## Welcome to Carpool Ride Sharing Dashboard
     Find rides, offer rides, and manage your trips here.
-    {img: /assets/images/home.png, alt="banner Image"}
-
-    //Card//
-      Title: {{ride.origin}} -> {{ride.destination}}
-      Content: 
-        [Today    | /ride-details/{{rideId}}]  | {{ride.today.count}}
-        [Tomorrow | /ride-details/{{rideId}}]  | {{ride.tomorrow.count}}
-        [Saturday | /ride-details/{{rideId}}]  | {{ride.saturday.count}}
-
-    //Card//
-      Title: {{ride.origin}} -> {{ride.destination}}
-      Content:
-        style=space:even
-        [Today    | /find-ride/{{rideId}}]  | {{ride.today.count}}
-        [Tomorrow | /find-ride/{{rideId}}]  | {{ride.tomorrow.count}}
-        [Saturday | /find-ride/{{rideId}}]  | {{ride.saturday.count}}
+    [[Find a Ride | /find-ride]] [[Offer a Ride | /add-ride]]
 
   FindARide:
-    rides.len == 0 ? No rides for this date and its relation.
     
-    ## Available Rides
+    ## Find a Ride
 
     //Card//
-      Title: {{ride.date}}, {{ride.origin}} -> {{ride.destination}}
-      Content:
+      CardTitle: Find A Ride
+      CardContent:
+        //Form//
+        //TODO from here down
         style=space:even
         {{ride.departure}} | {{ride.driverName}}  | {{ride.price}}  |    [Details | /ride-details/{{rideId}}, style=text: right]
         {{ride.departure}} | {{ride.driverName}}  | {{ride.price}}  |    [Details | /ride-details/{{rideId}}, style=text: right]
@@ -203,16 +172,14 @@ render:
     | {{user.car.model}}         | {{user.car.year}}         | {{user.car.licensePlate}}           | [[Edit | /profile/edit-car/{{user.car.carId}}, icon=PenIcon]] [[Delete | /profile/delete-car/:carId, icon=TrashIcon]] |
     [[Add car | /profile/add-car, icon=PlusIcon]]
 
-  Feedback:
-    ## Rate Your Ride
-    //Form//
-    Rating: [Input Number, min: 1, max: 5]  
-    Comments: [Input Textarea]  
-    [[Submit Feedback | /feedback]]
-
-  Login:
+  Signin:
     ## Login
     //Form//
     Email: [Input Email]  
     Password:[Input Password]  
-    [[Login | /login]] 
+    [[Login | /login]]
+
+  SignUp:
+    ## SignUp
+    //Form//
+

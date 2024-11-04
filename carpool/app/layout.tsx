@@ -29,7 +29,7 @@ export default async function RootLayout({
           attribute="class"
           defaultTheme="dark"
           enableSystem
-          themes={["light", "dark", "green", "darkGreen"]}
+          themes={["light", "dark", "green", "darkGreen", "blue", "darkBlue"]}
           disableTransitionOnChange
         >
           <SessionWrapper>
