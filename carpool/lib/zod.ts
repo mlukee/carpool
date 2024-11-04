@@ -81,3 +81,14 @@ export const addCarSchema = z.object({
     })
     .trim(),
 });
+
+export const updateProfileSchema = z.object({
+  username: z
+    .string({ required_error: "Username is required" })
+    .max(10)
+    .min(2, { message: "Username must be at least 2 characters" }),
+  name: z.string({ required_error: "Name is required" }).max(20),
+  surname: z.string({ required_error: "Surname is required" }).max(20),
+  email: z.string({ required_error: "Email is required" }).email(),
+  phone: z.string().min(9),
+});

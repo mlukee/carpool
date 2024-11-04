@@ -1,19 +1,92 @@
 "use client";
 
+import { useState } from "react";
+
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Car, Mail, Phone, User } from "lucide-react";
 import { useSession } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { UserCars } from "@/components/user-cars";
+import { updateProfileSchema } from "@/lib/zod";
 
 export default function ProfilePage() {
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
+
+  const form = useForm<z.infer<typeof updateProfileSchema>>({
+    resolver: zodResolver(updateProfileSchema),
+    defaultValues: {
+      name: session?.user.name || "",
+      surname: session?.user.surname || "",
+      username: session?.user.username || "",
+      email: session?.user.email || "",
+      phone: session?.user.phone || "",
+    },
+  });
+
   console.log("SESSION:", session);
+
+  const handleSubmit = async (values: z.infer<typeof updateProfileSchema>) => {
+    console.log("FORM DATA:", values);
+    try {
+      const response = await fetch(`/api/users/${session?.user.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (response.ok) {
+        const updatedUser = await response.json();
+
+        console.log("UPDATED USER:", updatedUser);
+        const user = {
+          ...session!.user,
+          name: updatedUser.name,
+          surname: updatedUser.surname,
+          username: updatedUser.username,
+          email: updatedUser.email,
+          phone: updatedUser.phone,
+        };
+        await update({
+          ...session,
+          user: {
+            ...session!.user,
+            name: updatedUser.name,
+            surname: updatedUser.surname,
+            username: updatedUser.username,
+            email: updatedUser.email,
+            phone: updatedUser.phone,
+          },
+        });
+        toast.success("User updated successfully");
+      } else {
+        console.error("Failed to update user");
+        toast.error("Failed to update user");
+      }
+    } catch (error) {
+      console.error("Error updating user:", error);
+      toast.error("An unexpected error occurred.");
+    }
+  };
+
   return (
     <div className="container mx-auto">
       <div className="mx-auto max-w-4xl">
@@ -37,60 +110,96 @@ export default function ProfilePage() {
 
           <TabsContent value="profile">
             <Card className="p-6">
-              <form className="space-y-6">
-                <div className="grid gap-6 md:grid-cols-2">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">First Name</Label>
-                    <Input id="name" defaultValue={session?.user.name} />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="surname">Last Name</Label>
-                    <Input id="surname" defaultValue={session?.user.surname} />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="username">Username</Label>
-                  <div className="relative">
-                    <Input
-                      id="username"
-                      defaultValue={session?.user.username}
-                      className="pl-10"
+              <Form {...form}>
+                <form
+                  className="space-y-6"
+                  onSubmit={form.handleSubmit(handleSubmit)}
+                >
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>First Name</FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
                     />
-                    <User className="absolute left-3 top-3 h-4 w-4 text-gray-500" />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <div className="relative">
-                    <Input
-                      id="email"
-                      type="email"
-                      defaultValue={session?.user.email}
-                      className="pl-10"
+                    <FormField
+                      control={form.control}
+                      name="surname"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Last Name</FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
                     />
-                    <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-500" />
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone</Label>
-                  <div className="relative">
-                    <Input
-                      id="phone"
-                      type="tel"
-                      defaultValue={session?.user.phone}
-                      className="pl-10"
-                    />
-                    <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-500" />
+                  <FormField
+                    control={form.control}
+                    name="username"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Username</FormLabel>
+                        <FormControl>
+                          <div className="relative">
+                            <Input {...field} className="pl-10" />
+                            <User className="absolute left-3 top-3 h-4 w-4 text-gray-500" />
+                          </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <div className="relative">
+                            <Input {...field} type="email" className="pl-10" />
+                            <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-500" />
+                          </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Phone</FormLabel>
+                        <FormControl>
+                          <div className="relative">
+                            <Input {...field} type="tel" className="pl-10" />
+                            <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-500" />
+                          </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <div className="flex justify-end">
+                    <Button type="submit">Save Changes</Button>
                   </div>
-                </div>
-
-                <div className="flex justify-end">
-                  <Button type="submit">Save Changes</Button>
-                </div>
-              </form>
+                </form>
+              </Form>
             </Card>
           </TabsContent>
 

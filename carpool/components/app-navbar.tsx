@@ -26,8 +26,8 @@ export default function AppNavbar() {
 
   const menuItems = [
     {
-      label: "Add Ride",
-      href: "/offer-ride",
+      label: "Find a Ride",
+      href: "/find-ride",
     },
   ];
 
@@ -36,6 +36,10 @@ export default function AppNavbar() {
       {
         label: "Profile",
         href: "/profile",
+      },
+      {
+        label: "Add Ride",
+        href: "/offer-ride",
       },
       {
         label: "Add Car",

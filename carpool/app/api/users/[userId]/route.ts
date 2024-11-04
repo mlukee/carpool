@@ -26,3 +26,42 @@ export const GET = async (req: NextRequest) => {
     );
   }
 };
+
+export const PATCH = async (
+  req: Request,
+  context: { params: Promise<{ userId: string }> }
+) => {
+  try {
+    const { userId } = await context.params;
+
+    if (!userId) {
+      return new NextResponse("Missing userId", { status: 400 });
+    }
+
+    const body = await req.json();
+    const { name, surname, username, email, phone } = body;
+
+    await connect();
+
+    //I dont want to get password and cars array from user
+
+    const updatedUser = await User.findByIdAndUpdate(
+      { _id: userId },
+      { name, surname, username, email, phone },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return NextResponse.json("User not found", { status: 404 });
+    }
+
+    return NextResponse.json(updatedUser, { status: 200 });
+  } catch (error: unknown) {
+    return new NextResponse(
+      `Error when updating users ${(error as Error).message}`,
+      {
+        status: 500,
+      }
+    );
+  }
+};

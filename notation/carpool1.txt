@@ -1,7 +1,7 @@
 name: Carpool App
 title: JoinMyRide
 description: Ride sharing and transport cost sharing app
-port: 5000
+port: 3000
 theme: useSystem 
 menu_position: left
 menu_items:
