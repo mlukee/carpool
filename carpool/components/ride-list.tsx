@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Calendar, Clock, Euro, EuroIcon, MapPin, Users } from "lucide-react";
+import { Calendar, Clock, MapPin, Users } from "lucide-react";
+import { toast } from "sonner";
 
 import { Ride } from "@/types/types";
 
@@ -9,32 +10,100 @@ import { Card } from "./ui/card";
 
 interface RideListProps {
   rides: Ride[];
+  onUpdateRide: (rideId: string, updatedRide: Partial<Ride>) => void;
+  userId: string | null;
 }
 
-export default function RideList({ rides }: RideListProps) {
+export default function RideList({
+  rides,
+  onUpdateRide,
+  userId,
+}: RideListProps) {
+  const checkIfRideIsAvailable = (ride: Ride, userId?: string | null) => {
+    // Disable if there are no seats available
+    if (ride.seatsAvailable - ride.passengers.length === 0) {
+      return true;
+    }
+
+    // Disable if user is not logged in
+    if (!userId) {
+      return true;
+    }
+
+    // Disable if the user has already booked the ride
+    if (ride.passengers.includes(userId)) {
+      return true;
+    }
+
+    // If none of the above conditions are met, the ride is available for booking
+    return false;
+  };
+
+  const handleBookNow = async (ride: Ride) => {
+    if (!userId) {
+      toast.info("Please sign in to book a ride.");
+      return;
+    }
+
+    if (ride.seatsAvailable < 1) {
+      toast.info("No seats available for this ride.");
+      return;
+    }
+
+    try {
+      // API call to update ride in the database
+      const response = await fetch(`/api/rides/${ride._id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          seatsAvailable: ride.seatsAvailable - 1,
+          passengerId: userId,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to book ride.");
+      }
+
+      const updatedRide = {
+        ...ride,
+        passengers: [...ride.passengers, userId],
+      };
+      // Call onUpdateRide to update the ride in the local state
+      onUpdateRide(ride._id, updatedRide);
+      toast.success("Booking successful!");
+    } catch (error) {
+      console.error(error);
+      toast.error("An error occurred while booking the ride.");
+    }
+  };
+
   if (rides.length === 0) {
     return (
-      <Card className="p-6 text-center">
+      <Card className="max-h-28 p-6 text-center">
         <p className="text-muted-foreground">
           No rides found matching your criteria.
         </p>
       </Card>
     );
   }
+  console.log("ride", rides);
   return (
     <div className="space-y-4">
       {rides.map((ride) => (
         <Card
-          key={ride.id}
+          key={ride._id}
           className="p-4 transition-shadow hover:shadow-lg lg:p-6"
         >
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start">
             <div className="flex-1">
               <div className="mb-4 flex items-center gap-2 text-lg font-semibold">
                 <MapPin className="h-5 w-5 text-primary" />
-                <div className="flex flex-col gap-1 lg:flex-row lg:items-center lg:gap-2">
+                <div className="flex flex-row items-center gap-1 lg:gap-2">
                   <span>{ride.origin}</span>
-                  <span className="hidden lg:inline">→</span>
+                  <span className="inline">→</span>
                   <span>{ride.destination}</span>
                 </div>
               </div>
@@ -57,19 +126,25 @@ export default function RideList({ rides }: RideListProps) {
                 <div className="flex items-center gap-2">
                   <Users className="h-4 w-4 text-gray-500" />
                   <span className="text-sm">
-                    {ride.seatsAvailable} seats left
+                    {ride.seatsAvailable - ride.passengers.length} seats left
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-lg font-bold text-primary">
-                    ${ride.pricePerSeat}
+                    {ride.pricePerSeat} &euro;
                   </span>
                   <span className="text-sm">per seat</span>
                 </div>
               </div>
 
               <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
-                <Button className="w-full lg:w-auto">Book Now</Button>
+                <Button
+                  className="w-full lg:w-auto"
+                  onClick={() => handleBookNow(ride)}
+                  disabled={checkIfRideIsAvailable(ride, userId)}
+                >
+                  {checkIfRideIsAvailable(ride, userId) ? "Booked" : "Book Now"}
+                </Button>
               </div>
             </div>
           </div>

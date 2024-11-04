@@ -1,7 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -56,7 +55,7 @@ function FindARide({ onFilter }: FindARideProps) {
   };
 
   return (
-    <div className="mx-auto flex w-full items-center justify-center">
+    <div className="flex h-auto max-h-[450px] w-full">
       <Card className="w-full p-4 sm:w-[420px] sm:p-8 md:h-auto">
         <CardHeader>
           <CardTitle className="text-center text-lg">Find A Ride</CardTitle>

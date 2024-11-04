@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import { useSession } from "next-auth/react";
+
 import FindARide from "@/components/find-a-ride";
 import RideList from "@/components/ride-list";
 import { FilterCriteria, Ride } from "@/types/types";
@@ -10,13 +12,15 @@ export default function FindRide() {
   const [rides, setRides] = useState<Ride[]>([]);
   const [filteredRides, setFilteredRides] = useState<Ride[]>([]);
 
+  const { data: session } = useSession();
+
   useEffect(() => {
     const fetchRides = async () => {
       try {
-        const response = await fetch("/api/rides"); // Your endpoint to fetch rides
+        const response = await fetch("/api/rides");
         const data: Ride[] = await response.json();
-        setRides(data); // Set the fetched rides
-        setFilteredRides(data); // Initialize filteredRides with all rides
+        setRides(data);
+        setFilteredRides(data);
       } catch (error) {
         console.error("Error fetching rides:", error);
       }
@@ -45,13 +49,30 @@ export default function FindRide() {
     setFilteredRides(filtered);
   };
 
+  const onUpdateRide = (rideId: string, updatedRideData: Partial<Ride>) => {
+    setRides((prevRides) =>
+      prevRides.map((ride) =>
+        ride._id === rideId ? { ...ride, ...updatedRideData } : ride
+      )
+    );
+    setFilteredRides((prevFilteredRides) =>
+      prevFilteredRides.map((ride) =>
+        ride._id === rideId ? { ...ride, ...updatedRideData } : ride
+      )
+    );
+  };
+
   return (
     <>
       <div className="mx-auto max-w-7xl px-6">
         <h1 className="mb-8 text-3xl font-bold">Find a Ride</h1>
         <div className="grid gap-8 lg:grid-cols-[350px,1fr]">
           <FindARide onFilter={handleFilter} />
-          <RideList rides={filteredRides} />
+          <RideList
+            rides={filteredRides}
+            onUpdateRide={onUpdateRide}
+            userId={session?.user?.id}
+          />
         </div>
       </div>
     </>

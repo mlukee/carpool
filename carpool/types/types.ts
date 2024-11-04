@@ -17,7 +17,7 @@ export interface User {
 }
 
 export interface Ride {
-  id: string;
+  _id: string;
   origin: string;
   destination: string;
   date: Date;
@@ -25,7 +25,7 @@ export interface Ride {
   seatsAvailable: number;
   pricePerSeat: number;
   driver: User;
-  passengers: User[];
+  passengers: string[];
   comments?: string;
 }
 
