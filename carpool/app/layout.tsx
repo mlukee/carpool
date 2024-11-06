@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import AppNavbar from "@/components/app-navbar";
 import Providers from "@/components/providers";
 import SessionWrapper from "@/components/session-wrapper";
+import Sidebar from "@/components/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 
 import "./globals.css";
@@ -29,14 +30,14 @@ export default async function RootLayout({
           attribute="class"
           defaultTheme="dark"
           enableSystem
-          themes={["light", "dark", "green", "darkGreen", "blue", "darkBlue"]}
+          themes={["light", "dark"]}
           disableTransitionOnChange
         >
           <SessionWrapper>
             <Providers>
               <div className="flex min-h-screen flex-col">
-                <AppNavbar />
-                <div className="flex flex-1 p-3">
+                <Sidebar />
+                <div className="flex-1 p-3">
                   <main className="flex-1">{children}</main>
                 </div>
                 <footer className="mx-auto mb-1 items-center justify-center">

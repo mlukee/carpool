@@ -1,32 +1,52 @@
-import { Mountain, PlusCircle, Search, User } from "lucide-react";
+import Link from "next/link";
+
+import { Car, Home, Menu, Plus, User } from "lucide-react";
+
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
+import { Button } from "./ui/button";
 
 const Sidebar = () => {
   return (
-    <aside className="w-1/4 rounded-lg bg-white p-4 shadow-lg">
-      <h2 className="text-xl font-semibold">Kam greš danes?</h2>
-      <ul className="mt-4 space-y-4 text-lg">
-        <li className="flex items-center space-x-2 font-semibold text-orange-500">
-          <Search />
-          <span> Išči prevoz</span>
-        </li>
-        <li className="flex items-center space-x-2">
-          <Mountain />
-          <span> Gore in hribi</span>
-        </li>
-        <li className="flex items-center space-x-2">
-          <PlusCircle />
-          <span> Moji prevozi</span>
-        </li>
-        <li className="flex items-center space-x-2">
-          <User />
-          <span> Moj profil</span>
-        </li>
-      </ul>
-      <button className="mt-8 flex w-full items-center justify-center space-x-2 rounded-full bg-orange-500 py-2 font-semibold text-white">
-        <PlusCircle />
-        <span>Dodaj prevoz</span>
-      </button>
-    </aside>
+    <div className="relative ml-auto p-2">
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline" size="icon">
+            <Menu className="h-[1.2rem] w-[1.2rem]" />
+            <span className="sr-only">Toggle navigation</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle>Menu</SheetTitle>
+            <hr />
+            <div className="flex flex-col gap-2">
+              <Link href="/" className="flex items-center gap-2">
+                <Home /> Home
+              </Link>
+              <Link href="/find-ride" className="flex items-center gap-2">
+                <Car /> Find Rides
+              </Link>
+              <Link href="/add-ride" className="flex items-center gap-2">
+                <Plus /> Add Rides
+              </Link>
+              <Link href="/profile" className="flex items-center gap-2">
+                <User /> Profile
+              </Link>
+            </div>
+          </SheetHeader>
+        </SheetContent>
+      </Sheet>
+    </div>
   );
 };
 

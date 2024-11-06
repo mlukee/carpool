@@ -184,11 +184,7 @@ export function UserCars({ userId }: UserCarsProps) {
               </p>
             </CardContent>
             <CardFooter className="flex justify-end gap-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleEdit(car._id)}
-              >
+              <Button variant="ghost" size="sm" onClick={() => handleEdit(car)}>
                 <Pencil className="mr-2 h-4 w-4" />
                 Edit
               </Button>
