@@ -65,8 +65,8 @@ export default function FindRide() {
   return (
     <>
       <div className="mx-auto max-w-7xl px-6">
-        <h1 className="mb-8 text-3xl font-bold">Find a Ride</h1>
-        <div className="grid gap-8 lg:grid-cols-[350px,1fr]">
+        <h1 className="mb-8 text-3xl font-bold">Available Rides</h1>
+        <div className="grid grid-cols-2 gap-8">
           <FindARide onFilter={handleFilter} />
           <RideList
             rides={filteredRides}

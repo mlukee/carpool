@@ -51,7 +51,6 @@ export default function RideList({
     }
 
     try {
-      // API call to update ride in the database
       const response = await fetch(`/api/rides/${ride._id}`, {
         method: "PATCH",
         headers: {
@@ -71,7 +70,6 @@ export default function RideList({
         ...ride,
         passengers: [...ride.passengers, userId],
       };
-      // Call onUpdateRide to update the ride in the local state
       onUpdateRide(ride._id, updatedRide);
       toast.success("Booking successful!");
     } catch (error) {
@@ -135,6 +133,13 @@ export default function RideList({
                   </span>
                   <span className="text-sm">per seat</span>
                 </div>
+                {ride.comments && (
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-bold">Comment: </span>
+                    <span className="text-sm">{ride.comments}</span>
+                  </div>
+                )}
+
                 <div className="col-span-2 flex items-center gap-2">
                   <User className="h-4 w-4" />
                   <span className="text-sm">

@@ -87,7 +87,9 @@ export default function AddRide() {
     <div className="mx-auto flex w-full items-center justify-center">
       <Card className="w-full p-4 sm:w-[420px] sm:p-8 md:h-auto">
         <CardHeader>
-          <CardTitle className="text-center text-lg">Offer a Ride</CardTitle>
+          <CardTitle className="text-center text-lg">
+            Offer a New Ride
+          </CardTitle>
         </CardHeader>
         <CardContent className="px-2 sm:px-6">
           <Form {...form}>
@@ -101,7 +103,7 @@ export default function AddRide() {
                     <FormControl>
                       <Select onValueChange={field.onChange}>
                         <SelectTrigger>
-                          <SelectValue placeholder="From" />
+                          <SelectValue placeholder="Start Location:" />
                         </SelectTrigger>
                         <SelectContent>
                           {cities.map((city) => (
@@ -126,7 +128,7 @@ export default function AddRide() {
                     <FormControl>
                       <Select onValueChange={field.onChange}>
                         <SelectTrigger>
-                          <SelectValue placeholder="To" />
+                          <SelectValue placeholder="End Location:" />
                         </SelectTrigger>
                         <SelectContent>
                           {cities.map((city) => (
@@ -158,7 +160,7 @@ export default function AddRide() {
                             <CalendarIcon className="mr-2" />
                             {field.value
                               ? format(field.value, "PPP")
-                              : "Pick a date"}
+                              : "Date of Travel"}
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="start">
@@ -211,7 +213,7 @@ export default function AddRide() {
                             min="1"
                             max="8"
                             className="pl-10"
-                            placeholder="Seats available"
+                            placeholder="Available Seats"
                             onChange={(e) =>
                               field.onChange(
                                 e.target.value ? Number(e.target.value) : ""
@@ -240,7 +242,7 @@ export default function AddRide() {
                             id="seats"
                             type="number"
                             className="pl-10"
-                            placeholder="Price in EUR"
+                            placeholder="Cost per Seat in EUR:"
                             min={0}
                             step={0.5}
                             onChange={(e) =>
@@ -265,7 +267,10 @@ export default function AddRide() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Textarea placeholder="Comments (optional)" {...field} />
+                      <Textarea
+                        placeholder="Additional Info (optional)"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

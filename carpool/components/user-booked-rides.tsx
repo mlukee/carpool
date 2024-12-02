@@ -128,7 +128,7 @@ export function UserBookedRides({ userId }: UserBookedRidesProps) {
                   <TableCell>{ride.departureTime}</TableCell>
                   <TableCell>{ride.pricePerSeat} &euro;</TableCell>
                   <TableCell className="text-right">
-                    <div className="flex justify-end gap-2">
+                    <div className="flex justify-end gap-1">
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
                           <Button
@@ -137,6 +137,7 @@ export function UserBookedRides({ userId }: UserBookedRidesProps) {
                             className="text-destructive"
                           >
                             <Trash2 className="h-4 w-4" />
+                            Unbook
                           </Button>
                         </AlertDialogTrigger>
                         <AlertDialogContent>

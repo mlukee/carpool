@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Car, Home, Menu, Plus, User } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 import {
   Sheet,
@@ -13,6 +14,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+import AuthButton from "./auth-button";
+import { ThemeToggle } from "./theme-toggle";
 import { Button } from "./ui/button";
 
 const Sidebar = () => {
@@ -27,21 +30,25 @@ const Sidebar = () => {
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
-            <SheetTitle>Menu</SheetTitle>
+            <SheetTitle className="flex justify-between px-2">
+              Menu
+              <ThemeToggle />
+            </SheetTitle>
             <hr />
             <div className="flex flex-col gap-2">
-              <Link href="/" className="flex items-center gap-2">
-                <Home /> Home
+              <Link href="/add-ride" className="flex items-center gap-2">
+                <Plus /> Add Rides
               </Link>
               <Link href="/find-ride" className="flex items-center gap-2">
                 <Car /> Find Rides
               </Link>
-              <Link href="/add-ride" className="flex items-center gap-2">
-                <Plus /> Add Rides
+              <Link href="/" className="flex items-center gap-2">
+                <Home /> Home
               </Link>
               <Link href="/profile" className="flex items-center gap-2">
                 <User /> Profile
               </Link>
+              <AuthButton />
             </div>
           </SheetHeader>
         </SheetContent>

@@ -30,7 +30,6 @@ export default async function RootLayout({
           attribute="class"
           defaultTheme="dark"
           enableSystem
-          themes={["light", "dark"]}
           disableTransitionOnChange
         >
           <SessionWrapper>
@@ -41,7 +40,7 @@ export default async function RootLayout({
                   <main className="flex-1">{children}</main>
                 </div>
                 <footer className="mx-auto mb-1 items-center justify-center">
-                  Carpool © {new Date().getFullYear()}
+                  RideShareConnect © {new Date().getFullYear()}
                 </footer>
               </div>
               <Toaster />
