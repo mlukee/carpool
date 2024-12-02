@@ -15,18 +15,15 @@ export default function Home() {
           <div className="flex flex-col items-center text-center">
             <Car className="mb-8 h-16 w-16 text-primary" />
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
-              Welcome to RideShareConnect
+              Welcome to RideTogether
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
-              Your go-to place for affordable travel. Find and offer rides
-              easily!
+              Travel smarter, save money, and reduce carbon footprints by
+              carpooling!
             </p>
             <div className="mt-10 flex items-center gap-x-6">
               <Button size="lg" asChild>
                 <Link href="/find-ride">Find a Ride</Link>
-              </Button>
-              <Button variant="outline" size="lg" asChild>
-                <Link href="/add-ride">Offer a Ride</Link>
               </Button>
             </div>
           </div>

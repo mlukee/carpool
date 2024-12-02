@@ -20,7 +20,8 @@ import { Button } from "./ui/button";
 
 const Sidebar = () => {
   return (
-    <div className="relative ml-auto p-2">
+    // mr-auto => postavi levo, ml-auto => postavi desno
+    <div className="relative mr-auto p-2">
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon">
@@ -28,7 +29,7 @@ const Sidebar = () => {
             <span className="sr-only">Toggle navigation</span>
           </Button>
         </SheetTrigger>
-        <SheetContent>
+        <SheetContent side={"left"}>
           <SheetHeader>
             <SheetTitle className="flex justify-between px-2">
               Menu
@@ -36,14 +37,14 @@ const Sidebar = () => {
             </SheetTitle>
             <hr />
             <div className="flex flex-col gap-2">
-              <Link href="/add-ride" className="flex items-center gap-2">
-                <Plus /> Add Rides
+              <Link href="/" className="flex items-center gap-2">
+                <Home /> Home
               </Link>
               <Link href="/find-ride" className="flex items-center gap-2">
                 <Car /> Find Rides
               </Link>
-              <Link href="/" className="flex items-center gap-2">
-                <Home /> Home
+              <Link href="/add-ride" className="flex items-center gap-2">
+                <Plus /> Add Rides
               </Link>
               <Link href="/profile" className="flex items-center gap-2">
                 <User /> Profile

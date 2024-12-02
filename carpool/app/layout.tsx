@@ -12,7 +12,7 @@ import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "JoinMyRide",
+  title: "RideTogether - Affordable Carpooling",
   description: "Ride sharing and transport cost sharing app",
 };
 
@@ -40,7 +40,7 @@ export default async function RootLayout({
                   <main className="flex-1">{children}</main>
                 </div>
                 <footer className="mx-auto mb-1 items-center justify-center">
-                  RideShareConnect © {new Date().getFullYear()}
+                  RideTogether © {new Date().getFullYear()}
                 </footer>
               </div>
               <Toaster />

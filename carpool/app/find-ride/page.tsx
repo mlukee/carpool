@@ -67,12 +67,12 @@ export default function FindRide() {
       <div className="mx-auto max-w-7xl px-6">
         <h1 className="mb-8 text-3xl font-bold">Available Rides</h1>
         <div className="grid grid-cols-2 gap-8">
-          <FindARide onFilter={handleFilter} />
           <RideList
             rides={filteredRides}
             onUpdateRide={onUpdateRide}
             userId={session?.user?.id}
           />
+          <FindARide onFilter={handleFilter} />
         </div>
       </div>
     </>
