@@ -14,9 +14,9 @@ AppRenders = "render:" Render
 Theme = "light" | "dark" | "blue" | "orange" | "violet" | "useSystem"
 MenuPosition = "top" | "right" | "left"
 MenuItems = MenuItem+
-MenuItem = "label:" label ',' "component:" componentName
+MenuItem = "label:" label ", component:" componentName
 Components = Component+
-Component = "name:" componentName ',' "url:" url ',' "menu:" YesNo ',' "authentication:" YesNo
+Component = "name:" componentName ',' "url:" url ',' "authentication:" YesNo
 YesNo = "yes" | "no" 
 
 Api = "base:" baseURL "endpoints:" Endpoint+
@@ -26,13 +26,10 @@ HttpMethod = "GET" | "POST" | "PUT" | "DELETE"
 Render = RenderSection+
 RenderSection = name ':' Content+  
 
-Content = Text | Image | Form | Card | Link | Table | Button
+Content = Text | Form | Card | Link | Table | Button
 
 Text = ("#"+)? text | "**" text "**" | text
-Image = "{img:" url ',' "alt=" altText ',' "style=align:" Align ';' "}" 
-Align = "left" | "center" | "right" 
 Card = "//Card//" "Title:" cardTitle, "Content:" CardStyle* CardContent+ 
-CardStyle = "style=space:even"
 CardContent = (Text '|')+ Link Button*
 Form = "//Form//" FormField+ Button 
 FormField = Text "[Input " InputType (', min: ' minValue (', max:' maxValue)?)? "]"

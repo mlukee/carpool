@@ -2,59 +2,41 @@ name: Carpool App
 title: JoinMyRide
 description: Ride sharing and transport cost sharing app
 port: 3000
-theme: useSystem 
-menu_position: left
+theme: light 
+menu_position: top
 menu_items:
-  label: Home,
-  component: Home
-
   label: Find a Ride,
   component: FindARide
 
-  label: Add Ride,
-  component: AddRide
+  label: Home,
+  component: Home
 
   label: Profile,
   component: Profile
 
-  label: My Rides,
-  component: UserBookedRides
+  label: Add Ride,
+  component: AddRide
 
 components:
   name: Home,
   url: /,
-  menu: yes,
   authentication: no
 
   name: FindARide,
   url: /find-ride,
-  menu: yes,
   authentication: no
 
   name: OfferARide,
   url: /offer-ride,
-  menu: yes,
   authentication: yes
-
-  name: RideDetails,
-  url: /ride-details,
-  menu: yes,
-  authentication: no
 
   name: Profile,
   url: /profile,
-  menu: no,
   authentication: yes
 
-  name: Sign Up,
-  url: /auth/signup,
-  menu: no,
-  authentication: no
-
-  name: Sign In,
-  url: /auth/signin,
-  menu: no,
-  authentication: no
+  name: addCar
+  url: /add-car
+  authentication: yes
 
 api:
   base: http://localhost:3000
@@ -113,73 +95,51 @@ render:
     [[Find a Ride | /find-ride]] [[Offer a Ride | /add-ride]]
 
   FindARide:
-    
     ## Find a Ride
+    //Form//
+    From: [Input Select]
+    To: [Input Select]
+    Date: [Input Date]
+    [[Find ride]]
 
     //Card//
-      CardTitle: Find A Ride
-      CardContent:
-        //Form//
-        //TODO from here down
-        style=space:even
-        {{ride.departure}} | {{ride.driverName}}  | {{ride.price}}  |    [Details | /ride-details/{{rideId}}, style=text: right]
-        {{ride.departure}} | {{ride.driverName}}  | {{ride.price}}  |    [Details | /ride-details/{{rideId}}, style=text: right]
-        {{ride.departure}} | {{ride.driverName}}  | {{ride.price}}  |    [Details | /ride-details/{{rideId}}, style=text: right]
+      Title: {{ride.origin}} -> {{ride.destination}}
+      Content:
+        {{ride.date}} | {{ride.departureTime}}  | {{ride.seatsAvailable}}  |    {{{ride.pricePerSeat}}} | {{ride.comments}} | {{ride.driver.name}} {{ride.driver.surname}} | [[Book now]]
 
   OfferARide:
     ## Offer a New Ride
     //Form//
-    From: [Input Text]
-    To: [Input Text]  
-    Date: [Input Date]  
-    Seats: [Input Number, min: 1]  
-    Price per Seat: [Input Number, min: 0]  
-    Comments: [Input Textarea]  
-    Car Model: [Input Text]  
-    [[Offer Ride | /offer-ride]]
-
-  MyRides:
-    ## Your Upcoming Rides
-
-    //Card//
-      Title: {{rode.origin}} -> {{ride.destination}}                                      
-      Content:
-        style=space: even
-        {{ride.departure}} | {{ride.driverName}}  |      [Details | /ride-details/{{rideId}}, style=text: right] [[Cancel Ride | /ride-cancel/{{rideId}}, icon=CancelIcon]]        
-        {{ride.departure}} | {{ride.driverName}}  |      [Details | /ride-details/{{rideId}}, style=text: right] [[Cancel Ride | /ride-cancel/{{rideId}}, icon=CancelIcon]]        
-        {{ride.departure}} | {{ride.driverName}}  |      [Details | /ride-details/{{rideId}}, style=text: right] [[Cancel Ride | /ride-cancel/{{rideId}}, icon=CancelIcon]]        
-                         
-
-  RideDetails:
-    ## Details of the Ride
-    **Origin:** {{ride.origin}}  
-    **Destination:** {{ride.destination}}  
-    **Date:** {{ride.date}}  
-    **Seats:** {{ride.seats}}  
-    **Driver Name:** {{ride.driverName}}  
-    **Driver Phone:** {{ride.driverPhone}}
-    **Price per Seat:** {{ride.price}}  
-    [[Join Ride | /join-ride/:rideId]]
+    Start Location: [Input Select]  
+    End Location: [Input Select]  
+    Date of Travel: [Input Date] 
+    Time: [Input Time] 
+    Available Seats: [Input Number, min: 1]  
+    Cost per Seat in EUR: [Input Number, min: 0]  
+    Additional Info: [Input Textarea]  
+    [[Offer a Ride | /offer-ride]]  
 
   Profile:
-    ## User Profile
-    Name: {{user.name}}  
-    Email: {{user.email}}  
-    Phone: {{user.phone}}  
+    ## Your Profile Information
+    Full Name: {{user.name}}  
+    Email Address: {{user.email}}  
+    Phone Number: {{user.phone}}  
     ### My Cars
-    | **Car Model** | **Car Year** | **License Plate** | **Actions** |
+    | Model | Year | License Plate | Actions |
     |---------------|--------------|-------------------|-------------|
-    | {{user.car.model}}         | {{user.car.year}}         | {{user.car.licensePlate}}           | [[Edit | /profile/edit-car/{{user.car.carId}}, icon=PenIcon]] [[Delete | /profile/delete-car/:carId, icon=TrashIcon]] |
-    [[Add car | /profile/add-car, icon=PlusIcon]]
+    | {{car.carModel}}         | {{car.year}}         | {{car.licensePlate}} |
+    [[Add New Car | /profile/add-car, icon=PlusIcon]]  
 
-  Signin:
+    ### My Rides:
+    | Origin | Destination | Date | Time | Price | Actions |
+    |---------------|--------------|-------------------|-------------|
+    | {{ride.origin}} | {{ride.destination}} | {{ride.date}} | {{ride.departureTime}} | {{ride.pricePerSeat}} |
+    [[Book a Ride | /profile/add-car, icon=CarIcon]] 
+
+  Login:
     ## Login
     //Form//
     Email: [Input Email]  
     Password:[Input Password]  
-    [[Login | /login]]
-
-  SignUp:
-    ## SignUp
-    //Form//
+    [[Login | /login]]  
 
