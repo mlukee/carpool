@@ -225,6 +225,13 @@
       <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="68Oe3VU2tcn" resolve="RenderText" />
     </node>
+    <node concept="1TJgyj" id="6akmAI1xtbw" role="1TKVEi">
+      <property role="IQ2ns" value="7103401930051146464" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="renderTabs" />
+      <property role="20lbJX" value="fLJekj6/_1__n" />
+      <ref role="20lvS9" node="6akmAI1wBi5" resolve="RenderTabs" />
+    </node>
     <node concept="1TJgyj" id="68Oe3VU40yn" role="1TKVEi">
       <property role="IQ2ns" value="7076342757640374423" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
@@ -564,6 +571,79 @@
       <property role="IQ2nx" value="6402175329644195350" />
       <property role="TrG5h" value="label" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="6akmAI1wBi5">
+    <property role="EcuMT" value="7103401930050925701" />
+    <property role="TrG5h" value="RenderTabs" />
+    <property role="34LRSv" value="renderTabs" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <node concept="PrWs8" id="6akmAI1wBi6" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="1TJgyj" id="6akmAI1wBi9" role="1TKVEi">
+      <property role="IQ2ns" value="7103401930050925705" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="list" />
+      <property role="20lbJX" value="fLJekj6/_1__n" />
+      <ref role="20lvS9" node="6akmAI1wBi7" resolve="TabsList" />
+    </node>
+    <node concept="1TJgyj" id="6akmAI1wBj_" role="1TKVEi">
+      <property role="IQ2ns" value="7103401930050925797" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="tables" />
+      <property role="20lbJX" value="fLJekj6/_1__n" />
+      <ref role="20lvS9" node="68Oe3VU6GDF" resolve="RenderTable" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="6akmAI1wBi7">
+    <property role="EcuMT" value="7103401930050925703" />
+    <property role="TrG5h" value="TabsList" />
+    <property role="34LRSv" value="tabsList" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <node concept="PrWs8" id="6akmAI1wBi8" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="1TJgyj" id="6akmAI1wBiP" role="1TKVEi">
+      <property role="IQ2ns" value="7103401930050925749" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="rows" />
+      <property role="20lbJX" value="fLJekj6/_1__n" />
+      <ref role="20lvS9" node="6akmAI1wBiL" resolve="TabsListRow" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="6akmAI1wBiL">
+    <property role="EcuMT" value="7103401930050925745" />
+    <property role="TrG5h" value="TabsListRow" />
+    <property role="34LRSv" value="tabsListRow" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <node concept="PrWs8" id="6akmAI1wBiM" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="1TJgyi" id="6akmAI1wBiN" role="1TKVEl">
+      <property role="IQ2nx" value="7103401930050925747" />
+      <property role="TrG5h" value="value" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="6akmAI1wBiO" role="1TKVEl">
+      <property role="IQ2nx" value="7103401930050925748" />
+      <property role="TrG5h" value="label" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="6akmAI1zotS">
+    <property role="EcuMT" value="7103401930051651448" />
+    <property role="TrG5h" value="TabsContent" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <node concept="PrWs8" id="6akmAI1zotT" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="1TJgyj" id="6akmAI1zotU" role="1TKVEi">
+      <property role="IQ2ns" value="7103401930051651450" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="tables" />
+      <property role="20lbJX" value="fLJekj6/_1__n" />
+      <ref role="20lvS9" node="68Oe3VU6GDF" resolve="RenderTable" />
     </node>
   </node>
 </model>

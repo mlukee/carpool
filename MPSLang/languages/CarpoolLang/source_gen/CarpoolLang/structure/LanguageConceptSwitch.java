@@ -23,11 +23,15 @@ public final class LanguageConceptSwitch {
   public static final int RenderForm = 11;
   public static final int RenderHeading = 12;
   public static final int RenderTable = 13;
-  public static final int RenderText = 14;
-  public static final int TableCell = 15;
-  public static final int TableHeading = 16;
-  public static final int TableRow = 17;
-  public static final int TableTitle = 18;
+  public static final int RenderTabs = 14;
+  public static final int RenderText = 15;
+  public static final int TableCell = 16;
+  public static final int TableHeading = 17;
+  public static final int TableRow = 18;
+  public static final int TableTitle = 19;
+  public static final int TabsContent = 20;
+  public static final int TabsList = 21;
+  public static final int TabsListRow = 22;
 
   public LanguageConceptSwitch() {
     LanguageConceptIndexBuilder builder = new LanguageConceptIndexBuilder(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L);
@@ -45,11 +49,15 @@ public final class LanguageConceptSwitch {
     builder.put(0x6234383efa10088dL, RenderForm);
     builder.put(0x6234383efa0de721L, RenderHeading);
     builder.put(0x6234383efa1aca6bL, RenderTable);
+    builder.put(0x62945a6b81827485L, RenderTabs);
     builder.put(0x6234383efa09d317L, RenderText);
     builder.put(0x6234383efa1aca77L, TableCell);
     builder.put(0x6234383efa1aca6dL, TableHeading);
     builder.put(0x6234383efa1aca71L, TableRow);
     builder.put(0x6234383efa2a77f5L, TableTitle);
+    builder.put(0x62945a6b818d8778L, TabsContent);
+    builder.put(0x62945a6b81827487L, TabsList);
+    builder.put(0x62945a6b818274b1L, TabsListRow);
     myIndex = builder.seal();
   }
 

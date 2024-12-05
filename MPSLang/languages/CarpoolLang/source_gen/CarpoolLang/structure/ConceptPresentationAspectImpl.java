@@ -23,11 +23,15 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_RenderForm;
   private ConceptPresentation props_RenderHeading;
   private ConceptPresentation props_RenderTable;
+  private ConceptPresentation props_RenderTabs;
   private ConceptPresentation props_RenderText;
   private ConceptPresentation props_TableCell;
   private ConceptPresentation props_TableHeading;
   private ConceptPresentation props_TableRow;
   private ConceptPresentation props_TableTitle;
+  private ConceptPresentation props_TabsContent;
+  private ConceptPresentation props_TabsList;
+  private ConceptPresentation props_TabsListRow;
 
   @Override
   @Nullable
@@ -132,6 +136,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_RenderTable = cpb.create();
         }
         return props_RenderTable;
+      case LanguageConceptSwitch.RenderTabs:
+        if (props_RenderTabs == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_RenderTabs = cpb.create();
+        }
+        return props_RenderTabs;
       case LanguageConceptSwitch.RenderText:
         if (props_RenderText == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
@@ -167,6 +178,27 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_TableTitle = cpb.create();
         }
         return props_TableTitle;
+      case LanguageConceptSwitch.TabsContent:
+        if (props_TabsContent == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_TabsContent = cpb.create();
+        }
+        return props_TabsContent;
+      case LanguageConceptSwitch.TabsList:
+        if (props_TabsList == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_TabsList = cpb.create();
+        }
+        return props_TabsList;
+      case LanguageConceptSwitch.TabsListRow:
+        if (props_TabsListRow == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_TabsListRow = cpb.create();
+        }
+        return props_TabsListRow;
     }
     return null;
   }

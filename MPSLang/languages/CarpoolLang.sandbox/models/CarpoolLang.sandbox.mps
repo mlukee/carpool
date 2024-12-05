@@ -25,7 +25,6 @@
       <concept id="7076342757640822315" name="CarpoolLang.structure.Button" flags="ng" index="2o8Iol">
         <property id="7076342757640822318" name="url" index="2o8Iog" />
         <property id="7076342757640822317" name="label" index="2o8Ioj" />
-        <child id="7076342757640990750" name="icon" index="2obkww" />
       </concept>
       <concept id="7076342757640374413" name="CarpoolLang.structure.RenderForm" flags="ng" index="2o932N">
         <child id="7076342757640822319" name="formButton" index="2o8Ioh" />
@@ -35,9 +34,6 @@
         <property id="7076342757640458608" name="inputLabel" index="2o9m_e" />
         <property id="7076342757640458609" name="inputType" index="2o9m_f" />
       </concept>
-      <concept id="7076342757640990747" name="CarpoolLang.structure.ButtonIcon" flags="ng" index="2obkw_">
-        <property id="7076342757640990749" name="label" index="2obkwz" />
-      </concept>
       <concept id="7076342757641079415" name="CarpoolLang.structure.TableCell" flags="ng" index="2obJ99">
         <property id="7076342757641079417" name="label" index="2obJ97" />
       </concept>
@@ -45,7 +41,6 @@
         <child id="7076342757641079419" name="cells" index="2obJ95" />
       </concept>
       <concept id="7076342757641079405" name="CarpoolLang.structure.TableHeading" flags="ng" index="2obJ9j">
-        <property id="7076342757641079407" name="label" index="2obJ9h" />
         <child id="6402175329643123038" name="cell" index="2hZcBk" />
       </concept>
       <concept id="7076342757641079403" name="CarpoolLang.structure.RenderTable" flags="ng" index="2obJ9l">
@@ -58,9 +53,9 @@
         <reference id="7076342757639698324" name="componentName" index="2ocoYE" />
         <child id="6402175329643526940" name="renderCard" index="2hWIem" />
         <child id="7076342757640374423" name="renderForm" index="2o932D" />
-        <child id="7076342757641167694" name="renderTable" index="2oa1HK" />
         <child id="7076342757640234788" name="renderHeading" index="2oetWq" />
         <child id="7076342757640304598" name="renderText" index="2oeGZC" />
+        <child id="7103401930051146464" name="renderTabs" index="3z4oyb" />
       </concept>
       <concept id="7076342757639334838" name="CarpoolLang.structure.AppComponents" flags="ng" index="2od1e8">
         <property id="7076342757639334842" name="authentication" index="2od1e4" />
@@ -102,6 +97,17 @@
       <concept id="7076342757639056161" name="CarpoolLang.structure.AppMenuItems" flags="ng" index="2rNXcv">
         <property id="7076342757639056164" name="component" index="2rNXcq" />
         <property id="7076342757639056163" name="label" index="2rNXct" />
+      </concept>
+      <concept id="7103401930050925745" name="CarpoolLang.structure.TabsListRow" flags="ng" index="3z5yVq">
+        <property id="7103401930050925747" name="value" index="3z5yVo" />
+        <property id="7103401930050925748" name="label" index="3z5yVv" />
+      </concept>
+      <concept id="7103401930050925703" name="CarpoolLang.structure.TabsList" flags="ng" index="3z5yVG">
+        <child id="7103401930050925749" name="rows" index="3z5yVu" />
+      </concept>
+      <concept id="7103401930050925701" name="CarpoolLang.structure.RenderTabs" flags="ng" index="3z5yVI">
+        <child id="7103401930050925797" name="tables" index="3z5yUe" />
+        <child id="7103401930050925705" name="list" index="3z5yVy" />
       </concept>
     </language>
   </registry>
@@ -301,52 +307,102 @@
     <node concept="2ocoYJ" id="68Oe3VU6GD$" role="2ocHty">
       <ref role="2ocoYE" node="68Oe3VU0nfU" />
       <node concept="2ofuGD" id="68Oe3VU6GDA" role="2oeGZC">
-        <property role="2ofuGB" value="Full Name:" />
-      </node>
-      <node concept="2ofuGD" id="68Oe3VU6GDB" role="2oeGZC">
-        <property role="2ofuGB" value="Email Address:" />
-      </node>
-      <node concept="2ofuGD" id="68Oe3VU6GDC" role="2oeGZC">
-        <property role="2ofuGB" value="Phone Number:" />
+        <property role="2ofuGB" value="@ {{session?.user.username}}" />
       </node>
       <node concept="2oetWv" id="68Oe3VU6GD_" role="2oetWq">
-        <property role="2oetWt" value="Your Profile Information" />
+        <property role="2oetWt" value="{session?.user.name}} {{session?.user.surname}}" />
       </node>
-      <node concept="2obJ9l" id="68Oe3VU7nR0" role="2oa1HK">
-        <node concept="2obJ9j" id="68Oe3VU7nR1" role="2obJ9a">
-          <property role="2obJ9h" value="Model" />
-          <node concept="2obJ99" id="5zp68F9acyN" role="2hZcBk">
-            <property role="2obJ97" value="Model" />
-          </node>
-          <node concept="2obJ99" id="5zp68F9acyO" role="2hZcBk">
-            <property role="2obJ97" value="Year" />
-          </node>
-          <node concept="2obJ99" id="5zp68F9acyP" role="2hZcBk">
-            <property role="2obJ97" value="License Plate" />
-          </node>
-          <node concept="2obJ99" id="5zp68F9acyQ" role="2hZcBk">
-            <property role="2obJ97" value="Actions" />
+      <node concept="3z5yVI" id="6akmAI1yTMi" role="3z4oyb">
+        <node concept="3z5yVG" id="6akmAI1yTMj" role="3z5yVy">
+          <node concept="3z5yVq" id="6akmAI1yTMk" role="3z5yVu">
+            <property role="3z5yVo" value="cars" />
+            <property role="3z5yVv" value="My Cars" />
           </node>
         </node>
-        <node concept="2obJ9f" id="68Oe3VU7nR2" role="2obJ9b">
-          <node concept="2obJ99" id="68Oe3VU9wHG" role="2obJ95">
-            <property role="2obJ97" value="{{car.carModel}}" />
-          </node>
-          <node concept="2obJ99" id="68Oe3VU9wHF" role="2obJ95">
-            <property role="2obJ97" value="{{car.year}}" />
-          </node>
-          <node concept="2obJ99" id="68Oe3VU7nR3" role="2obJ95">
-            <property role="2obJ97" value="{{car.licensePlate}}" />
+        <node concept="3z5yVG" id="6akmAI1zotQ" role="3z5yVy">
+          <node concept="3z5yVq" id="6akmAI1zotR" role="3z5yVu">
+            <property role="3z5yVo" value="rdes" />
+            <property role="3z5yVv" value="My Rides" />
           </node>
         </node>
-        <node concept="2o7$Zb" id="68Oe3VUaZZP" role="2o7$0B">
-          <property role="2o7$Z6" value="My Vehicles" />
+        <node concept="2obJ9l" id="6akmAI1yTMl" role="3z5yUe">
+          <node concept="2obJ9j" id="6akmAI1yTMm" role="2obJ9a">
+            <node concept="2obJ99" id="6akmAI1yTMn" role="2hZcBk">
+              <property role="2obJ97" value="Model" />
+            </node>
+            <node concept="2obJ99" id="6akmAI1zou6" role="2hZcBk">
+              <property role="2obJ97" value="Year" />
+            </node>
+            <node concept="2obJ99" id="6akmAI1zou7" role="2hZcBk">
+              <property role="2obJ97" value="License Plate" />
+            </node>
+            <node concept="2obJ99" id="6akmAI1zou8" role="2hZcBk">
+              <property role="2obJ97" value="Actions" />
+            </node>
+          </node>
+          <node concept="2obJ9f" id="6akmAI1yTMo" role="2obJ9b">
+            <node concept="2obJ99" id="6akmAI1yTMp" role="2obJ95">
+              <property role="2obJ97" value="{{car.carModel}}" />
+            </node>
+            <node concept="2obJ99" id="6akmAI1zou9" role="2obJ95">
+              <property role="2obJ97" value="{{car.year}}" />
+            </node>
+            <node concept="2obJ99" id="6akmAI1zoua" role="2obJ95">
+              <property role="2obJ97" value="{{car.licensePlate" />
+            </node>
+          </node>
+          <node concept="2o7$Zb" id="6akmAI1yTMq" role="2o7$0B">
+            <property role="2o7$Z6" value="My Cars" />
+          </node>
+          <node concept="2o8Iol" id="6akmAI1yTMr" role="2o7Wv8">
+            <property role="2o8Iog" value="/profile/add-car" />
+            <property role="2o8Ioj" value="Add New Car" />
+          </node>
         </node>
-        <node concept="2o8Iol" id="68Oe3VUbo$4" role="2o7Wv8">
-          <property role="2o8Ioj" value="Add New Car" />
-          <property role="2o8Iog" value="/profile/add-car" />
-          <node concept="2obkw_" id="68Oe3VUbo$5" role="2obkww">
-            <property role="2obkwz" value="PlusIcon" />
+        <node concept="2obJ9l" id="6akmAI1zov6" role="3z5yUe">
+          <node concept="2obJ9j" id="6akmAI1zov7" role="2obJ9a">
+            <node concept="2obJ99" id="6akmAI1zov8" role="2hZcBk">
+              <property role="2obJ97" value="Origin" />
+            </node>
+            <node concept="2obJ99" id="6akmAI1zovd" role="2hZcBk">
+              <property role="2obJ97" value="Destination" />
+            </node>
+            <node concept="2obJ99" id="6akmAI1zove" role="2hZcBk">
+              <property role="2obJ97" value="Date" />
+            </node>
+            <node concept="2obJ99" id="6akmAI1zovf" role="2hZcBk">
+              <property role="2obJ97" value="Time" />
+            </node>
+            <node concept="2obJ99" id="6akmAI1zovg" role="2hZcBk">
+              <property role="2obJ97" value="Price" />
+            </node>
+            <node concept="2obJ99" id="6akmAI1zovh" role="2hZcBk">
+              <property role="2obJ97" value="Actions" />
+            </node>
+          </node>
+          <node concept="2obJ9f" id="6akmAI1zov9" role="2obJ9b">
+            <node concept="2obJ99" id="6akmAI1zova" role="2obJ95">
+              <property role="2obJ97" value="{{ride.origin}}" />
+            </node>
+            <node concept="2obJ99" id="6akmAI1zovi" role="2obJ95">
+              <property role="2obJ97" value="{{ride.destination}}" />
+            </node>
+            <node concept="2obJ99" id="6akmAI1zovj" role="2obJ95">
+              <property role="2obJ97" value="{{ride.date}}" />
+            </node>
+            <node concept="2obJ99" id="6akmAI1zovk" role="2obJ95">
+              <property role="2obJ97" value="{{ride.departureTime}}" />
+            </node>
+            <node concept="2obJ99" id="6akmAI1zovl" role="2obJ95">
+              <property role="2obJ97" value="{{ride.pricePerSeat}}" />
+            </node>
+          </node>
+          <node concept="2o7$Zb" id="6akmAI1zovb" role="2o7$0B">
+            <property role="2o7$Z6" value="My Rides" />
+          </node>
+          <node concept="2o8Iol" id="6akmAI1zovc" role="2o7Wv8">
+            <property role="2o8Ioj" value="Book a Ride" />
+            <property role="2o8Iog" value="/find-rides" />
           </node>
         </node>
       </node>

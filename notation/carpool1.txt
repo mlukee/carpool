@@ -112,27 +112,27 @@ render:
     End Location: [Input Select]  
     Date of Travel: [Input Date] 
     Time: [Input Time] 
-    Available Seats: [Input Number, min: 1]  
-    Cost per Seat in EUR: [Input Number, min: 0]  
+    Available Seats: [Input Number]  
+    Cost per Seat in EUR: [Input Number]  
     Additional Info: [Input Textarea]  
     [[Offer a Ride | /offer-ride]]  
 
   Profile:
-    ## Your Profile Information
-    Full Name: {{user.name}}  
-    Email Address: {{user.email}}  
-    Phone Number: {{user.phone}}  
+    ## {{session?.user.name}} {{session?.user.surname}}
+    @ {{session?.user.username}}
+    //Tabs//
+    tabs_list:
+      value=cars, My Cars
+      value=rides, My Rides
+    tabs_content: 
     ### My Cars
     | Model | Year | License Plate | Actions |
     |---------------|--------------|-------------------|-------------|
-    | {{car.carModel}}         | {{car.year}}         | {{car.licensePlate}} |
-    [[Add New Car | /profile/add-car, icon=PlusIcon]]  
-
+    | {{car.carModel}}         | {{car.year}}         | {{car.licensePlate}} | 
     ### My Rides:
     | Origin | Destination | Date | Time | Price | Actions |
     |---------------|--------------|-------------------|-------------|
     | {{ride.origin}} | {{ride.destination}} | {{ride.date}} | {{ride.departureTime}} | {{ride.pricePerSeat}} |
-    [[Book a Ride | /profile/add-car, icon=CarIcon]] 
 
   Login:
     ## Login

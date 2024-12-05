@@ -30,11 +30,15 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   /*package*/ final ConceptDescriptor myConceptRenderForm = createDescriptorForRenderForm();
   /*package*/ final ConceptDescriptor myConceptRenderHeading = createDescriptorForRenderHeading();
   /*package*/ final ConceptDescriptor myConceptRenderTable = createDescriptorForRenderTable();
+  /*package*/ final ConceptDescriptor myConceptRenderTabs = createDescriptorForRenderTabs();
   /*package*/ final ConceptDescriptor myConceptRenderText = createDescriptorForRenderText();
   /*package*/ final ConceptDescriptor myConceptTableCell = createDescriptorForTableCell();
   /*package*/ final ConceptDescriptor myConceptTableHeading = createDescriptorForTableHeading();
   /*package*/ final ConceptDescriptor myConceptTableRow = createDescriptorForTableRow();
   /*package*/ final ConceptDescriptor myConceptTableTitle = createDescriptorForTableTitle();
+  /*package*/ final ConceptDescriptor myConceptTabsContent = createDescriptorForTabsContent();
+  /*package*/ final ConceptDescriptor myConceptTabsList = createDescriptorForTabsList();
+  /*package*/ final ConceptDescriptor myConceptTabsListRow = createDescriptorForTabsListRow();
   /*package*/ final EnumerationDescriptor myEnumerationHttpMethod = new EnumerationDescriptor_HttpMethod();
   /*package*/ final EnumerationDescriptor myEnumerationInputType = new EnumerationDescriptor_InputType();
   private final LanguageConceptSwitch myIndexSwitch;
@@ -51,7 +55,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
 
   @Override
   public Collection<ConceptDescriptor> getDescriptors() {
-    return Arrays.asList(myConceptAppApiEndpoints, myConceptAppComponents, myConceptAppMenuItems, myConceptAppRender, myConceptButton, myConceptButtonIcon, myConceptCardContent, myConceptCardTitle, myConceptCarpoolNotation, myConceptFormInput, myConceptRenderCard, myConceptRenderForm, myConceptRenderHeading, myConceptRenderTable, myConceptRenderText, myConceptTableCell, myConceptTableHeading, myConceptTableRow, myConceptTableTitle);
+    return Arrays.asList(myConceptAppApiEndpoints, myConceptAppComponents, myConceptAppMenuItems, myConceptAppRender, myConceptButton, myConceptButtonIcon, myConceptCardContent, myConceptCardTitle, myConceptCarpoolNotation, myConceptFormInput, myConceptRenderCard, myConceptRenderForm, myConceptRenderHeading, myConceptRenderTable, myConceptRenderTabs, myConceptRenderText, myConceptTableCell, myConceptTableHeading, myConceptTableRow, myConceptTableTitle, myConceptTabsContent, myConceptTabsList, myConceptTabsListRow);
   }
 
   @Override
@@ -86,6 +90,8 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
         return myConceptRenderHeading;
       case LanguageConceptSwitch.RenderTable:
         return myConceptRenderTable;
+      case LanguageConceptSwitch.RenderTabs:
+        return myConceptRenderTabs;
       case LanguageConceptSwitch.RenderText:
         return myConceptRenderText;
       case LanguageConceptSwitch.TableCell:
@@ -96,6 +102,12 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
         return myConceptTableRow;
       case LanguageConceptSwitch.TableTitle:
         return myConceptTableTitle;
+      case LanguageConceptSwitch.TabsContent:
+        return myConceptTabsContent;
+      case LanguageConceptSwitch.TabsList:
+        return myConceptTabsList;
+      case LanguageConceptSwitch.TabsListRow:
+        return myConceptTabsListRow;
       default:
         return null;
     }
@@ -151,6 +163,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.associate("componentName", 0x6234383efa05b794L).target(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa002bb6L).optional(false).origin("7076342757639698324").done();
     b.aggregate("renderHeading", 0x6234383efa0de724L).target(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa0de721L).optional(true).ordered(true).multiple(true).origin("7076342757640234788").done();
     b.aggregate("renderText", 0x6234383efa0ef7d6L).target(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa09d317L).optional(true).ordered(true).multiple(true).origin("7076342757640304598").done();
+    b.aggregate("renderTabs", 0x62945a6b8185d2e0L).target(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x62945a6b81827485L).optional(false).ordered(true).multiple(true).origin("7103401930051146464").done();
     b.aggregate("renderForm", 0x6234383efa100897L).target(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa10088dL).optional(true).ordered(true).multiple(false).origin("7076342757640374423").done();
     b.aggregate("renderTable", 0x6234383efa1c234eL).target(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa1aca6bL).optional(true).ordered(true).multiple(true).origin("7076342757641167694").done();
     b.aggregate("renderCard", 0x58d9188ac92bfb1cL).target(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x58d9188ac92a5f1dL).optional(true).ordered(true).multiple(true).origin("6402175329643526940").done();
@@ -273,6 +286,17 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.alias("form");
     return b.create();
   }
+  private static ConceptDescriptor createDescriptorForRenderTabs() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("CarpoolLang", "RenderTabs", 0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x62945a6b81827485L);
+    b.class_(false, false, false);
+    b.parent(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L);
+    b.origin("r:213b5080-9e54-4891-acb4-be7d245d7219(CarpoolLang.structure)/7103401930050925701");
+    b.version(3);
+    b.aggregate("list", 0x62945a6b81827489L).target(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x62945a6b81827487L).optional(false).ordered(true).multiple(true).origin("7103401930050925705").done();
+    b.aggregate("tables", 0x62945a6b818274e5L).target(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa1aca6bL).optional(false).ordered(true).multiple(true).origin("7103401930050925797").done();
+    b.alias("renderTabs");
+    return b.create();
+  }
   private static ConceptDescriptor createDescriptorForRenderText() {
     ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("CarpoolLang", "RenderText", 0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa09d317L);
     b.class_(false, false, false);
@@ -318,6 +342,36 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.version(3);
     b.property("label", 0x6234383efa2a77f8L).type(PrimitiveTypeId.STRING).origin("7076342757642106872").done();
     b.alias("tableTitle");
+    return b.create();
+  }
+  private static ConceptDescriptor createDescriptorForTabsContent() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("CarpoolLang", "TabsContent", 0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x62945a6b818d8778L);
+    b.class_(false, false, false);
+    b.parent(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L);
+    b.origin("r:213b5080-9e54-4891-acb4-be7d245d7219(CarpoolLang.structure)/7103401930051651448");
+    b.version(3);
+    b.aggregate("tables", 0x62945a6b818d877aL).target(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa1aca6bL).optional(false).ordered(true).multiple(true).origin("7103401930051651450").done();
+    return b.create();
+  }
+  private static ConceptDescriptor createDescriptorForTabsList() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("CarpoolLang", "TabsList", 0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x62945a6b81827487L);
+    b.class_(false, false, false);
+    b.parent(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L);
+    b.origin("r:213b5080-9e54-4891-acb4-be7d245d7219(CarpoolLang.structure)/7103401930050925703");
+    b.version(3);
+    b.aggregate("rows", 0x62945a6b818274b5L).target(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x62945a6b818274b1L).optional(false).ordered(true).multiple(true).origin("7103401930050925749").done();
+    b.alias("tabsList");
+    return b.create();
+  }
+  private static ConceptDescriptor createDescriptorForTabsListRow() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("CarpoolLang", "TabsListRow", 0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x62945a6b818274b1L);
+    b.class_(false, false, false);
+    b.parent(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L);
+    b.origin("r:213b5080-9e54-4891-acb4-be7d245d7219(CarpoolLang.structure)/7103401930050925745");
+    b.version(3);
+    b.property("value", 0x62945a6b818274b3L).type(PrimitiveTypeId.STRING).origin("7103401930050925747").done();
+    b.property("label", 0x62945a6b818274b4L).type(PrimitiveTypeId.STRING).origin("7103401930050925748").done();
+    b.alias("tabsListRow");
     return b.create();
   }
 }
