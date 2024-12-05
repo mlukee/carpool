@@ -106,7 +106,7 @@ render:
     //Card//
       Title: {{ride.origin}} -> {{ride.destination}}
       Content:
-        {{ride.date}} | {{ride.departureTime}}  | {{ride.seatsAvailable}}  |    {{{ride.pricePerSeat}}} | {{ride.comments}} | {{ride.driver.name}} {{ride.driver.surname}} | [[Book now]]
+        {{ride.driver.name}} | {{ride.date}}  | {{ride.departureTime}}  |    {{{ride.seatsAvailable}}} | {{ride.comments}} | {{ride.pricePerSeat}} | [[Book now]]
 
   OfferARide:
     ## Offer a New Ride
@@ -125,17 +125,17 @@ render:
     @ {{session?.user.username}}
     //Tabs//
     tabs_list:
-      value=cars, My Cars
-      value=rides, My Rides
+      value=cars, Cars
+      value=rides, Rides
     tabs_content: 
-    ### My Cars
-    | Model | Year | License Plate | Actions |
+    ### Cars
+    | Year | Model | License Plate | Actions |
     |---------------|--------------|-------------------|-------------|
-    | {{car.carModel}}         | {{car.year}}         | {{car.licensePlate}} | 
-    ### My Rides:
-    | Origin | Destination | Date | Time | Price | Actions |
+    | {{car.year}}         | {{car.model}}         | {{car.licensePlate}} | 
+    ### Rides:
+    | Origin | Destination | Price | Time | Date | Actions |
     |---------------|--------------|-------------------|-------------|
-    | {{ride.origin}} | {{ride.destination}} | {{ride.date}} | {{ride.departureTime}} | {{ride.pricePerSeat}} |
+    | {{ride.origin}} | {{ride.destination}} | {{ride.pricePerSeat}} | {{ride.departureTime}} | {{ride.date}} |
 
   Login:
     ## Login

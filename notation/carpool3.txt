@@ -111,13 +111,13 @@ render:
   OfferARide:
     ## Offer a New Ride
     //Form//
-    From: [Input Select]  
-    To: [Input Select]  
-    Date: [Input Date] 
-    Time: [Input Time] 
+    Start Location: [Input Select]  
+    End Location: [Input Select]  
     Available Seats: [Input Number]  
-    Price per Seat: [Input Number]  
-    Comments: [Input Textarea]  
+    Time: [Input Time] 
+    Date of Travel: [Input Date] 
+    Cost per Seat in EUR: [Input Number]  
+    Additional Info: [Input Textarea]  
     [[Offer a Ride | /offer-ride]] 
 
   Profile:
@@ -125,17 +125,17 @@ render:
     @ {{session?.user.username}}
     //Tabs//
     tabs_list:
-      value=cars, My Cars
-      value=rides, My Rides
+      value=rides, My Booked Rides
+      value=cars, Cars
     tabs_content: 
-    ### My Cars
-    | Model | Year | License Plate | Actions |
-    |---------------|--------------|-------------------|-------------|
-    | {{car.carModel}}         | {{car.year}}         | {{car.licensePlate}} | 
-    ### My Rides:
+    ### My Booked Rides:
     | Origin | Destination | Date | Time | Price | Actions |
     |---------------|--------------|-------------------|-------------|
     | {{ride.origin}} | {{ride.destination}} | {{ride.date}} | {{ride.departureTime}} | {{ride.pricePerSeat}} |
+    ### Cars
+    | Model | Year | License Plate | Actions |
+    |---------------|--------------|-------------------|-------------|
+    | {{car.carModel}}         | {{car.year}}         | {{car.licensePlate}} | 
 
   Login:
     ## Login
