@@ -39,9 +39,9 @@ export default async function RootLayout({
                 <div className="flex-1 p-3">
                   <main className="flex-1">{children}</main>
                 </div>
-                <footer className="mx-auto mb-1 items-center justify-center">
+                {/* <footer className="mx-auto mb-1 items-center justify-center">
                   RideTogether © {new Date().getFullYear()}
-                </footer>
+                </footer> */}
               </div>
               <Toaster />
             </Providers>

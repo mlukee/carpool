@@ -3,6 +3,7 @@ title: RideTogether - Affordable Carpooling
 description: A carpooling app to share rides and reduce travel costs.
 port: 3000
 theme:orange
+footer: © RideTogether 2024; No
 menu_position: left 
 menu_items:
   label: Home,
@@ -90,22 +91,17 @@ api:
     method: POST
 
 render:
-  Footer:
-    © RideTogether 2024
-
   Home:
     ## Welcome to RideTogether
     Travel smarter, save money, and reduce carbon footprints by carpooling!
     [[Find a Ride | /find-ride]]
 
   FindARide:    
-     FindARide:
     ## Available Rides
     //Card//
       Title: {{ride.origin}} -> {{ride.destination}}
       Content:
         {{ride.date}} | {{ride.departureTime}}  | {{ride.seatsAvailable}}  |    {{{ride.pricePerSeat}}} | {{ride.comments}} | {{ride.driver.name}} {{ride.driver.surname}} | [[Book now]]
-
     //Form//
     From: [Input Select]
     To: [Input Select]
@@ -117,41 +113,29 @@ render:
     //Form//
     Start Location: [Input Select]  
     End Location: [Input Select]  
-    Date of Travel: [Input Date] 
+    Available Seats: [Input Number]  
     Time: [Input Time] 
-    Available Seats: [Input Number, min: 1]  
-    Cost per Seat in EUR: [Input Number, min: 0]  
+    Date of Travel: [Input Date] 
+    Cost per Seat in EUR: [Input Number]  
     Additional Info: [Input Textarea]  
-    [[Offer a Ride | /offer-ride]]  
-
-  MyRides:
-    ## Your Scheduled Rides
-
-    //Card//
-      Title: {{ride.origin}} -> {{ride.destination}}                                        
-      Content:
-        style=space: even
-        {{ride.departure}} | {{ride.driverName}}  |      [Details | /ride-details/{{rideId}}, style=text: right] [[Cancel | /ride-cancel/{{rideId}}, icon=CancelIcon]]         
-        {{ride.departure}} | {{ride.driverName}}  |      [Details | /ride-details/{{rideId}}, style=text: right] [[Cancel | /ride-cancel/{{rideId}}, icon=CancelIcon]]
+    [[Offer a Ride | /offer-ride]] 
 
   Profile:
-    ## Your Profile Information
-    First Name: {{session?.user.name}}  
-    Last Name: {{session?.user.surname}}
-    Username: {{session?.user.username}}  
-    Email: {{session?.user.email}}  
-    Phone Number: {{session?.user.phone}}  
-    ### My Vehicles
-    | Model | Year | License Plate | Actions |
-    |---------------|--------------|-------------------|-------------|
-    | {{car.carModel}}         | {{car.year}}         | {{car.licensePlate}}           | [[Edit | /profile/edit-car/{{user.car.carId}}, icon=PenIcon]] [[Delete | /profile/delete-car/:carId, icon=TrashIcon]] |
-    [[Add New Car | /profile/add-car, icon=PlusIcon]]  
-
-    ###MyRides:
+    ## {{session?.user.name}} {{session?.user.surname}}
+    @ {{session?.user.username}}
+    //Tabs//
+    tabs_list:
+      value=rides, My Booked Rides
+      value=cars, Cars
+    tabs_content: 
+    ### My Booked Rides:
     | Origin | Destination | Date | Time | Price | Actions |
     |---------------|--------------|-------------------|-------------|
-    | {{ride.origin}} | {{ride.destination}} | {{ride.date}} | {{ride.departureTime}} | {{ride.pricePerSeat}} | [[Unbook | /api/users/:userId/rides/:rideId, icon=TrashIcon ]] |
-    [[Book a Ride | /profile/add-car, icon=CarIcon]] 
+    | {{ride.origin}} | {{ride.destination}} | {{ride.date}} | {{ride.departureTime}} | {{ride.pricePerSeat}} |
+    ### Cars
+    | Model | Year | License Plate | Actions |
+    |---------------|--------------|-------------------|-------------|
+    | {{car.carModel}}         | {{car.year}}         | {{car.licensePlate}} | 
 
   Login:
     ## Login

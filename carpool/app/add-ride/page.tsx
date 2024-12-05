@@ -144,6 +144,53 @@ export default function AddRide() {
                 )}
               />
 
+              {/* Seats Available Field */}
+              <FormField
+                control={form.control}
+                name="seatsAvailable"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <div className="space-y-2">
+                        <div className="relative">
+                          <Input
+                            type="number"
+                            min="1"
+                            max="8"
+                            className="pl-10"
+                            placeholder="Available Seats"
+                            onChange={(e) =>
+                              field.onChange(
+                                e.target.value ? Number(e.target.value) : ""
+                              )
+                            }
+                          />
+                          <Users className="absolute left-3 top-3 h-4 w-4" />
+                        </div>
+                        <FormMessage />
+                      </div>
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              {/* Departure Time Field */}
+              <FormField
+                control={form.control}
+                name="departureTime"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        type="time"
+                        step={900}
+                        placeholder="Time"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               {/* Date Field */}
               <FormField
                 control={form.control}
@@ -176,55 +223,6 @@ export default function AddRide() {
                       </Popover>
                     </FormControl>
                     <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              {/* Departure Time Field */}
-              <FormField
-                control={form.control}
-                name="departureTime"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input
-                        type="time"
-                        step={900}
-                        placeholder="Time"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              {/* Seats Available Field */}
-              <FormField
-                control={form.control}
-                name="seatsAvailable"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <div className="space-y-2">
-                        <div className="relative">
-                          <Input
-                            type="number"
-                            min="1"
-                            max="8"
-                            className="pl-10"
-                            placeholder="Available Seats"
-                            onChange={(e) =>
-                              field.onChange(
-                                e.target.value ? Number(e.target.value) : ""
-                              )
-                            }
-                          />
-                          <Users className="absolute left-3 top-3 h-4 w-4" />
-                        </div>
-                        <FormMessage />
-                      </div>
-                    </FormControl>
                   </FormItem>
                 )}
               />

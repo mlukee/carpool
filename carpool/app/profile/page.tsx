@@ -105,8 +105,8 @@ export default function ProfilePage() {
         <Tabs defaultValue="profile" className="space-y-6">
           <TabsList>
             <TabsTrigger value="profile">Profile</TabsTrigger>
-            <TabsTrigger value="cars">My Cars</TabsTrigger>
-            <TabsTrigger value="rides">My Rides</TabsTrigger>
+            <TabsTrigger value="rides">My Booked Rides</TabsTrigger>
+            <TabsTrigger value="cars">Cars</TabsTrigger>
           </TabsList>
 
           <TabsContent value="profile">
