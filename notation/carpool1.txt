@@ -3,6 +3,7 @@ title: JoinMyRide
 description: Ride sharing and transport cost sharing app
 port: 3000
 theme: light 
+footer: Carpool © 2024; Yes
 menu_position: top
 menu_items:
   label: Find a Ride,
@@ -86,9 +87,6 @@ api:
     method: PATCH
 
 render:
-  Footer:
-    Carpool © 2024
-
   Home:
     ## Welcome to Carpool Ride Sharing Dashboard
     Find rides, offer rides, and manage your trips here.

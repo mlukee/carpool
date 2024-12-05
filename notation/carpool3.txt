@@ -3,6 +3,7 @@ title: RideTogether - Affordable Carpooling
 description: A carpooling app to share rides and reduce travel costs.
 port: 3000
 theme:orange
+footer: © RideTogether 2024; No
 menu_position: left 
 menu_items:
   label: Home,
@@ -32,10 +33,6 @@ components:
 
   name: Profile,
   url: /profile,
-  authentication: yes
-
-  name: addCar
-  url: /add-car
   authentication: yes
 
   name: Login,
@@ -94,21 +91,18 @@ api:
     method: POST
 
 render:
-  Footer:
-    © RideTogether 2024
-
   Home:
     ## Welcome to RideTogether
     Travel smarter, save money, and reduce carbon footprints by carpooling!
     [[Find a Ride | /find-ride]]
 
   FindARide:    
+     FindARide:
     ## Available Rides
     //Card//
       Title: {{ride.origin}} -> {{ride.destination}}
       Content:
-        {{ride.date}} | {{ride.departureTime}}  | {{ride.seatsAvailable}}  | {{{ride.pricePerSeat}}} | {{ride.comments}} | {{ride.driver.name}} {{ride.driver.surname}} | [[Book now]]
-
+        {{ride.date}} | {{ride.departureTime}}  | {{ride.seatsAvailable}}  |    {{{ride.pricePerSeat}}} | {{ride.comments}} | {{ride.driver.name}} {{ride.driver.surname}} | [[Book now]]
     //Form//
     From: [Input Select]
     To: [Input Select]
@@ -122,20 +116,10 @@ render:
     End Location: [Input Select]  
     Date of Travel: [Input Date] 
     Time: [Input Time] 
-    Available Seats: [Input Number]  
-    Cost per Seat in EUR: [Input Number]  
+    Available Seats: [Input Number, min: 1]  
+    Cost per Seat in EUR: [Input Number, min: 0]  
     Additional Info: [Input Textarea]  
     [[Offer a Ride | /offer-ride]]  
-
-  MyRides:
-    ## Your Scheduled Rides
-
-    //Card//
-      Title: {{ride.origin}} -> {{ride.destination}}                                        
-      Content:
-        style=space: even
-        {{ride.departure}} | {{ride.driverName}}  |      [Details | /ride-details/{{rideId}}, style=text: right] [[Cancel | /ride-cancel/{{rideId}}, icon=CancelIcon]]         
-        {{ride.departure}} | {{ride.driverName}}  |      [Details | /ride-details/{{rideId}}, style=text: right] [[Cancel | /ride-cancel/{{rideId}}, icon=CancelIcon]]
 
   Profile:
     ## Your Profile Information
@@ -147,10 +131,10 @@ render:
     ### My Vehicles
     | Model | Year | License Plate | Actions |
     |---------------|--------------|-------------------|-------------|
-    | {{car.carModel}}         | {{car.year}}         | {{car.licensePlate}}  |
+    | {{car.carModel}}         | {{car.year}}         | {{car.licensePlate}}|
     [[Add New Car | /profile/add-car, icon=PlusIcon]]  
 
-    ### My Rides:
+    ###MyRides:
     | Origin | Destination | Date | Time | Price | Actions |
     |---------------|--------------|-------------------|-------------|
     | {{ride.origin}} | {{ride.destination}} | {{ride.date}} | {{ride.departureTime}} | {{ride.pricePerSeat}} |
