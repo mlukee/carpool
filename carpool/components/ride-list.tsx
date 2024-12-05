@@ -108,6 +108,12 @@ export default function RideList({
 
               <div className="mb-6 grid grid-cols-2 gap-4">
                 <div className="flex items-center gap-2">
+                  <User className="h-4 w-4" />
+                  <span className="text-sm">
+                    Driver: {ride.driver.name} {ride.driver.surname}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-gray-500" />
                   <span className="text-sm">
                     {new Date(ride.date).toLocaleDateString("en-US", {
@@ -127,12 +133,6 @@ export default function RideList({
                     {ride.seatsAvailable - ride.passengers.length} seats left
                   </span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-lg font-bold text-primary">
-                    {ride.pricePerSeat} &euro;
-                  </span>
-                  <span className="text-sm">per seat</span>
-                </div>
                 {ride.comments && (
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-bold">Comment: </span>
@@ -140,11 +140,11 @@ export default function RideList({
                   </div>
                 )}
 
-                <div className="col-span-2 flex items-center gap-2">
-                  <User className="h-4 w-4" />
-                  <span className="text-sm">
-                    Driver: {ride.driver.name} {ride.driver.surname}
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-bold text-primary">
+                    {ride.pricePerSeat} &euro;
                   </span>
+                  <span className="text-sm">per seat</span>
                 </div>
               </div>
 

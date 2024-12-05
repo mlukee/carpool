@@ -22,12 +22,12 @@ export default function Home() {
               easily!
             </p>
             <div className="mt-10 flex items-center gap-x-6">
-              <Button size="lg" asChild>
+              {/* <Button size="lg" asChild>
                 <Link href="/find-ride">Find a Ride</Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
                 <Link href="/add-ride">Offer a Ride</Link>
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>

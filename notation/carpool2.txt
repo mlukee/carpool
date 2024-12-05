@@ -3,6 +3,7 @@ title: RideShareConnect
 description: Ride-sharing app to help you connect with drivers and fellow passengers.
 port: 3000
 theme: blue 
+footer: RideShareConnect © 2024; Yes
 menu_position: right
 menu_items:
   label: Add Rides,
@@ -91,13 +92,9 @@ api:
     method: POST
 
 render:
-  Footer:
-    RideShareConnect © 2024
-
   Home:
     ## Welcome to RideShareConnect
     Your go-to place for affordable travel. Find and offer rides easily!
-
 
   FindARide:
     ## Available Rides
@@ -106,40 +103,39 @@ render:
     To: [Input Select]
     Date: [Input Date]
     [[Find ride]]
-
     //Card//
       Title: {{ride.origin}} -> {{ride.destination}}
       Content:
-        {{ride.date}} | {{ride.departureTime}}  | {{ride.seatsAvailable}}  |    {{{ride.pricePerSeat}}} | {{ride.comments}} | {{ride.driver.name}} {{ride.driver.surname}} | [[Book now]]
+        {{ride.driver.name}} | {{ride.date}}  | {{ride.departureTime}}  |    {{{ride.seatsAvailable}}} | {{ride.comments}} | {{ride.pricePerSeat}} | [[Book now]]
 
   OfferARide:
     ## Offer a New Ride
     //Form//
-    Start Location: [Input Select]  
-    End Location: [Input Select]  
-    Date of Travel: [Input Date] 
+    From: [Input Select]  
+    To: [Input Select]  
+    Date: [Input Date] 
     Time: [Input Time] 
-    Available Seats: [Input Number, min: 1]  
-    Cost per Seat in EUR: [Input Number, min: 0]  
-    Additional Info: [Input Textarea]  
+    Available Seats: [Input Number]  
+    Price per Seat: [Input Number]  
+    Comments: [Input Textarea]  
     [[Offer a Ride | /offer-ride]]  
 
   Profile:
-    ## Your Profile Information
-    Full Name: {{user.name}}  
-    Email Address: {{user.email}}  
-    Phone Number: {{user.phone}}  
-    ### My Vehicles
-    | Model | Year | License Plate | Actions |
+    ## {{session?.user.name}} {{session?.user.surname}}
+    @ {{session?.user.username}}
+    //Tabs//
+    tabs_list:
+      value=cars, My Cars
+      value=rides, My Rides
+    tabs_content: 
+    ### My Cars
+    | Year | Model | License Plate | Actions |
     |---------------|--------------|-------------------|-------------|
-    | {{car.carModel}}         | {{car.year}}         | {{car.licensePlate}}           | [[Edit | /profile/edit-car/{{user.car.carId}}, icon=PenIcon]] [[Delete | /profile/delete-car/:carId, icon=TrashIcon]] |
-    [[Add New Car | /profile/add-car, icon=PlusIcon]]  
-
-    ###MyRides:
-    | Origin | Destination | Date | Time | Price | Actions |
+    | {{car.year}}         | {{car.model}}         | {{car.licensePlate}} | 
+    ### My Rides:
+    | Origin | Destination | Price | Time | Date | Actions |
     |---------------|--------------|-------------------|-------------|
-    | {{ride.origin}} | {{ride.destination}} | {{ride.date}} | {{ride.departureTime}} | {{ride.pricePerSeat}} | [[Unbook | /api/users/:userId/rides/:rideId, icon=TrashIcon ]] |
-    [[Book a Ride | /profile/add-car, icon=CarIcon]] 
+    | {{ride.origin}} | {{ride.destination}} | {{ride.pricePerSeat}} | {{ride.departureTime}} | {{ride.date}} |
 
   Login:
     ## Login

@@ -102,9 +102,9 @@ export function UserBookedRides({ userId }: UserBookedRidesProps) {
               <TableHead className="hidden lg:table-cell">
                 Destination
               </TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead>Time</TableHead>
               <TableHead>Price</TableHead>
+              <TableHead>Time</TableHead>
+              <TableHead>Date</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -122,11 +122,11 @@ export function UserBookedRides({ userId }: UserBookedRidesProps) {
                   <TableCell className="hidden lg:table-cell">
                     {ride.destination}
                   </TableCell>
+                  <TableCell>{ride.pricePerSeat} &euro;</TableCell>
+                  <TableCell>{ride.departureTime}</TableCell>
                   <TableCell>
                     {new Date(ride.date).toLocaleDateString()}
                   </TableCell>
-                  <TableCell>{ride.departureTime}</TableCell>
-                  <TableCell>{ride.pricePerSeat} &euro;</TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-1">
                       <AlertDialog>

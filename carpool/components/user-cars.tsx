@@ -99,8 +99,8 @@ export function UserCars({ userId }: UserCarsProps) {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Model</TableHead>
-              <TableHead className="hidden lg:table-cell">Year</TableHead>
+              <TableHead>Year</TableHead>
+              <TableHead className="hidden lg:table-cell">Model</TableHead>
               <TableHead>License Plate</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
@@ -115,9 +115,9 @@ export function UserCars({ userId }: UserCarsProps) {
             ) : (
               cars.map((car) => (
                 <TableRow key={car._id}>
-                  <TableCell>{car.carModel}</TableCell>
+                  <TableCell>{car.year}</TableCell>
                   <TableCell className="hidden lg:table-cell">
-                    {car.year}
+                    {car.carModel}
                   </TableCell>
                   <TableCell>{car.licensePlate}</TableCell>
                   <TableCell className="text-right">
@@ -173,11 +173,11 @@ export function UserCars({ userId }: UserCarsProps) {
         {cars.map((car) => (
           <Card key={car._id}>
             <CardHeader>
-              <CardTitle>{car.carModel}</CardTitle>
+              <CardTitle>{car.year}</CardTitle>
             </CardHeader>
             <CardContent>
               <p>
-                <strong>Year:</strong> {car.year}
+                <strong>Year:</strong> {car.carModel}
               </p>
               <p>
                 <strong>License Plate:</strong> {car.licensePlate}

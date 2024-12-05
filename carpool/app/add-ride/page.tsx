@@ -103,7 +103,7 @@ export default function AddRide() {
                     <FormControl>
                       <Select onValueChange={field.onChange}>
                         <SelectTrigger>
-                          <SelectValue placeholder="Start Location:" />
+                          <SelectValue placeholder="From:" />
                         </SelectTrigger>
                         <SelectContent>
                           {cities.map((city) => (
@@ -128,7 +128,7 @@ export default function AddRide() {
                     <FormControl>
                       <Select onValueChange={field.onChange}>
                         <SelectTrigger>
-                          <SelectValue placeholder="End Location:" />
+                          <SelectValue placeholder="To:" />
                         </SelectTrigger>
                         <SelectContent>
                           {cities.map((city) => (
@@ -158,9 +158,7 @@ export default function AddRide() {
                             className="w-full justify-start text-left font-normal"
                           >
                             <CalendarIcon className="mr-2" />
-                            {field.value
-                              ? format(field.value, "PPP")
-                              : "Date of Travel"}
+                            {field.value ? format(field.value, "PPP") : "Date"}
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="start">
@@ -242,7 +240,7 @@ export default function AddRide() {
                             id="seats"
                             type="number"
                             className="pl-10"
-                            placeholder="Cost per Seat in EUR:"
+                            placeholder="Price per Seat:"
                             min={0}
                             step={0.5}
                             onChange={(e) =>
@@ -267,10 +265,7 @@ export default function AddRide() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Textarea
-                        placeholder="Additional Info (optional)"
-                        {...field}
-                      />
+                      <Textarea placeholder="Comments" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

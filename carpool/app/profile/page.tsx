@@ -105,8 +105,8 @@ export default function ProfilePage() {
         <Tabs defaultValue="profile" className="space-y-6">
           <TabsList>
             <TabsTrigger value="profile">Profile</TabsTrigger>
-            <TabsTrigger value="cars">My Cars</TabsTrigger>
-            <TabsTrigger value="rides">My Rides</TabsTrigger>
+            <TabsTrigger value="cars">Cars</TabsTrigger>
+            <TabsTrigger value="rides">Rides</TabsTrigger>
           </TabsList>
 
           <TabsContent value="profile">
@@ -209,7 +209,7 @@ export default function ProfilePage() {
               <div className="mb-6 flex items-center justify-between">
                 <h2 className="flex items-center gap-2 text-xl font-semibold">
                   <Car className="h-5 w-5" />
-                  My Cars
+                  Cars
                 </h2>
                 <Link href="/add-car">
                   <Button>
@@ -227,7 +227,7 @@ export default function ProfilePage() {
               <div className="mb-6 flex items-center justify-between">
                 <h2 className="flex items-center gap-2 text-xl font-semibold">
                   <Car className="h-5 w-5" />
-                  My Booked Rides
+                  Rides
                 </h2>
                 <Link href="/find-ride">
                   <Button>
