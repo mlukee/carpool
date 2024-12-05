@@ -80,6 +80,16 @@
       <property role="TrG5h" value="appPort" />
       <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
     </node>
+    <node concept="1TJgyi" id="5zp68F9acyT" role="1TKVEl">
+      <property role="IQ2nx" value="6402175329643317433" />
+      <property role="TrG5h" value="footer" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="5zp68F9acyU" role="1TKVEl">
+      <property role="IQ2nx" value="6402175329643317434" />
+      <property role="TrG5h" value="footerOption" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
     <node concept="1TJgyi" id="68Oe3VTY_wz" role="1TKVEl">
       <property role="IQ2nx" value="7076342757638952995" />
       <property role="TrG5h" value="appTheme" />
@@ -185,7 +195,7 @@
     <node concept="1TJgyi" id="68Oe3VU0nh2" role="1TKVEl">
       <property role="IQ2nx" value="7076342757639418946" />
       <property role="TrG5h" value="method" />
-      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+      <ref role="AX2Wp" node="5zp68F98GSk" resolve="HttpMethod" />
     </node>
   </node>
   <node concept="1TIwiD" id="68Oe3VU1ruh">
@@ -227,6 +237,13 @@
       <property role="20kJfa" value="renderTable" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="68Oe3VU6GDF" resolve="RenderTable" />
+    </node>
+    <node concept="1TJgyj" id="5zp68F9aZGs" role="1TKVEi">
+      <property role="IQ2ns" value="6402175329643526940" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="renderCard" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
+      <ref role="20lvS9" node="5zp68F9a_Wt" resolve="RenderCard" />
     </node>
   </node>
   <node concept="1TIwiD" id="68Oe3VU2tcn">
@@ -419,10 +436,12 @@
     <node concept="PrWs8" id="68Oe3VU6GDI" role="PzmwI">
       <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
     </node>
-    <node concept="1TJgyi" id="68Oe3VU6GDJ" role="1TKVEl">
-      <property role="IQ2nx" value="7076342757641079407" />
-      <property role="TrG5h" value="label" />
-      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    <node concept="1TJgyj" id="5zp68F99t5u" role="1TKVEi">
+      <property role="IQ2ns" value="6402175329643123038" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="cell" />
+      <property role="20lbJX" value="fLJekj6/_1__n" />
+      <ref role="20lvS9" node="68Oe3VU6GDR" resolve="TableCell" />
     </node>
   </node>
   <node concept="1TIwiD" id="68Oe3VU6GDL">
@@ -463,6 +482,86 @@
     </node>
     <node concept="1TJgyi" id="68Oe3VUaBvS" role="1TKVEl">
       <property role="IQ2nx" value="7076342757642106872" />
+      <property role="TrG5h" value="label" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+  </node>
+  <node concept="25R3W" id="5zp68F98GSk">
+    <property role="3F6X1D" value="6402175329642925588" />
+    <property role="TrG5h" value="HttpMethod" />
+    <ref role="1H5jkz" node="5zp68F98GSl" resolve="GET" />
+    <node concept="25R33" id="5zp68F98GSl" role="25R1y">
+      <property role="3tVfz5" value="6402175329642925589" />
+      <property role="TrG5h" value="GET" />
+      <property role="1L1pqM" value="GET" />
+    </node>
+    <node concept="25R33" id="5zp68F98GSm" role="25R1y">
+      <property role="3tVfz5" value="6402175329642925590" />
+      <property role="TrG5h" value="POST" />
+      <property role="1L1pqM" value="POST" />
+    </node>
+    <node concept="25R33" id="5zp68F98GSn" role="25R1y">
+      <property role="3tVfz5" value="6402175329642925591" />
+      <property role="TrG5h" value="PUT" />
+      <property role="1L1pqM" value="PUT" />
+    </node>
+    <node concept="25R33" id="5zp68F98GSo" role="25R1y">
+      <property role="3tVfz5" value="6402175329642925592" />
+      <property role="TrG5h" value="DELETE" />
+      <property role="1L1pqM" value="DELETE" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5zp68F9a_Wt">
+    <property role="EcuMT" value="6402175329643421469" />
+    <property role="TrG5h" value="RenderCard" />
+    <property role="34LRSv" value="card" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <node concept="PrWs8" id="5zp68F9a_Wu" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="1TJgyj" id="5zp68F9a_WC" role="1TKVEi">
+      <property role="IQ2ns" value="6402175329643421480" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="title" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="5zp68F9a_Wz" resolve="CardTitle" />
+    </node>
+    <node concept="1TJgyj" id="5zp68F9a_Xv" role="1TKVEi">
+      <property role="IQ2ns" value="6402175329643421535" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="content" />
+      <property role="20lbJX" value="fLJekj6/_1__n" />
+      <ref role="20lvS9" node="5zp68F9a_WE" resolve="CardContent" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5zp68F9a_Wz">
+    <property role="EcuMT" value="6402175329643421475" />
+    <property role="TrG5h" value="CardTitle" />
+    <property role="34LRSv" value="cardTitle" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <node concept="PrWs8" id="5zp68F9a_W$" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="1TJgyi" id="5zp68F9a_W_" role="1TKVEl">
+      <property role="IQ2nx" value="6402175329643421477" />
+      <property role="TrG5h" value="labelFrom" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="5zp68F9a_WB" role="1TKVEl">
+      <property role="IQ2nx" value="6402175329643421479" />
+      <property role="TrG5h" value="labelTo" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5zp68F9a_WE">
+    <property role="EcuMT" value="6402175329643421482" />
+    <property role="TrG5h" value="CardContent" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <node concept="PrWs8" id="5zp68F9a_WG" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="1TJgyi" id="5zp68F9dySm" role="1TKVEl">
+      <property role="IQ2nx" value="6402175329644195350" />
       <property role="TrG5h" value="label" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
     </node>

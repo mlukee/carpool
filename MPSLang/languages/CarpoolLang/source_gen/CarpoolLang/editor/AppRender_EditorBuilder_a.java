@@ -79,6 +79,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
     editorCell.addEditorCell(createCollection_3());
     editorCell.addEditorCell(createCollection_4());
     editorCell.addEditorCell(createRefNodeList_2());
+    editorCell.addEditorCell(createRefNodeList_3());
     return editorCell;
   }
   private EditorCell createCollection_1() {
@@ -493,6 +494,83 @@ import org.jetbrains.mps.openapi.language.SConcept;
       }
     }
   }
+  private EditorCell createRefNodeList_3() {
+    AbstractCellListHandler handler = new renderCardListHandler_3rzdgq_f0(myNode, getEditorContext());
+    EditorCell_Collection editorCell = handler.createCells(new CellLayout_Horizontal(), false);
+    editorCell.setCellId("refNodeList_renderCard");
+    Style style = new StyleImpl();
+    style.set(StyleAttributes.SELECTABLE, false);
+    editorCell.getStyle().putAll(style);
+    editorCell.setSRole(handler.getElementSRole());
+    return editorCell;
+  }
+  private static class renderCardListHandler_3rzdgq_f0 extends RefNodeListHandler {
+    @NotNull
+    private SNode myNode;
+
+    public renderCardListHandler_3rzdgq_f0(SNode ownerNode, EditorContext context) {
+      super(context, false);
+      myNode = ownerNode;
+    }
+
+    @NotNull
+    public SNode getNode() {
+      return myNode;
+    }
+    public SContainmentLink getSLink() {
+      return LINKS.renderCard$M4Uv;
+    }
+    public SAbstractConcept getChildSConcept() {
+      return CONCEPTS.RenderCard$qA;
+    }
+
+    public EditorCell createNodeCell(SNode elementNode) {
+      EditorCell elementCell = getUpdateSession().updateChildNodeCell(elementNode);
+      installElementCellActions(elementNode, elementCell, false);
+      return elementCell;
+    }
+    public EditorCell createEmptyCell() {
+      getCellFactory().pushCellContext();
+      getCellFactory().setNodeLocation(new SNodeLocation.FromParentAndLink(renderCardListHandler_3rzdgq_f0.this.getNode(), LINKS.renderCard$M4Uv));
+      try {
+        EditorCell emptyCell = null;
+        emptyCell = super.createEmptyCell();
+        installElementCellActions(null, emptyCell, true);
+        setCellContext(emptyCell);
+        return emptyCell;
+      } finally {
+        getCellFactory().popCellContext();
+      }
+    }
+
+    private static final Object OBJ = new Object();
+
+    public void installElementCellActions(SNode elementNode, EditorCell elementCell, boolean isEmptyCell) {
+      if (elementCell.getUserObject(AbstractCellListHandler.ELEMENT_CELL_COMPLETE_SET) == null) {
+        if (elementCell.getSubstituteInfo() == null || elementCell.getSubstituteInfo() instanceof DefaultSubstituteInfo) {
+          elementCell.putUserObject(AbstractCellListHandler.ELEMENT_CELL_COMPLETE_SET, OBJ);
+          elementCell.setSubstituteInfo((isEmptyCell ? new SEmptyContainmentSubstituteInfo(elementCell) : new SChildSubstituteInfo(elementCell)));
+        }
+      }
+      if (elementCell.getUserObject(AbstractCellListHandler.ELEMENT_CELL_DELETE_SET) == null) {
+        if (elementNode != null) {
+          elementCell.putUserObject(AbstractCellListHandler.ELEMENT_CELL_DELETE_SET, OBJ);
+          elementCell.setAction(CellActionType.DELETE, new CellAction_DeleteNode(elementNode, CellAction_DeleteNode.DeleteDirection.FORWARD));
+        }
+      }
+      if (elementCell.getUserObject(ELEMENT_CELL_BACKSPACE_SET) == null) {
+        if (elementNode != null) {
+          elementCell.putUserObject(ELEMENT_CELL_BACKSPACE_SET, OBJ);
+          elementCell.setAction(CellActionType.BACKSPACE, new CellAction_DeleteNode(elementNode, CellAction_DeleteNode.DeleteDirection.BACKWARD));
+        }
+      }
+      if (elementCell.getUserObject(AbstractCellListHandler.ELEMENT_CELL_ACTIONS_SET) == null) {
+        if (elementNode != null) {
+          elementCell.putUserObject(AbstractCellListHandler.ELEMENT_CELL_ACTIONS_SET, OBJ);
+        }
+      }
+    }
+  }
 
   private static final class LINKS {
     /*package*/ static final SReferenceLink componentName$1j5l = MetaAdapterFactory.getReferenceLink(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa05b791L, 0x6234383efa05b794L, "componentName");
@@ -500,6 +578,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
     /*package*/ static final SContainmentLink renderText$tMAC = MetaAdapterFactory.getContainmentLink(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa05b791L, 0x6234383efa0ef7d6L, "renderText");
     /*package*/ static final SContainmentLink renderForm$GmYg = MetaAdapterFactory.getContainmentLink(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa05b791L, 0x6234383efa100897L, "renderForm");
     /*package*/ static final SContainmentLink renderTable$yNjb = MetaAdapterFactory.getContainmentLink(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa05b791L, 0x6234383efa1c234eL, "renderTable");
+    /*package*/ static final SContainmentLink renderCard$M4Uv = MetaAdapterFactory.getContainmentLink(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa05b791L, 0x58d9188ac92bfb1cL, "renderCard");
   }
 
   private static final class CONCEPTS {
@@ -508,6 +587,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
     /*package*/ static final SConcept RenderHeading$v1 = MetaAdapterFactory.getConcept(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa0de721L, "CarpoolLang.structure.RenderHeading");
     /*package*/ static final SConcept RenderText$wX = MetaAdapterFactory.getConcept(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa09d317L, "CarpoolLang.structure.RenderText");
     /*package*/ static final SConcept RenderTable$EW = MetaAdapterFactory.getConcept(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa1aca6bL, "CarpoolLang.structure.RenderTable");
+    /*package*/ static final SConcept RenderCard$qA = MetaAdapterFactory.getConcept(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x58d9188ac92a5f1dL, "CarpoolLang.structure.RenderCard");
   }
 
   private static final class PROPS {

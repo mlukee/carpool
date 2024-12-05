@@ -15,16 +15,19 @@ public final class LanguageConceptSwitch {
   public static final int AppRender = 3;
   public static final int Button = 4;
   public static final int ButtonIcon = 5;
-  public static final int CarpoolNotation = 6;
-  public static final int FormInput = 7;
-  public static final int RenderForm = 8;
-  public static final int RenderHeading = 9;
-  public static final int RenderTable = 10;
-  public static final int RenderText = 11;
-  public static final int TableCell = 12;
-  public static final int TableHeading = 13;
-  public static final int TableRow = 14;
-  public static final int TableTitle = 15;
+  public static final int CardContent = 6;
+  public static final int CardTitle = 7;
+  public static final int CarpoolNotation = 8;
+  public static final int FormInput = 9;
+  public static final int RenderCard = 10;
+  public static final int RenderForm = 11;
+  public static final int RenderHeading = 12;
+  public static final int RenderTable = 13;
+  public static final int RenderText = 14;
+  public static final int TableCell = 15;
+  public static final int TableHeading = 16;
+  public static final int TableRow = 17;
+  public static final int TableTitle = 18;
 
   public LanguageConceptSwitch() {
     LanguageConceptIndexBuilder builder = new LanguageConceptIndexBuilder(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L);
@@ -34,8 +37,11 @@ public final class LanguageConceptSwitch {
     builder.put(0x6234383efa05b791L, AppRender);
     builder.put(0x6234383efa16de2bL, Button);
     builder.put(0x6234383efa19701bL, ButtonIcon);
+    builder.put(0x58d9188ac92a5f2aL, CardContent);
+    builder.put(0x58d9188ac92a5f23L, CardTitle);
     builder.put(0x6234383ef9f9a3f7L, CarpoolNotation);
     builder.put(0x6234383efa11516eL, FormInput);
+    builder.put(0x58d9188ac92a5f1dL, RenderCard);
     builder.put(0x6234383efa10088dL, RenderForm);
     builder.put(0x6234383efa0de721L, RenderHeading);
     builder.put(0x6234383efa1aca6bL, RenderTable);

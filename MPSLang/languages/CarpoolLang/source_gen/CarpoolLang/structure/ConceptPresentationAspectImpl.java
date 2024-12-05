@@ -15,8 +15,11 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_AppRender;
   private ConceptPresentation props_Button;
   private ConceptPresentation props_ButtonIcon;
+  private ConceptPresentation props_CardContent;
+  private ConceptPresentation props_CardTitle;
   private ConceptPresentation props_CarpoolNotation;
   private ConceptPresentation props_FormInput;
+  private ConceptPresentation props_RenderCard;
   private ConceptPresentation props_RenderForm;
   private ConceptPresentation props_RenderHeading;
   private ConceptPresentation props_RenderTable;
@@ -73,6 +76,20 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_ButtonIcon = cpb.create();
         }
         return props_ButtonIcon;
+      case LanguageConceptSwitch.CardContent:
+        if (props_CardContent == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_CardContent = cpb.create();
+        }
+        return props_CardContent;
+      case LanguageConceptSwitch.CardTitle:
+        if (props_CardTitle == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_CardTitle = cpb.create();
+        }
+        return props_CardTitle;
       case LanguageConceptSwitch.CarpoolNotation:
         if (props_CarpoolNotation == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
@@ -87,6 +104,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_FormInput = cpb.create();
         }
         return props_FormInput;
+      case LanguageConceptSwitch.RenderCard:
+        if (props_RenderCard == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_RenderCard = cpb.create();
+        }
+        return props_RenderCard;
       case LanguageConceptSwitch.RenderForm:
         if (props_RenderForm == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
