@@ -97,7 +97,6 @@ render:
     [[Find a Ride | /find-ride]]
 
   FindARide:    
-     FindARide:
     ## Available Rides
     //Card//
       Title: {{ride.origin}} -> {{ride.destination}}
@@ -112,33 +111,31 @@ render:
   OfferARide:
     ## Offer a New Ride
     //Form//
-    Start Location: [Input Select]  
-    End Location: [Input Select]  
-    Date of Travel: [Input Date] 
+    From: [Input Select]  
+    To: [Input Select]  
+    Date: [Input Date] 
     Time: [Input Time] 
-    Available Seats: [Input Number, min: 1]  
-    Cost per Seat in EUR: [Input Number, min: 0]  
-    Additional Info: [Input Textarea]  
-    [[Offer a Ride | /offer-ride]]  
+    Available Seats: [Input Number]  
+    Price per Seat: [Input Number]  
+    Comments: [Input Textarea]  
+    [[Offer a Ride | /offer-ride]] 
 
   Profile:
-    ## Your Profile Information
-    First Name: {{session?.user.name}}  
-    Last Name: {{session?.user.surname}}
-    Username: {{session?.user.username}}  
-    Email: {{session?.user.email}}  
-    Phone Number: {{session?.user.phone}}  
-    ### My Vehicles
+    ## {{session?.user.name}} {{session?.user.surname}}
+    @ {{session?.user.username}}
+    //Tabs//
+    tabs_list:
+      value=cars, My Cars
+      value=rides, My Rides
+    tabs_content: 
+    ### My Cars
     | Model | Year | License Plate | Actions |
     |---------------|--------------|-------------------|-------------|
-    | {{car.carModel}}         | {{car.year}}         | {{car.licensePlate}}|
-    [[Add New Car | /profile/add-car, icon=PlusIcon]]  
-
-    ###MyRides:
+    | {{car.carModel}}         | {{car.year}}         | {{car.licensePlate}} | 
+    ### My Rides:
     | Origin | Destination | Date | Time | Price | Actions |
     |---------------|--------------|-------------------|-------------|
     | {{ride.origin}} | {{ride.destination}} | {{ride.date}} | {{ride.departureTime}} | {{ride.pricePerSeat}} |
-    [[Book a Ride | /profile/add-car, icon=CarIcon]] 
 
   Login:
     ## Login
