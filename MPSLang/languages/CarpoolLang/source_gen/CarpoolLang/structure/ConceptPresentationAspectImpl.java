@@ -155,7 +155,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
       case LanguageConceptSwitch.RenderTable:
         if (props_RenderTable == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("form");
+          cpb.rawPresentation("table");
           props_RenderTable = cpb.create();
         }
         return props_RenderTable;

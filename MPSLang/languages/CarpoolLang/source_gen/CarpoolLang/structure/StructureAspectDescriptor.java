@@ -312,7 +312,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.aggregate("tableRows", 0x6234383efa1aca75L).target(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa1aca71L).optional(false).ordered(true).multiple(false).origin("7076342757641079413").done();
     b.aggregate("title", 0x6234383efa2a7819L).target(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa2a77f5L).optional(false).ordered(true).multiple(false).origin("7076342757642106905").done();
     b.aggregate("button", 0x6234383efa2bfff6L).target(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa16de2bL).optional(true).ordered(true).multiple(false).origin("7076342757642207222").done();
-    b.alias("form");
+    b.alias("table");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForRenderTabs() {

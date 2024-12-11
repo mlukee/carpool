@@ -22,7 +22,6 @@
         <property id="7076342757642106872" name="label" index="2o7$Z6" />
       </concept>
       <concept id="7076342757640822315" name="CarpoolLang.structure.Button" flags="ng" index="2o8Iol">
-        <property id="7076342757640822318" name="url" index="2o8Iog" />
         <property id="7076342757640822317" name="label" index="2o8Ioj" />
         <child id="8418759418188362492" name="href" index="1IgwfE" />
       </concept>
@@ -359,7 +358,6 @@
         </node>
         <node concept="2o8Iol" id="68Oe3VU62sr" role="2o8Ioh">
           <property role="2o8Ioj" value="Offer a Ride" />
-          <property role="2o8Iog" value="/offer-ride" />
         </node>
       </node>
       <node concept="2o932N" id="7jlshoqD7GY" role="11Lowe">
@@ -451,7 +449,6 @@
           </node>
           <node concept="2o8Iol" id="3$oVHIS1J4i" role="2o7Wv8">
             <property role="2o8Ioj" value="Add New Car" />
-            <property role="2o8Iog" value="/profile/add-car" />
           </node>
         </node>
         <node concept="2obJ9l" id="3$oVHIS1J4_" role="3z5yUe">
@@ -499,7 +496,6 @@
           </node>
           <node concept="2o8Iol" id="3$oVHIS1J4F" role="2o7Wv8">
             <property role="2o8Ioj" value="Book a Ride" />
-            <property role="2o8Iog" value="/find-rides" />
           </node>
         </node>
       </node>
@@ -610,7 +606,6 @@
         </node>
         <node concept="2o8Iol" id="68Oe3VUbo$c" role="2o8Ioh">
           <property role="2o8Ioj" value="Login" />
-          <property role="2o8Iog" value="/login" />
         </node>
       </node>
       <node concept="2oetWv" id="7jlshoqD8FI" role="11Lowe">
@@ -628,6 +623,323 @@
         <node concept="2o8Iol" id="7jlshoqD8G4" role="2o8Ioh">
           <property role="2o8Ioj" value="Login" />
           <node concept="1IgwfU" id="7jlshoqD8G5" role="1IgwfE">
+            <property role="1IgwfS" value="/login" />
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="2rNpJ9" id="2eH18dHfKX8">
+    <property role="2rNA0x" value="Carpool App" />
+    <property role="2rNA0u" value="JoinMyRide" />
+    <property role="2rNA0v" value="Ride sharing" />
+    <property role="2rNA0s" value="300" />
+    <property role="2hWt0N" value="Carpool @ 2024" />
+    <property role="2hWt0K" value="Yes" />
+    <property role="2rNA0t" value="light" />
+    <property role="2rNVdf" value="top" />
+    <property role="2odkKO" value="http://localhost:300" />
+    <node concept="2rNXcv" id="2eH18dHfKX9" role="2rNXcr">
+      <property role="2rNXct" value="Find a Ride" />
+      <property role="2rNXcq" value="FindARide" />
+    </node>
+    <node concept="2rNXcv" id="2eH18dHfKXd" role="2rNXcr">
+      <property role="2rNXct" value="Home" />
+      <property role="2rNXcq" value="Home" />
+    </node>
+    <node concept="2rNXcv" id="2eH18dHfKXe" role="2rNXcr">
+      <property role="2rNXct" value="Profile" />
+      <property role="2rNXcq" value="Profile" />
+    </node>
+    <node concept="2rNXcv" id="2eH18dHfKXf" role="2rNXcr">
+      <property role="2rNXct" value="Add Ride" />
+      <property role="2rNXcq" value="AddRide" />
+    </node>
+    <node concept="2od1e8" id="2eH18dHfKXa" role="2od1e5">
+      <property role="2od1e6" value="Home" />
+      <property role="2od1e7" value="/" />
+      <property role="2od1e4" value="no" />
+    </node>
+    <node concept="2od1e8" id="2eH18dHfKXg" role="2od1e5">
+      <property role="2od1e6" value="FindARide" />
+      <property role="2od1e7" value="/find-ride" />
+      <property role="2od1e4" value="no" />
+    </node>
+    <node concept="2od1e8" id="2eH18dHfKXh" role="2od1e5">
+      <property role="2od1e6" value="OfferARide" />
+      <property role="2od1e7" value="/offer-ride" />
+      <property role="2od1e4" value="yes" />
+    </node>
+    <node concept="2od1e8" id="2eH18dHfKXi" role="2od1e5">
+      <property role="2od1e6" value="RideDetails" />
+      <property role="2od1e7" value="/ride-details" />
+      <property role="2od1e4" value="yes" />
+    </node>
+    <node concept="2od1e8" id="2eH18dHfKXj" role="2od1e5">
+      <property role="2od1e6" value="Profile" />
+      <property role="2od1e7" value="/profile" />
+      <property role="2od1e4" value="yes" />
+    </node>
+    <node concept="2od1e8" id="2eH18dHfKXk" role="2od1e5">
+      <property role="2od1e6" value="Sign Up" />
+      <property role="2od1e7" value="/auth/signup" />
+      <property role="2od1e4" value="no" />
+    </node>
+    <node concept="2od1e8" id="2eH18dHfKXl" role="2od1e5">
+      <property role="2od1e6" value="Login" />
+      <property role="2od1e7" value="/auth/sigin" />
+      <property role="2od1e4" value="no" />
+    </node>
+    <node concept="2odkKT" id="2eH18dHfKXb" role="2odkMV">
+      <property role="2odkKR" value="findRide" />
+      <property role="2odkKz" value="/api/ride" />
+    </node>
+    <node concept="2odkKT" id="2eH18dHfKXm" role="2odkMV">
+      <property role="2odkKR" value="offerRide" />
+      <property role="2odkKz" value="/api/rides" />
+      <property role="2odkLW" value="5zp68F98GSm/POST" />
+    </node>
+    <node concept="2odkKT" id="2eH18dHfKXq" role="2odkMV">
+      <property role="2odkKR" value="profile" />
+      <property role="2odkKz" value="/api/users/[userId]" />
+    </node>
+    <node concept="2odkKT" id="2eH18dHfKXr" role="2odkMV">
+      <property role="2odkKR" value="addCar" />
+      <property role="2odkKz" value="/api/cars?ownerId=[userId]" />
+      <property role="2odkLW" value="5zp68F98GSm/POST" />
+    </node>
+    <node concept="2odkKT" id="2eH18dHfKXs" role="2odkMV">
+      <property role="2odkKR" value="editCar" />
+      <property role="2odkKz" value="/api/users/[userId]/cars/[carId]" />
+      <property role="2odkLW" value="5zp68F98GSo/DELETE" />
+    </node>
+    <node concept="2odkKT" id="2eH18dHfKXt" role="2odkMV">
+      <property role="2odkKR" value="sigin" />
+      <property role="2odkKz" value="/api/auth/sigin" />
+      <property role="2odkLW" value="5zp68F98GSm/POST" />
+    </node>
+    <node concept="2odkKT" id="2eH18dHfKXu" role="2odkMV">
+      <property role="2odkKR" value="signout" />
+      <property role="2odkKz" value="/api/auth.signout" />
+      <property role="2odkLW" value="5zp68F98GSm/POST" />
+    </node>
+    <node concept="2ocoYJ" id="2eH18dHfKXc" role="2ocHty">
+      <ref role="2ocoYE" node="68Oe3VU0nfY" />
+      <node concept="2oetWv" id="2eH18dHgBlI" role="11Lowe">
+        <property role="2oetWt" value="Welcome to RideTogether" />
+      </node>
+      <node concept="2ofuGD" id="2eH18dHgBlL" role="11Lowe">
+        <property role="2ofuGB" value="Travel smarter, save money, and reduce carbon footprints by carpooling!" />
+      </node>
+      <node concept="1IipSc" id="2eH18dHgBlO" role="11Lowe">
+        <node concept="2o8Iol" id="2eH18dHgBlQ" role="1IipSa">
+          <property role="2o8Ioj" value="Find a Ride" />
+          <node concept="1IgwfU" id="2eH18dHgBlU" role="1IgwfE">
+            <property role="1IgwfS" value="/find-ride" />
+          </node>
+        </node>
+        <node concept="2o8Iol" id="2eH18dHgBlS" role="1IipSa">
+          <property role="2o8Ioj" value="Offer a Ride" />
+          <node concept="1IgwfU" id="2eH18dHgBlT" role="1IgwfE">
+            <property role="1IgwfS" value="/add-ride" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2ocoYJ" id="2eH18dHgBlJ" role="2ocHty">
+      <ref role="2ocoYE" node="68Oe3VU0nfX" />
+      <node concept="2oetWv" id="2eH18dHgBlW" role="11Lowe">
+        <property role="2oetWt" value="Find a Ride" />
+      </node>
+      <node concept="2o932N" id="2eH18dHgBm0" role="11Lowe">
+        <node concept="2o9m_g" id="2eH18dHgBm2" role="2o9m_c">
+          <property role="2o9m_e" value="From" />
+        </node>
+        <node concept="2o9m_g" id="2eH18dHgBm4" role="2o9m_c">
+          <property role="2o9m_e" value="To" />
+        </node>
+        <node concept="2o9m_g" id="2eH18dHgBm5" role="2o9m_c">
+          <property role="2o9m_e" value="Date" />
+          <property role="2o9m_f" value="68Oe3VU40yh/Date" />
+        </node>
+        <node concept="2o8Iol" id="2eH18dHgBm8" role="2o8Ioh">
+          <property role="2o8Ioj" value="Offer a Ride" />
+        </node>
+      </node>
+      <node concept="2hWOun" id="2eH18dHgBma" role="11Lowe">
+        <node concept="2hWOuD" id="2eH18dHgBmc" role="2hWOuy">
+          <property role="2hWOuJ" value="ride.origin" />
+          <property role="2hWOuH" value="ride.destination" />
+        </node>
+        <node concept="2hWOuw" id="2eH18dHgBme" role="2hWOvl">
+          <property role="2hVNqs" value="ride.date" />
+        </node>
+        <node concept="2hWOuw" id="2eH18dHgBmg" role="2hWOvl">
+          <property role="2hVNqs" value="ride.departureTime" />
+        </node>
+        <node concept="2hWOuw" id="2eH18dHgBmh" role="2hWOvl">
+          <property role="2hVNqs" value="ride.seatsAvailable" />
+        </node>
+        <node concept="2hWOuw" id="2eH18dHgBmi" role="2hWOvl">
+          <property role="2hVNqs" value="ride.pricePerSeat" />
+        </node>
+        <node concept="2hWOuw" id="2eH18dHgBmj" role="2hWOvl">
+          <property role="2hVNqs" value="ride.comments" />
+        </node>
+        <node concept="2hWOuw" id="2eH18dHgBmk" role="2hWOvl">
+          <property role="2hVNqs" value="ride.driver.name" />
+        </node>
+      </node>
+    </node>
+    <node concept="2ocoYJ" id="2eH18dHgBlY" role="2ocHty">
+      <ref role="2ocoYE" node="68Oe3VU0nfW" />
+      <node concept="2o932N" id="2eH18dHgBmm" role="11Lowe">
+        <node concept="2o9m_g" id="2eH18dHgBmo" role="2o9m_c">
+          <property role="2o9m_e" value="Start Location" />
+        </node>
+        <node concept="2o9m_g" id="2eH18dHgBmq" role="2o9m_c">
+          <property role="2o9m_e" value="End Location" />
+        </node>
+        <node concept="2o9m_g" id="2eH18dHgBmr" role="2o9m_c">
+          <property role="2o9m_e" value="Date of Travel" />
+          <property role="2o9m_f" value="68Oe3VU40yh/Date" />
+        </node>
+        <node concept="2o9m_g" id="2eH18dHgBms" role="2o9m_c">
+          <property role="2o9m_e" value="Time" />
+          <property role="2o9m_f" value="68Oe3VU40yi/Time" />
+        </node>
+        <node concept="2o9m_g" id="2eH18dHgBmt" role="2o9m_c">
+          <property role="2o9m_e" value="Available Seats" />
+          <property role="2o9m_f" value="68Oe3VU40yj/Number" />
+        </node>
+        <node concept="2o9m_g" id="2eH18dHgBmu" role="2o9m_c">
+          <property role="2o9m_e" value="Cost per Seat in EUR" />
+          <property role="2o9m_f" value="68Oe3VU40yj/Number" />
+        </node>
+        <node concept="2o9m_g" id="2eH18dHgBmv" role="2o9m_c">
+          <property role="2o9m_e" value="Additional Info" />
+          <property role="2o9m_f" value="68Oe3VU40yk/TextArea" />
+        </node>
+        <node concept="2o8Iol" id="2eH18dHgBmw" role="2o8Ioh">
+          <property role="2o8Ioj" value="Offer a Ride" />
+          <node concept="1IgwfU" id="2eH18dHgBmx" role="1IgwfE">
+            <property role="1IgwfS" value="/offer-ride" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2ocoYJ" id="2eH18dHgBmy" role="2ocHty">
+      <ref role="2ocoYE" node="68Oe3VU0nfU" />
+      <node concept="2oetWv" id="2eH18dHgBm$" role="11Lowe">
+        <property role="2oetWt" value="{{session?.user.name}} {{session?.user.surname}}" />
+      </node>
+      <node concept="2ofuGD" id="2eH18dHgBmC" role="11Lowe">
+        <property role="2ofuGB" value="@ {{session?.user.username}}" />
+      </node>
+      <node concept="3z5yVI" id="2eH18dHgBmF" role="11Lowe">
+        <node concept="3z5yVG" id="2eH18dHgBmH" role="3z5yVy">
+          <node concept="3z5yVq" id="2eH18dHgBmJ" role="3z5yVu">
+            <property role="3z5yVo" value="cars" />
+            <property role="3z5yVv" value="My Cars" />
+          </node>
+        </node>
+        <node concept="3z5yVG" id="2eH18dHgBmX" role="3z5yVy">
+          <node concept="3z5yVq" id="2eH18dHgBmY" role="3z5yVu">
+            <property role="3z5yVo" value="rides" />
+            <property role="3z5yVv" value="My Rides" />
+          </node>
+        </node>
+        <node concept="2obJ9l" id="2eH18dHgBn6" role="3z5yUe">
+          <node concept="2obJ9j" id="2eH18dHgBn7" role="2obJ9a">
+            <node concept="2obJ99" id="2eH18dHgBn8" role="2hZcBk">
+              <property role="2obJ97" value="Model" />
+            </node>
+            <node concept="2obJ99" id="2eH18dHgBnc" role="2hZcBk">
+              <property role="2obJ97" value="Year" />
+            </node>
+            <node concept="2obJ99" id="2eH18dHgBnd" role="2hZcBk">
+              <property role="2obJ97" value="License Plate" />
+            </node>
+            <node concept="2obJ99" id="2eH18dHgBne" role="2hZcBk">
+              <property role="2obJ97" value="Actions" />
+            </node>
+          </node>
+          <node concept="2obJ9f" id="2eH18dHgBn9" role="2obJ9b">
+            <node concept="2obJ99" id="2eH18dHgBna" role="2obJ95">
+              <property role="2obJ97" value="{{car.carModel}}" />
+            </node>
+            <node concept="2obJ99" id="2eH18dHgBnf" role="2obJ95">
+              <property role="2obJ97" value="{{car.year}}" />
+            </node>
+            <node concept="2obJ99" id="2eH18dHgBng" role="2obJ95">
+              <property role="2obJ97" value="{{car.licensePlate}}" />
+            </node>
+          </node>
+          <node concept="2o7$Zb" id="2eH18dHgBnb" role="2o7$0B">
+            <property role="2o7$Z6" value="My cars" />
+          </node>
+        </node>
+        <node concept="2obJ9l" id="2eH18dHgBmL" role="3z5yUe">
+          <node concept="2obJ9j" id="2eH18dHgBmN" role="2obJ9a">
+            <node concept="2obJ99" id="2eH18dHgBmP" role="2hZcBk">
+              <property role="2obJ97" value="Origin" />
+            </node>
+            <node concept="2obJ99" id="2eH18dHgBmZ" role="2hZcBk">
+              <property role="2obJ97" value="Destination" />
+            </node>
+            <node concept="2obJ99" id="2eH18dHgBn0" role="2hZcBk">
+              <property role="2obJ97" value="Date" />
+            </node>
+            <node concept="2obJ99" id="2eH18dHgBn1" role="2hZcBk">
+              <property role="2obJ97" value="Time" />
+            </node>
+            <node concept="2obJ99" id="2eH18dHgBnh" role="2hZcBk">
+              <property role="2obJ97" value="Price" />
+            </node>
+            <node concept="2obJ99" id="2eH18dHgBni" role="2hZcBk">
+              <property role="2obJ97" value="Actions" />
+            </node>
+          </node>
+          <node concept="2obJ9f" id="2eH18dHgBmR" role="2obJ9b">
+            <node concept="2obJ99" id="2eH18dHgBmT" role="2obJ95">
+              <property role="2obJ97" value="{{ride.origin}}" />
+            </node>
+            <node concept="2obJ99" id="2eH18dHgBn2" role="2obJ95">
+              <property role="2obJ97" value="{{ride.destination}}" />
+            </node>
+            <node concept="2obJ99" id="2eH18dHgBn3" role="2obJ95">
+              <property role="2obJ97" value="{{ride.date}}" />
+            </node>
+            <node concept="2obJ99" id="2eH18dHgBnj" role="2obJ95">
+              <property role="2obJ97" value="{{ride.departureTime}}" />
+            </node>
+            <node concept="2obJ99" id="2eH18dHgBnk" role="2obJ95">
+              <property role="2obJ97" value="{{ride.pricePerSeat}}" />
+            </node>
+          </node>
+          <node concept="2o7$Zb" id="2eH18dHgBmV" role="2o7$0B">
+            <property role="2o7$Z6" value="My Rides" />
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="2ocoYJ" id="2eH18dHgBmA" role="2ocHty">
+      <ref role="2ocoYE" node="2eH18dHfKXl" />
+      <node concept="2oetWv" id="2eH18dHgBnm" role="11Lowe">
+        <property role="2oetWt" value="Login" />
+      </node>
+      <node concept="2o932N" id="2eH18dHgBns" role="11Lowe">
+        <node concept="2o9m_g" id="2eH18dHgBnu" role="2o9m_c">
+          <property role="2o9m_e" value="Email" />
+          <property role="2o9m_f" value="68Oe3VU40yl/Email" />
+        </node>
+        <node concept="2o9m_g" id="2eH18dHgBnw" role="2o9m_c">
+          <property role="2o9m_e" value="Password" />
+          <property role="2o9m_f" value="68Oe3VU40ym/Password" />
+        </node>
+        <node concept="2o8Iol" id="2eH18dHgBnx" role="2o8Ioh">
+          <property role="2o8Ioj" value="Login" />
+          <node concept="1IgwfU" id="2eH18dHgBnz" role="1IgwfE">
             <property role="1IgwfS" value="/login" />
           </node>
         </node>

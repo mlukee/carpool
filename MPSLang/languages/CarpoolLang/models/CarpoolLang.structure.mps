@@ -361,7 +361,7 @@
   <node concept="1TIwiD" id="68Oe3VU6GDF">
     <property role="EcuMT" value="7076342757641079403" />
     <property role="TrG5h" value="RenderTable" />
-    <property role="34LRSv" value="form" />
+    <property role="34LRSv" value="table" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" />
     <node concept="PrWs8" id="68Oe3VU6GDG" role="PzmwI">
       <ref role="PrY4T" node="1n19hHk1aOk" resolve="ChildRender" />
