@@ -26,6 +26,7 @@
         <child id="1071489727083" name="linkDeclaration" index="1TKVEi" />
         <child id="1071489727084" name="propertyDeclaration" index="1TKVEl" />
       </concept>
+      <concept id="1169125989551" name="jetbrains.mps.lang.structure.structure.InterfaceConceptDeclaration" flags="ig" index="PlHQZ" />
       <concept id="1169127622168" name="jetbrains.mps.lang.structure.structure.InterfaceConceptReference" flags="ig" index="PrWs8">
         <reference id="1169127628841" name="intfc" index="PrY4T" />
       </concept>
@@ -211,46 +212,12 @@
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="68Oe3VU02IQ" resolve="AppComponents" />
     </node>
-    <node concept="1TJgyj" id="68Oe3VU3us$" role="1TKVEi">
-      <property role="IQ2ns" value="7076342757640234788" />
+    <node concept="1TJgyj" id="1n19hHk1aOl" role="1TKVEi">
+      <property role="IQ2ns" value="1567574944605580565" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="renderHeading" />
+      <property role="20kJfa" value="listOfChildRenders" />
       <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="68Oe3VU3usx" resolve="RenderHeading" />
-    </node>
-    <node concept="1TJgyj" id="68Oe3VU3Jvm" role="1TKVEi">
-      <property role="IQ2ns" value="7076342757640304598" />
-      <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="renderText" />
-      <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="68Oe3VU2tcn" resolve="RenderText" />
-    </node>
-    <node concept="1TJgyj" id="6akmAI1xtbw" role="1TKVEi">
-      <property role="IQ2ns" value="7103401930051146464" />
-      <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="renderTabs" />
-      <property role="20lbJX" value="fLJekj6/_1__n" />
-      <ref role="20lvS9" node="6akmAI1wBi5" resolve="RenderTabs" />
-    </node>
-    <node concept="1TJgyj" id="68Oe3VU40yn" role="1TKVEi">
-      <property role="IQ2ns" value="7076342757640374423" />
-      <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="renderForm" />
-      <ref role="20lvS9" node="68Oe3VU40yd" resolve="RenderForm" />
-    </node>
-    <node concept="1TJgyj" id="68Oe3VU72de" role="1TKVEi">
-      <property role="IQ2ns" value="7076342757641167694" />
-      <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="renderTable" />
-      <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="68Oe3VU6GDF" resolve="RenderTable" />
-    </node>
-    <node concept="1TJgyj" id="5zp68F9aZGs" role="1TKVEi">
-      <property role="IQ2ns" value="6402175329643526940" />
-      <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="renderCard" />
-      <property role="20lbJX" value="fLJekj5/_0__n" />
-      <ref role="20lvS9" node="5zp68F9a_Wt" resolve="RenderCard" />
+      <ref role="20lvS9" node="1n19hHk1aOk" resolve="ChildRender" />
     </node>
   </node>
   <node concept="1TIwiD" id="68Oe3VU2tcn">
@@ -259,7 +226,7 @@
     <property role="34LRSv" value="text" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" />
     <node concept="PrWs8" id="68Oe3VU2tco" role="PzmwI">
-      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+      <ref role="PrY4T" node="1n19hHk1aOk" resolve="ChildRender" />
     </node>
     <node concept="1TJgyi" id="68Oe3VU2tcp" role="1TKVEl">
       <property role="IQ2nx" value="7076342757639967513" />
@@ -272,13 +239,13 @@
     <property role="TrG5h" value="RenderHeading" />
     <property role="34LRSv" value="heading" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" />
-    <node concept="PrWs8" id="68Oe3VU3usy" role="PzmwI">
-      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
-    </node>
     <node concept="1TJgyi" id="68Oe3VU3usz" role="1TKVEl">
       <property role="IQ2nx" value="7076342757640234787" />
       <property role="TrG5h" value="value" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="PrWs8" id="1n19hHk1aOm" role="PzmwI">
+      <ref role="PrY4T" node="1n19hHk1aOk" resolve="ChildRender" />
     </node>
   </node>
   <node concept="1TIwiD" id="68Oe3VU40yd">
@@ -286,9 +253,6 @@
     <property role="TrG5h" value="RenderForm" />
     <property role="34LRSv" value="form" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" />
-    <node concept="PrWs8" id="68Oe3VU40ye" role="PzmwI">
-      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
-    </node>
     <node concept="1TJgyj" id="68Oe3VU4l5M" role="1TKVEi">
       <property role="IQ2ns" value="7076342757640458610" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
@@ -301,6 +265,9 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="formButton" />
       <ref role="20lvS9" node="68Oe3VU5HSF" resolve="Button" />
+    </node>
+    <node concept="PrWs8" id="1n19hHk1aOv" role="PzmwI">
+      <ref role="PrY4T" node="1n19hHk1aOk" resolve="ChildRender" />
     </node>
   </node>
   <node concept="25R3W" id="68Oe3VU40yf">
@@ -366,24 +333,16 @@
     <property role="EcuMT" value="7076342757640822315" />
     <property role="TrG5h" value="Button" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" />
-    <node concept="PrWs8" id="68Oe3VU5HSG" role="PzmwI">
-      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
-    </node>
     <node concept="1TJgyi" id="68Oe3VU5HSH" role="1TKVEl">
       <property role="IQ2nx" value="7076342757640822317" />
       <property role="TrG5h" value="label" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
     </node>
-    <node concept="1TJgyi" id="68Oe3VU5HSI" role="1TKVEl">
-      <property role="IQ2nx" value="7076342757640822318" />
-      <property role="TrG5h" value="url" />
-      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
-    </node>
-    <node concept="1TJgyj" id="68Oe3VU6n0u" role="1TKVEi">
-      <property role="IQ2ns" value="7076342757640990750" />
+    <node concept="1TJgyj" id="7jlshoq_RbW" role="1TKVEi">
+      <property role="IQ2ns" value="8418759418188362492" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
-      <property role="20kJfa" value="icon" />
-      <ref role="20lvS9" node="68Oe3VU6n0r" resolve="ButtonIcon" />
+      <property role="20kJfa" value="href" />
+      <ref role="20lvS9" node="7jlshoq_RbG" resolve="ButtonLink" />
     </node>
   </node>
   <node concept="1TIwiD" id="68Oe3VU6n0r">
@@ -405,7 +364,7 @@
     <property role="34LRSv" value="form" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" />
     <node concept="PrWs8" id="68Oe3VU6GDG" role="PzmwI">
-      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+      <ref role="PrY4T" node="1n19hHk1aOk" resolve="ChildRender" />
     </node>
     <node concept="1TJgyj" id="68Oe3VU6GDO" role="1TKVEi">
       <property role="IQ2ns" value="7076342757641079412" />
@@ -432,7 +391,6 @@
       <property role="IQ2ns" value="7076342757642207222" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="button" />
-      <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="68Oe3VU5HSF" resolve="Button" />
     </node>
   </node>
@@ -523,9 +481,6 @@
     <property role="TrG5h" value="RenderCard" />
     <property role="34LRSv" value="card" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" />
-    <node concept="PrWs8" id="5zp68F9a_Wu" role="PzmwI">
-      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
-    </node>
     <node concept="1TJgyj" id="5zp68F9a_WC" role="1TKVEi">
       <property role="IQ2ns" value="6402175329643421480" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
@@ -539,6 +494,9 @@
       <property role="20kJfa" value="content" />
       <property role="20lbJX" value="fLJekj6/_1__n" />
       <ref role="20lvS9" node="5zp68F9a_WE" resolve="CardContent" />
+    </node>
+    <node concept="PrWs8" id="1n19hHk1aOw" role="PzmwI">
+      <ref role="PrY4T" node="1n19hHk1aOk" resolve="ChildRender" />
     </node>
   </node>
   <node concept="1TIwiD" id="5zp68F9a_Wz">
@@ -579,7 +537,7 @@
     <property role="34LRSv" value="renderTabs" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" />
     <node concept="PrWs8" id="6akmAI1wBi6" role="PzmwI">
-      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+      <ref role="PrY4T" node="1n19hHk1aOk" resolve="ChildRender" />
     </node>
     <node concept="1TJgyj" id="6akmAI1wBi9" role="1TKVEi">
       <property role="IQ2ns" value="7103401930050925705" />
@@ -644,6 +602,40 @@
       <property role="20kJfa" value="tables" />
       <property role="20lbJX" value="fLJekj6/_1__n" />
       <ref role="20lvS9" node="68Oe3VU6GDF" resolve="RenderTable" />
+    </node>
+  </node>
+  <node concept="PlHQZ" id="1n19hHk1aOk">
+    <property role="EcuMT" value="1567574944605580564" />
+    <property role="TrG5h" value="ChildRender" />
+  </node>
+  <node concept="1TIwiD" id="7jlshoq_RbG">
+    <property role="EcuMT" value="8418759418188362476" />
+    <property role="TrG5h" value="ButtonLink" />
+    <property role="34LRSv" value="buttonLink" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <node concept="PrWs8" id="7jlshoq_RbH" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
+    <node concept="1TJgyi" id="7jlshoq_RbI" role="1TKVEl">
+      <property role="IQ2nx" value="8418759418188362478" />
+      <property role="TrG5h" value="url" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="7jlshoqBeWq">
+    <property role="EcuMT" value="8418759418188721946" />
+    <property role="TrG5h" value="RenderButtons" />
+    <property role="34LRSv" value="renderButtons" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" />
+    <node concept="PrWs8" id="7jlshoqBeWr" role="PzmwI">
+      <ref role="PrY4T" node="1n19hHk1aOk" resolve="ChildRender" />
+    </node>
+    <node concept="1TJgyj" id="7jlshoqBeWs" role="1TKVEi">
+      <property role="IQ2ns" value="8418759418188721948" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="buttons" />
+      <property role="20lbJX" value="fLJekj6/_1__n" />
+      <ref role="20lvS9" node="68Oe3VU5HSF" resolve="Button" />
     </node>
   </node>
 </model>

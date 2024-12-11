@@ -15,10 +15,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_AppRender;
   private ConceptPresentation props_Button;
   private ConceptPresentation props_ButtonIcon;
+  private ConceptPresentation props_ButtonLink;
   private ConceptPresentation props_CardContent;
   private ConceptPresentation props_CardTitle;
   private ConceptPresentation props_CarpoolNotation;
+  private ConceptPresentation props_ChildRender;
   private ConceptPresentation props_FormInput;
+  private ConceptPresentation props_RenderButtons;
   private ConceptPresentation props_RenderCard;
   private ConceptPresentation props_RenderForm;
   private ConceptPresentation props_RenderHeading;
@@ -69,7 +72,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
       case LanguageConceptSwitch.Button:
         if (props_Button == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.presentationByName();
+          cpb.rawPresentation("Button");
           props_Button = cpb.create();
         }
         return props_Button;
@@ -80,6 +83,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_ButtonIcon = cpb.create();
         }
         return props_ButtonIcon;
+      case LanguageConceptSwitch.ButtonLink:
+        if (props_ButtonLink == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_ButtonLink = cpb.create();
+        }
+        return props_ButtonLink;
       case LanguageConceptSwitch.CardContent:
         if (props_CardContent == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
@@ -101,6 +111,12 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_CarpoolNotation = cpb.create();
         }
         return props_CarpoolNotation;
+      case LanguageConceptSwitch.ChildRender:
+        if (props_ChildRender == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          props_ChildRender = cpb.create();
+        }
+        return props_ChildRender;
       case LanguageConceptSwitch.FormInput:
         if (props_FormInput == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
@@ -108,45 +124,52 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_FormInput = cpb.create();
         }
         return props_FormInput;
+      case LanguageConceptSwitch.RenderButtons:
+        if (props_RenderButtons == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.rawPresentation("renderButtons");
+          props_RenderButtons = cpb.create();
+        }
+        return props_RenderButtons;
       case LanguageConceptSwitch.RenderCard:
         if (props_RenderCard == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.presentationByName();
+          cpb.rawPresentation("card");
           props_RenderCard = cpb.create();
         }
         return props_RenderCard;
       case LanguageConceptSwitch.RenderForm:
         if (props_RenderForm == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.presentationByName();
+          cpb.rawPresentation("form");
           props_RenderForm = cpb.create();
         }
         return props_RenderForm;
       case LanguageConceptSwitch.RenderHeading:
         if (props_RenderHeading == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.presentationByName();
+          cpb.rawPresentation("heading");
           props_RenderHeading = cpb.create();
         }
         return props_RenderHeading;
       case LanguageConceptSwitch.RenderTable:
         if (props_RenderTable == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.presentationByName();
+          cpb.rawPresentation("form");
           props_RenderTable = cpb.create();
         }
         return props_RenderTable;
       case LanguageConceptSwitch.RenderTabs:
         if (props_RenderTabs == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.presentationByName();
+          cpb.rawPresentation("renderTabs");
           props_RenderTabs = cpb.create();
         }
         return props_RenderTabs;
       case LanguageConceptSwitch.RenderText:
         if (props_RenderText == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.presentationByName();
+          cpb.rawPresentation("text");
           props_RenderText = cpb.create();
         }
         return props_RenderText;

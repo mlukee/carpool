@@ -62,10 +62,8 @@ import org.jetbrains.mps.openapi.language.SConcept;
     editorCell.addEditorCell(createIndentCell_1());
     editorCell.addEditorCell(createConstant_0());
     editorCell.addEditorCell(createProperty_0());
-    editorCell.addEditorCell(createConstant_1());
-    editorCell.addEditorCell(createProperty_1());
     editorCell.addEditorCell(createRefNode_0());
-    editorCell.addEditorCell(createConstant_2());
+    editorCell.addEditorCell(createConstant_1());
     return editorCell;
   }
   private EditorCell createIndentCell_0() {
@@ -103,42 +101,15 @@ import org.jetbrains.mps.openapi.language.SConcept;
       getCellFactory().popCellContext();
     }
   }
-  private EditorCell createConstant_1() {
-    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "|");
-    editorCell.setCellId("Constant_78mff1_e0");
-    editorCell.setDefaultText("");
-    return editorCell;
-  }
-  private EditorCell createProperty_1() {
-    getCellFactory().pushCellContext();
-    try {
-      final SProperty property = PROPS.url$ZX9l;
-      getCellFactory().setPropertyInfo(new SPropertyInfo(myNode, property));
-      EditorCell_Property editorCell = EditorCell_Property.create(getEditorContext(), new SPropertyAccessor(myNode, property, false, false), myNode);
-      editorCell.setDefaultText("<no url>");
-      editorCell.setCellId("property_url");
-      editorCell.setSubstituteInfo(new SPropertySubstituteInfo(editorCell, property));
-      setCellContext(editorCell);
-      Iterable<SNode> propertyAttributes = SNodeOperations.ofConcept(new IAttributeDescriptor.AllAttributes().list(myNode), CONCEPTS.PropertyAttribute$Gb);
-      Iterable<SNode> currentPropertyAttributes = Sequence.fromIterable(propertyAttributes).where((it) -> Objects.equals(PropertyAttribute__BehaviorDescriptor.getProperty_id1avfQ4BBzOo.invoke(it), property));
-      if (Sequence.fromIterable(currentPropertyAttributes).isNotEmpty()) {
-        EditorManager manager = EditorManager.getInstanceFromContext(getEditorContext());
-        return manager.createNodeRoleAttributeCell(Sequence.fromIterable(currentPropertyAttributes).first(), AttributeKind.PROPERTY, editorCell);
-      } else
-      return editorCell;
-    } finally {
-      getCellFactory().popCellContext();
-    }
-  }
   private EditorCell createRefNode_0() {
-    SingleRoleCellProvider provider = new iconSingleRoleHandler_78mff1_g0(myNode, LINKS.icon$ZfSP, getEditorContext());
+    SingleRoleCellProvider provider = new hrefSingleRoleHandler_78mff1_e0(myNode, LINKS.href$Cnqd, getEditorContext());
     return provider.createCell();
   }
-  private static class iconSingleRoleHandler_78mff1_g0 extends SingleRoleCellProvider {
+  private static class hrefSingleRoleHandler_78mff1_e0 extends SingleRoleCellProvider {
     @NotNull
     private SNode myNode;
 
-    public iconSingleRoleHandler_78mff1_g0(SNode ownerNode, SContainmentLink containmentLink, EditorContext context) {
+    public hrefSingleRoleHandler_78mff1_e0(SNode ownerNode, SContainmentLink containmentLink, EditorContext context) {
       super(containmentLink, context);
       myNode = ownerNode;
     }
@@ -151,8 +122,8 @@ import org.jetbrains.mps.openapi.language.SConcept;
 
     protected EditorCell createChildCell(SNode child) {
       EditorCell editorCell = getUpdateSession().updateChildNodeCell(child);
-      editorCell.setAction(CellActionType.DELETE, new CellAction_DeleteSmart(getNode(), LINKS.icon$ZfSP, child));
-      editorCell.setAction(CellActionType.BACKSPACE, new CellAction_DeleteSmart(getNode(), LINKS.icon$ZfSP, child));
+      editorCell.setAction(CellActionType.DELETE, new CellAction_DeleteSmart(getNode(), LINKS.href$Cnqd, child));
+      editorCell.setAction(CellActionType.BACKSPACE, new CellAction_DeleteSmart(getNode(), LINKS.href$Cnqd, child));
       installCellInfo(child, editorCell, false);
       return editorCell;
     }
@@ -164,16 +135,16 @@ import org.jetbrains.mps.openapi.language.SConcept;
         editorCell.setSubstituteInfo((isEmpty ? new SEmptyContainmentSubstituteInfo(editorCell) : new SChildSubstituteInfo(editorCell)));
       }
       if (editorCell.getSRole() == null) {
-        editorCell.setSRole(LINKS.icon$ZfSP);
+        editorCell.setSRole(LINKS.href$Cnqd);
       }
     }
     @Override
     protected EditorCell createEmptyCell() {
       getCellFactory().pushCellContext();
-      getCellFactory().setNodeLocation(new SNodeLocation.FromParentAndLink(getNode(), LINKS.icon$ZfSP));
+      getCellFactory().setNodeLocation(new SNodeLocation.FromParentAndLink(getNode(), LINKS.href$Cnqd));
       try {
         EditorCell editorCell = super.createEmptyCell();
-        editorCell.setCellId("empty_icon");
+        editorCell.setCellId("empty_href");
         installCellInfo(null, editorCell, true);
         setCellContext(editorCell);
         return editorCell;
@@ -182,19 +153,18 @@ import org.jetbrains.mps.openapi.language.SConcept;
       }
     }
     protected String getNoTargetText() {
-      return "<no icon>";
+      return "<no href>";
     }
   }
-  private EditorCell createConstant_2() {
+  private EditorCell createConstant_1() {
     EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "]]");
-    editorCell.setCellId("Constant_78mff1_h0");
+    editorCell.setCellId("Constant_78mff1_f0");
     editorCell.setDefaultText("");
     return editorCell;
   }
 
   private static final class PROPS {
     /*package*/ static final SProperty label$ZWUk = MetaAdapterFactory.getProperty(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa16de2bL, 0x6234383efa16de2dL, "label");
-    /*package*/ static final SProperty url$ZX9l = MetaAdapterFactory.getProperty(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa16de2bL, 0x6234383efa16de2eL, "url");
   }
 
   private static final class CONCEPTS {
@@ -202,6 +172,6 @@ import org.jetbrains.mps.openapi.language.SConcept;
   }
 
   private static final class LINKS {
-    /*package*/ static final SContainmentLink icon$ZfSP = MetaAdapterFactory.getContainmentLink(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa16de2bL, 0x6234383efa19701eL, "icon");
+    /*package*/ static final SContainmentLink href$Cnqd = MetaAdapterFactory.getContainmentLink(0x722e4ffa13ae440cL, 0xb33c3c19945a9c69L, 0x6234383efa16de2bL, 0x74d571161a9772fcL, "href");
   }
 }

@@ -13,6 +13,7 @@ import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Indent;
 import jetbrains.mps.openapi.editor.style.Style;
 import jetbrains.mps.editor.runtime.style.StyleImpl;
 import jetbrains.mps.editor.runtime.style.StyleAttributes;
+import jetbrains.mps.nodeEditor.cells.EditorCell_Indent;
 import jetbrains.mps.nodeEditor.cells.EditorCell_Constant;
 import jetbrains.mps.nodeEditor.cellLayout.CellLayout_Horizontal;
 import jetbrains.mps.lang.editor.cellProviders.SingleRoleCellProvider;
@@ -66,12 +67,22 @@ import org.jetbrains.mps.openapi.language.SConcept;
     Style style = new StyleImpl();
     style.set(StyleAttributes.SELECTABLE, false);
     editorCell.getStyle().putAll(style);
+    editorCell.addEditorCell(createIndentCell_0());
+    editorCell.addEditorCell(createIndentCell_1());
     editorCell.addEditorCell(createConstant_0());
+    return editorCell;
+  }
+  private EditorCell createIndentCell_0() {
+    EditorCell_Indent editorCell = new EditorCell_Indent(getEditorContext(), myNode);
+    return editorCell;
+  }
+  private EditorCell createIndentCell_1() {
+    EditorCell_Indent editorCell = new EditorCell_Indent(getEditorContext(), myNode);
     return editorCell;
   }
   private EditorCell createConstant_0() {
     EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "//Card//");
-    editorCell.setCellId("Constant_frpssj_a0a");
+    editorCell.setCellId("Constant_frpssj_c0a");
     editorCell.setDefaultText("");
     return editorCell;
   }
@@ -81,25 +92,35 @@ import org.jetbrains.mps.openapi.language.SConcept;
     Style style = new StyleImpl();
     style.set(StyleAttributes.SELECTABLE, false);
     editorCell.getStyle().putAll(style);
+    editorCell.addEditorCell(createIndentCell_2());
+    editorCell.addEditorCell(createIndentCell_3());
     editorCell.addEditorCell(createConstant_1());
     editorCell.addEditorCell(createRefNode_0());
     return editorCell;
   }
+  private EditorCell createIndentCell_2() {
+    EditorCell_Indent editorCell = new EditorCell_Indent(getEditorContext(), myNode);
+    return editorCell;
+  }
+  private EditorCell createIndentCell_3() {
+    EditorCell_Indent editorCell = new EditorCell_Indent(getEditorContext(), myNode);
+    return editorCell;
+  }
   private EditorCell createConstant_1() {
     EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "Title:");
-    editorCell.setCellId("Constant_frpssj_a1a");
+    editorCell.setCellId("Constant_frpssj_c1a");
     editorCell.setDefaultText("");
     return editorCell;
   }
   private EditorCell createRefNode_0() {
-    SingleRoleCellProvider provider = new titleSingleRoleHandler_frpssj_b1a(myNode, LINKS.title$2ApB, getEditorContext());
+    SingleRoleCellProvider provider = new titleSingleRoleHandler_frpssj_d1a(myNode, LINKS.title$2ApB, getEditorContext());
     return provider.createCell();
   }
-  private static class titleSingleRoleHandler_frpssj_b1a extends SingleRoleCellProvider {
+  private static class titleSingleRoleHandler_frpssj_d1a extends SingleRoleCellProvider {
     @NotNull
     private SNode myNode;
 
-    public titleSingleRoleHandler_frpssj_b1a(SNode ownerNode, SContainmentLink containmentLink, EditorContext context) {
+    public titleSingleRoleHandler_frpssj_d1a(SNode ownerNode, SContainmentLink containmentLink, EditorContext context) {
       super(containmentLink, context);
       myNode = ownerNode;
     }
@@ -152,12 +173,22 @@ import org.jetbrains.mps.openapi.language.SConcept;
     Style style = new StyleImpl();
     style.set(StyleAttributes.SELECTABLE, false);
     editorCell.getStyle().putAll(style);
+    editorCell.addEditorCell(createIndentCell_4());
+    editorCell.addEditorCell(createIndentCell_5());
     editorCell.addEditorCell(createConstant_2());
+    return editorCell;
+  }
+  private EditorCell createIndentCell_4() {
+    EditorCell_Indent editorCell = new EditorCell_Indent(getEditorContext(), myNode);
+    return editorCell;
+  }
+  private EditorCell createIndentCell_5() {
+    EditorCell_Indent editorCell = new EditorCell_Indent(getEditorContext(), myNode);
     return editorCell;
   }
   private EditorCell createConstant_2() {
     EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "Content:");
-    editorCell.setCellId("Constant_frpssj_a2a");
+    editorCell.setCellId("Constant_frpssj_c2a");
     editorCell.setDefaultText("");
     return editorCell;
   }
