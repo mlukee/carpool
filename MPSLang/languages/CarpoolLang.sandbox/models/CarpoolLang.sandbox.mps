@@ -113,7 +113,7 @@
     <property role="2hWt0N" value="Carpool @ 2024" />
     <property role="2hWt0K" value="Yes" />
     <property role="2rNA0t" value="light" />
-    <property role="2rNVdf" value="top" />
+    <property role="2rNVdf" value="left" />
     <property role="2odkKO" value="http://localhost:300" />
     <node concept="2rNXcv" id="2eH18dHfKX9" role="2rNXcr">
       <property role="2rNXct" value="Find a Ride" />
