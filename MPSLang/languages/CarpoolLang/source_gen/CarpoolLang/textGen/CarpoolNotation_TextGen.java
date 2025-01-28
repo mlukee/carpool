@@ -36,7 +36,7 @@ public class CarpoolNotation_TextGen extends TextGenDescriptorBase {
     tgs.append("<html lang=\"en\" suppressHydrationWarning>\n");
     ctx.getBuffer().area().increaseIndent();
     tgs.indent();
-    tgs.append("<body className=\"overflow-x-hidden\"\n");
+    tgs.append("<body className=\"overflow-x-hidden\">\n");
     ctx.getBuffer().area().increaseIndent();
     tgs.indent();
     tgs.append("<ThemeProvider attribute=\"class\" defaultTheme=\"dark\" enableSystem disableTransitionOnChange>\n");
@@ -74,6 +74,7 @@ public class CarpoolNotation_TextGen extends TextGenDescriptorBase {
       ctx.getBuffer().area().increaseIndent();
       tgs.indent();
       tgs.append(SPropertyOperations.getString(ctx.getPrimaryInput(), PROPS.footer$Usi9));
+      tgs.append(" {new Date().getFullYear()}");
       tgs.append("\n");
       ctx.getBuffer().area().decreaseIndent();
       tgs.indent();

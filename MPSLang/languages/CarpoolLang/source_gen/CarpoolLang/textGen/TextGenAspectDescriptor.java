@@ -27,6 +27,12 @@ public class TextGenAspectDescriptor extends TextGenAspectBase {
         return new AppRender_TextGen();
       case LanguageConceptSwitch.CarpoolNotation:
         return new CarpoolNotation_TextGen();
+      case LanguageConceptSwitch.RenderTabs:
+        return new RenderTabs_TextGen();
+      case LanguageConceptSwitch.TabsList:
+        return new TabsList_TextGen();
+      case LanguageConceptSwitch.TabsListRow:
+        return new TabsListRow_TextGen();
     }
     return null;
   }

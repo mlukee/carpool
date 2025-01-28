@@ -11,7 +11,7 @@ return (
                 <main className="flex-1">{children}</main>
               </div>
               <footer className="mx-auto mb-1 items-center justify-center">
-                Carpool @ 2024
+                Carpool @ {new Date().getFullYear()}
               </footer>
             </div>
             <Toaster />
@@ -34,6 +34,27 @@ const Sidebar = () => {
           </Button>
         </SheetTrigger>
         <SheetContent side={"left"}>
+          <SheetHeader>
+            <SheetTitle className="flex justify-between px-2">
+              Menu
+              <ThemeToggle />
+            </SheetTitle>
+            <hr />
+            <div className="flex flex-col gap-2">
+              <Link href="/" className="flex items-center gap-2">
+                <Home /> Home
+              </Link>
+              <Link href="/find-ride" className="flex items-center gap-2">
+                <Car /> Find Rides
+              </Link>
+              <Link href="/add-ride" className="flex items-center gap-2">
+                <Plus /> Add Rides
+              </Link>
+              <Link href="/profile" className="flex items-center gap-2">
+                <User /> Profile
+              </Link>
+            </div>
+          </SheetHeader>
         </SheetContent>
       </Sheet>
     </div>
@@ -41,9 +62,85 @@ const Sidebar = () => {
 };
 export default Sidebar;
 // end sidebar.tsx in Components
-Hello from appRender
 Home
-Hello from appRender
-Hello from appRender
-Hello from appRender
-Hello from appRender
+
+
+// find-ride page
+return (
+  <>
+    <div className="mx-auto max-w-7xl px-6">
+      <h1 className="mb-8 text-3xl font-bold">Available Rides</h1>
+      <div className="grid grid-cols-2 gap-8">
+        <FindARide onFilter={handleFilter} />
+        <RideList 
+        rides={filteredRides}
+        onUpdateRide={onUpdateRide}
+        userId={session?.user?.id}
+        />
+      </div>
+    </div>
+  </>
+);
+// end  find-ride page 
+
+
+// start Profile page
+return (
+  <div className="container mx-auto">
+    <div className="mx-auto max-w-4xl">
+      <div className="mb-8 flex items-center gap-6">
+        <Avatar className="h-24 w-24">
+          <User className="h-12 w-12" />
+        </Avatar>
+        <div>
+          <h1 className="text-3xl font-bold text-foreground">
+            {session?.user.name} {session?.user.surname}
+          </h1>
+          <p className="text-muted-foreground">@{session?.user.username}</p>
+        </div>
+      </div>
+      <Tabs defaultValue="profile" className="space-y-6">
+        <TabsList>
+          <TabsTrigger value="profile">Profile</TabsTrigger>
+          <TabsTrigger value="cars">My Cars</TabsTrigger>
+          <TabsTrigger value="rides">My Rides</TabsTrigger>
+          </TabsList>
+          <TabsContent value="cars">
+            <Card className="p-6">
+              <div className="mb-6 flex items-center justify-between">
+                <h2 className="flex items-center gap-2 text-xl font-semibold">
+                  <Car className="h-5 w-5" />
+                  My Cars
+                </h2>
+                <Link href="/add-car">
+                  <Button>
+                    <Car className="mr-2 h-4 w-4" />
+                    Add new car
+                  </Button>
+                </Link>
+              </div>
+              <UserCars userId={session?.user.id} />
+            </Card>
+          </TabsContent>
+          <TabsContent value="rides">
+            <Card className="p-6">
+              <div className="mb-6 flex items-center justify-between">
+                <h2 className="flex items-center gap-2 text-xl font-semibold">
+                  <Car className="h-5 w-5" />
+                  My Rides
+                </h2>
+                <Link href="/find-ride">
+                  <Button>
+                    <Car className="mr-2 h-4 w-4" />
+                    Book a Ride
+                  </Button>
+                </Link>
+              </div>
+              <UserCars userId={session?.user.id} />
+            </Card>
+          </TabsContent>
+      </Tabs>
+    </div>
+  </div>
+);
+// end Profile page

@@ -9,6 +9,7 @@ import SessionWrapper from "@/components/session-wrapper";
 import { Toaster } from "@/components/ui/sonner";
 
 import "./globals.css";
+import Sidebar from "@/components/sidebar";
 
 export const metadata: Metadata = {
   title: "JoinMyRide",
@@ -25,21 +26,16 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="overflow-x-hidden">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <SessionWrapper>
             <Providers>
               <div className="flex min-h-screen flex-col">
-                <AppNavbar />
+                <Sidebar />
                 <div className="flex flex-1 p-3">
                   <main className="flex-1">{children}</main>
                 </div>
                 <footer className="mx-auto mb-1 items-center justify-center">
-                  Carpool © {new Date().getFullYear()}
+                  Carpool @ {new Date().getFullYear()}
                 </footer>
               </div>
               <Toaster />
@@ -48,5 +44,5 @@ export default async function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  );
+  );  
 }
